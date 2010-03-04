@@ -1,54 +1,69 @@
-<?php
+<?php	
+	include 'connection.php';
+	include 'sessions.inc';
 	
-?>
-<span id="bitPageTitle">Add Spare Part/Supply</span>
-<form id="formBit" onreset="return confirm('Are you sure you want to clear the content of the page?')">
-	<p>
-		<table width="50%">
+	$result = mysql_query( "SELECT * FROM transaction where type=1" );
+	
+	if(isset($_SESSION['username'])){
+?>		
+
+<head>
+	<script type="text/javascript" src="../scripts/ajax.js"></script>
+	<link type="text/css" href="../jquery-ui-1.8rc1.custom/development-bundle/demos/demos_class.css" rel="stylesheet" />		
+	<script src="../scripts/jquery.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="../scripts/dropdown.js"></script>
+</head>
+<body>
+	<p><span id="bitPageTitle">View Deposits</span></p>
+	&nbsp;
+	<p><table id="insideFrameLimit" border="1">
+		<thead>
 			<tr>
-				<td>Item Type</td>
-				<td>
-					<select name="itemType" id="itemType" class="required">
-						<option value="Select">Select</option>
-						<option value="SparePart">Spare Part</option>
-						<option value="Supply">Supply</option>
-					</select>
+				<th>Date</th>
+				<th>Name</th>
+				<th>Item</th>
+				<th>Amount</th>				
+			</tr>
+		</thead> 
+		<tbody>
+		<?php
+			while ($data= mysql_fetch_array($result)){ 
+		?>
+			<tr id="<?php$data['id']?>">
+				<td id="name_<?php$data['date']?>"><?php print $data['date'];?></td>
+				<td id="name_<?php print $data['name']?>">
+					<?php
+						print $data['first']." ";
+						print $data['middle']." ";
+						print $data['last']." ";
+					?>
 				</td>
-			</tr>
-			<!--Lalabas dapat na choices ay yung mga machines available na sa database-->
-			<tr>
-				<td>Machine</td>
-			</tr>
-			<tr>
-				<td>Material No.</td>
-				<td><input type="text" name="matno" class="required"/></td>
-				<td>Bin</td>
-				<td><input type="text" name="bin" class="required"/></td>
-			</tr>
-			<tr>
-				<td>Description</td>
-				<td><input type="text" name="desc" class="required"/></td>
-				<td>Bundle</td>
-				<td><input type="text" name="bun" class="required"/></td>
-			</tr>
-			<tr>
-				<td>Stock</td>
-				<td><input type="text" name="stock" class="number required"/></td>
-				<td>Cost center</td>
-				<td><input type="text" name="cc" class="required"/></td>
-			</tr>
-		</table>
-	</p>
-	<br /><br />
-	<p>
-		<table width="50%">
-			<tr>
-				<td><input type="reset" /></td>
-				<td>&nbsp;</td>
-				<td><input type="button" value="Submit" 
-					onclick="javascript:addItemSubmit(document.getElementById('formBit'))"/></td>
-			</tr>
-		</table>
-	</p>
-</form>
-<script type="text/javascript" src="scripts/ajax.js"></script> 
+				<td id="name_<?php print $data['item']?>">
+					<?php
+						$item_trans=$data['item'];
+						$item=mysql_query( "SELECT * FROM item where id='$item_trans'" );
+						$d= mysql_fetch_array($item);
+						print $d['desc1'];
+					?>
+				</td>
+				<td id="name_<?php print $data['amount']?>">
+					<?php
+						print $data['amount'];
+					?>
+				</td>
+			<br />
+			</tr>	
+			<?php } ?>
+
+		</tbody>
+	</table></p>
+</body>
+<?php
+	}
+	else {
+		echo "<script type = 'text/javascript'>
+			alert('Please log in first.');
+			</script>";
+		echo "<script>document.location='logInReg.php'</script>";
+	}
+?>
