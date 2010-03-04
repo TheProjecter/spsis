@@ -4,7 +4,7 @@
 <span id="bitPageTitle">Add Spare Part/Supply</span>
 <form id="formBit" onreset="return confirm('Are you sure you want to clear the content of the page?')">
 	<p>
-		<table width="50%">
+		<table width="100%">
 			<tr>
 				<td>Item Type</td>
 				<td>

@@ -1,24 +1,27 @@
-<?php 
-	include "../ajax/connection.php";
-	include "../ajax/sessions.inc";
-	
+<?php
+	include '../ajax/connection.php';
+	include '../ajax/sessions.inc';
+	$ref = $_SERVER['HTTP_REFERER'];
 	if(isset($_SESSION['username'])){
-		if ($_SESSION['type']=='admin')
-			$result = mysql_query("UPDATE admin SET password='$_GET[pass1]', empno='$_GET[emp]', first='$_GET[f]', middle='$_GET[m]', last='$_GET[l]', position='$_GET[pos]' WHERE username='$_SESSION[username]'");
-		else 
-			$result = mysql_query("UPDATE reg_user SET password='$_GET[pass1]', empno='$_GET[emp]', first='$_GET[f]', middle='$_GET[m]', last='$_GET[l]', position='$_GET[pos]' WHERE username='$_SESSION[username]'");
-			
-		echo "<script type = 'text/javascript'>
-				alert('Account successfully edited!');
+		$type = $_SESSION['type'];
+		$query = "UPDATE $type SET first = '$_GET[first]', middle= '$_GET[middle]', last= '$_GET[last]', position= '$_GET[position]' WHERE username = '$_SESSION[username]'";
+		$result = mysql_query($query);
+		if($result)
+			echo "<script type = 'text/javascript'>
+				alert('Successfully Edited Your Account!');
 				</script>";
-		if ($_SESSION['type']=='admin')
-			echo "<script>document.location='../mainForAdmin.php'</script>";
-		else echo "<script>document.location='../mainForRegUser.php'</script>";
+		else
+			echo "<script type = 'text/javascript'>
+				alert('Failed!');
+				</script>";
+
+		echo "<script>document.location='".$ref."'</script>";
+		
 	}
-	else {
+	else{
 		echo "<script type = 'text/javascript'>
-				alert('Please log in first.');
+				alert('Log In First!');
 				</script>";
-		echo "<script>document.location='logInReg.php'</script>";
+		echo "<script>document.location='".$ref."'</script>";
 	}
 ?>

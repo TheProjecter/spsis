@@ -9,7 +9,6 @@
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -18,6 +17,18 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Database: `spsis`
 --
+
+CREATE DATABASE `spsis` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `spsis`;
+
+--
+-- User: `mentak`
+--
+
+CREATE USER 'mentak'@'localhost' IDENTIFIED BY  'mentak';
+GRANT USAGE ON * . * TO  'mentak'@'localhost' IDENTIFIED BY  'mentak' WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0 ;
+GRANT ALL PRIVILEGES ON * . * TO  'mentak'@'localhost' WITH GRANT OPTION MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0 ;
+
 
 -- --------------------------------------------------------
 
@@ -67,15 +78,6 @@ CREATE TABLE IF NOT EXISTS `item` (
   UNIQUE KEY `mat_no` (`mat_no`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
---
--- Dumping data for table `item`
---
-
-INSERT INTO `item` (`id`, `mat_no`, `desc1`, `stock`, `bin`, `bun`, `cc`, `type`, `machine`) VALUES
-(6, '6666', 'frederique', 1, 'frederique', 'frederique', 'frederique', 1, 'AEM Machine'),
-(4, '4444', 'freddie', 1, 'freddie', 'freddie', 'freddie', 1, 'AEM Machine'),
-(10, 'matno', 'desc', 2, 'bin', 'bun', 'cc', 1, 'Corfin Machine');
-
 -- --------------------------------------------------------
 
 --
@@ -88,19 +90,6 @@ CREATE TABLE IF NOT EXISTS `machine` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
-
---
--- Dumping data for table `machine`
---
-
-INSERT INTO `machine` (`id`, `name`) VALUES
-(1, 'AEM Machine'),
-(2, 'Corfin Machine'),
-(3, 'AEM;'),
-(4, 'AEM;;'),
-(5, 'AEM Ma'),
-(6, 'AEM Mach'),
-(7, '6666');
 
 -- --------------------------------------------------------
 
@@ -124,16 +113,6 @@ CREATE TABLE IF NOT EXISTS `reg_user` (
   UNIQUE KEY `username_2` (`username`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
---
--- Dumping data for table `reg_user`
---
-
-INSERT INTO `reg_user` (`id`, `username`, `password`, `empno`, `first`, `middle`, `last`, `position`, `status`) VALUES
-(10, 'rosemay', 'hello', '12345678901', 'rosemay', 'zambale', 'beltran', 'kjhg', 1),
-(12, 'kikko', 'asd', '123414124', 'francis', 'r', 'dimaano', 'asdasd', 1),
-(13, 'freddie', 'asd', 'kjhv', 'freddie', 'jr', 'oliva', 'jhkf', 1),
-(15, 'felix', 'qwe', 'lkgfbj', 'felix', 'lawrence', 'pamittan', 'ksjdfb', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -152,11 +131,6 @@ CREATE TABLE IF NOT EXISTS `transaction` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `item` (`item`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `transaction`
---
-
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
