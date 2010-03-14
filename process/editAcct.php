@@ -22,6 +22,6 @@
 		echo "<script type = 'text/javascript'>
 				alert('Log In First!');
 				</script>";
-		echo "<script>document.location='".$ref."'</script>";
+		//echo "<script>document.location='".$ref."'</script>";
 	}
 ?>

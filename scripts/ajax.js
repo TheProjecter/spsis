@@ -47,7 +47,7 @@ function validateInput(input) {
 	return result;
 }
 
-function processRegister() {
+function registerUser() {
 	var result = true;
 	var uname, pass1, pass2, emp, f, m, l, pos;
 	var input = document.getElementsByTagName("input");
@@ -102,6 +102,8 @@ function processRegister() {
 		input[7].style.border = "1px solid red";
 		input[7].style.backgroundColor = "#FFE891";
 	}
+	
+	
 		
 	if (result) {
 		var uname = input[0].value;

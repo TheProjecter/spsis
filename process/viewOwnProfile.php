@@ -1,6 +1,6 @@
 <?php
-	include 'connection.php';
-	include 'sessions.inc';
+	include '../ajax/connection.php';
+	include '../ajax/sessions.inc';
 	
 	if(isset($_SESSION['username'])){
 		$uname = $_SESSION['username'];

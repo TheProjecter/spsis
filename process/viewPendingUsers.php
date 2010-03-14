@@ -1,14 +1,11 @@
 <?php 
-	include "connection.php";
-	include "sessions.inc";
+	include "../ajax/connection.php";
+	include "../ajax/sessions.inc";
 
-	$result = mysql_query("SELECT * FROM reg_user WHERE status=0");
+	if(isset($_SESSION['username'])){
+		$result = mysql_query("SELECT * FROM reg_user WHERE status=0");
 ?>
 
-<html>
-	<head>
-		<title>Spare Parts and Supplies Inventory System</title>
-	</head>
 	<body>
 		<p><span id="bitPageTitle">Pending Users</span></p>
 		&nbsp;
@@ -18,7 +15,7 @@
 			$_SESSION['mess']="";		
 		?>
 		</p>
-		<form name="form1" action="process/approveRegistration.php" method="post">
+		<form name="form1" action="process/approve.php" method="post">
 			<?php
 				echo "<p><table id='insideFrame'>
 				<tr>
@@ -44,4 +41,11 @@
 			<br />
 		</form>
 	</body>
-</html>
+<?php }
+	else {
+		echo "<script type = 'text/javascript'>
+			alert('Please log in first.');
+			</script>";
+		echo "<script>document.location='../logInReg.php'</script>";
+	}
+ ?>

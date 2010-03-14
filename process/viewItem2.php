@@ -23,7 +23,7 @@
 			echo "<tr><td class='ui-widget-header '>CC</td><td>" . $rows['cc'] . "</td></tr>";
 			echo "<tr><td class='ui-widget-header '>Type</td><td>" . $rows['type'] . "</td></tr>";
 			echo "<tr><td class='ui-widget-header '>Machine</td><td>" . $rows['machine'] . "</td></tr>";
-			echo "<tr><td class='ui-widget-header '>Actions</td><td><input type='hidden' name='delt' id='delt' value=" . $rows['matno'] . " /> <input type='submit' value='delete' name='delete' onclick='del1();' class='ui-state-default ui-corner-all' /></td></tr>";
+			echo "<tr><td class='ui-widget-header '>Actions</td><td><input type='hidden' name='delt' id='delt' value=" . $rows['matno'] . " /><input type='submit' value='delete' name='delete' onclick='del2();' class='ui-state-default ui-corner-all' /></td></tr>";	
 		?>
 		</tbody>
 	</table>
