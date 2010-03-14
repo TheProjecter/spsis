@@ -1,6 +1,6 @@
 <?php	
-	include 'connection.php';
-	include 'sessions.inc';
+	include '../ajax/connection.php';
+	include '../ajax/sessions.inc';
 	
 	$result = mysql_query( "SELECT * FROM transaction where type=0" );
 	
@@ -61,6 +61,6 @@
 		echo "<script type = 'text/javascript'>
 			alert('Please log in first.');
 			</script>";
-		echo "<script>document.location='logInReg.php'</script>";
+		echo "<script>document.location='../logInReg.php'</script>";
 	}
 ?>

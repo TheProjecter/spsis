@@ -18,6 +18,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Database: `spsis`
 --
 
+CREATE DATABASE `spsis` ;
 CREATE DATABASE `spsis` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `spsis`;
 
@@ -36,24 +37,20 @@ GRANT ALL PRIVILEGES ON * . * TO  'mentak'@'localhost' WITH GRANT OPTION MAX_QUE
 -- Table structure for table `admin`
 --
 
-CREATE TABLE IF NOT EXISTS `admin` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL,
-  `empno` varchar(11) NOT NULL,
-  `first` varchar(30) NOT NULL,
-  `middle` varchar(30) NOT NULL,
-  `last` varchar(30) NOT NULL,
-  `position` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`,`empno`),
-  UNIQUE KEY `username_2` (`username`),
-  UNIQUE KEY `empno` (`empno`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `admin`
---
+CREATE TABLE `spsis`.`admin` (
+`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`username` VARCHAR( 20 ) NOT NULL ,
+`password` VARCHAR( 20 ) NOT NULL ,
+`empno` VARCHAR( 11 ) NOT NULL ,
+`first` VARCHAR( 30 ) NOT NULL ,
+`middle` VARCHAR( 30 ) NULL ,
+`last` VARCHAR( 30 ) NOT NULL ,
+`position` VARCHAR( 20 ) NOT NULL ,
+	UNIQUE (
+	`username` ,
+	`empno`
+	)
+) ENGINE = MYISAM ;
 
 INSERT INTO `admin` (`id`, `username`, `password`, `empno`, `first`, `middle`, `last`, `position`) VALUES
 (1, 'admin', 'admin', '01234567899', 'hello', '', 'world', 'engineer');

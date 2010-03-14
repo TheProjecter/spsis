@@ -1,6 +1,7 @@
 <?php
 	include '../ajax/connection.php';
 	include '../ajax/sessions.inc';
+	
 	if(isset($_SESSION['username'])){
 		$criteria = $_POST['criteria'];
 		$key = $_POST['keyword'];
@@ -18,7 +19,7 @@
 			echo "<th>Username</th>";
 			while($row = mysql_fetch_array($result, MYSQL_ASSOC)){
 				echo "<tr>";
-				echo '<td><a href="../ajax/viewAcct.php?username='.$row['username'].'">';
+				echo '<td><a href="viewAcct.php?uname='.$row['username'].'">';
 				echo "{$row['username']}</a></td>";
 				echo "</tr>";
 			}

@@ -30,13 +30,13 @@
 		else{
 			echo "<script>alert('Invalid input!');</script>";
 		}
-		/*
+		
 		if($_SESSION['type']=='admin'){
 			echo "<script>document.location='../mainForAdmin.php'</script>";
 		}
 		else{
 			echo "<script>document.location='../mainForRegUser.php'</script>";
-		}*/
+		}
 	}
 	else {
 		echo "<script type = 'text/javascript'>

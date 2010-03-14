@@ -6,8 +6,6 @@
 		$query = "SELECT name FROM machine";
 		$result = mysql_query($query);
 		$num = mysql_num_rows($result);
-	}
-
 ?>
 <p><span id="bitPageTitle">Edit Spare Part/Supply</span></p>
 &nbsp;
@@ -76,3 +74,12 @@
 	</p>
 </form>
 <script type="text/javascript" src="../scripts/ajax.js"></script>
+<?php
+	}
+	else {
+		echo "<script type = 'text/javascript'>
+				alert('Please log in first.');
+				</script>";
+		echo "<script>document.location='../logInReg.php'</script>";
+	}
+?>

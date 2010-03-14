@@ -1,6 +1,7 @@
 <?php
 	include '../ajax/sessions.inc';
 	include '../ajax/connection.php'; 
+	
 	$idValue= $_GET['id']; 
 	$amount= $_GET['am']; 
 			
@@ -20,7 +21,7 @@
 		$f=$data['first'];
 		$m=$data['middle'];
 		$l=$data['last'];
-		$item=$s['desc1'];
+		$item=$st['desc1'];
 
 		mysql_query("INSERT into transaction (id,date,first,middle,last,item,type,amount) values (NULL,SYSDATE(),'$f','$m','$l',$item,1,$amount)");
 		$result = mysql_query( "UPDATE item SET stock = stock+$amount WHERE id=$idValue");

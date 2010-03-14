@@ -1,8 +1,8 @@
 <?php	
-	include 'connection.php';
-	include 'sessions.inc';
+	include '../ajax/connection.php';
+	include '../ajax/sessions.inc';
 	
-	$result = mysql_query( "SELECT * FROM transaction where type=1" );
+	$result = mysql_query( "SELECT * FROM transaction" );
 	
 	if(isset($_SESSION['username'])){
 ?>		
@@ -14,14 +14,15 @@
 	<script type="text/javascript" src="../scripts/dropdown.js"></script>
 </head>
 <body>
-	<p><span id="bitPageTitle">View Deposits</span></p>
+	<p><span id="bitPageTitle">View All Transactions</span></p>
 	&nbsp;
 	<p><table id="insideFrameLimit" border="1">
 		<thead>
 			<tr>
 				<th>Date</th>
 				<th>Name</th>
-				<th>Item</th>
+				<th>Item Description</th>
+				<th>Transaction Type</th>				
 				<th>Amount</th>				
 			</tr>
 		</thead> 
@@ -39,11 +40,16 @@
 					?>
 				</td>
 				<td id="name_<?php print $data['item']?>">
+					<?php						
+						print $data['item'];
+					?>
+				</td>
+				<td id="name_<?php print $data['type']?>">
 					<?php
-						$item_trans=$data['item'];
-						$item=mysql_query( "SELECT * FROM item where id='$item_trans'" );
-						$d= mysql_fetch_array($item);
-						print $d['desc1'];
+						if($data['type']==1){
+							echo "deposit";
+						}
+						else echo "withdraw";
 					?>
 				</td>
 				<td id="name_<?php print $data['amount']?>">
@@ -64,6 +70,6 @@
 		echo "<script type = 'text/javascript'>
 			alert('Please log in first.');
 			</script>";
-		echo "<script>document.location='logInReg.php'</script>";
+		echo "<script>document.location='../logInReg.php'</script>";
 	}
 ?>
