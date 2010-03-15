@@ -63,41 +63,39 @@ function registerUser() {
 		var m = input[6].value;
 		var pos = input[7].value;
 	
-	if(input[0].value==""||uname.length<3||uname.length>20){
-		alert ("Username Length Error");
+	if(input[0].value==""){
+		
 		result = false;
 		input[0].style.border = "1px solid red";
 		input[0].style.backgroundColor = "#FFE891";
 	
-	}else if (input[1].value!=input[2].value){
-		alert ("Password Mismatch");
+	}if(input[1].value==""){
+	
 		result = false;
 		input[1].style.border = "1px solid red";
 		input[1].style.backgroundColor = "#FFE891";
+	}if(input[2].value==""){
+	
+		result = false;
 		input[2].style.border = "1px solid red";
 		input[2].style.backgroundColor = "#FFE891";
-	}else if(input[0].value==""||pass1.length<5||pass1.length>20){
-		alert ("Password Length Error");
-		result = false;
-		input[1].style.border = "1px solid red";
-		input[1].style.backgroundColor = "#FFE891";
-	}else if(input[3].value==""||emp.length<11||emp.length>11){
-		alert ("Employee Number Length Error");
+	}if(input[3].value==""){
+		
 		result = false;
 		input[3].style.border = "1px solid red";
 		input[3].style.backgroundColor = "#FFE891";
-	}else if(input[4].value==""||f.length<3||f.length>30){
-		alert ("First Name Length Error");
+	} if(input[4].value==""){
+		
 		result = false;
 		input[4].style.border = "1px solid red";
 		input[4].style.backgroundColor = "#FFE891";
-	}else if(input[5].value==""||l.length<3||l.length>30){
-		alert ("Last Name Length Error");
+	}if(input[5].value==""){
+		
 		result = false;
 		input[5].style.border = "1px solid red";
 		input[5].style.backgroundColor = "#FFE891";
-	}else if(input[7].value==""||pos.length<3||uname.length>20){
-		alert ("Position Length Error");
+	}if(input[7].value==""){
+		
 		result = false;
 		input[7].style.border = "1px solid red";
 		input[7].style.backgroundColor = "#FFE891";

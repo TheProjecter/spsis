@@ -1,19 +1,12 @@
 <?php
 	include '../ajax/connection.php';
-	include '../ajax/sessions.inc';
 	
-	if (isset($_POST['username'])) {
-		$username = $_POST['username'];
+	if (isset($_GET['dtrue'])) {
+		$username = $_GET['dtrue'];
 		$query = "DELETE FROM reg_user where username = '$username'";
 		$result = mysql_query($query);
 		
-		echo "<script type = 'text/javascript'>
-			alert('Account Successfully Deleted!');
-			</script>";
-		
-		if ($_SESSION['type']=='admin')
-			echo "<script>document.location='../mainForAdmin.php'</script>";
-		else echo "<script>document.location='../mainForRegUser.php'</script>";
+		echo "<h2>Account '" . $username . "' has been successfully deleted! </h2>";
 	}
 	else {
 		echo "<script type = 'text/javascript'>

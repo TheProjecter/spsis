@@ -1,69 +1,50 @@
 <?php	
 	include '../ajax/connection.php';
 	include '../ajax/sessions.inc';
-	
-	$result = mysql_query( "SELECT * FROM transaction" );
-	
+		
 	if(isset($_SESSION['username'])){
+		$result = mysql_query( "SELECT * FROM transaction");
 ?>		
 
-<head>
-	<script type="text/javascript" src="../scripts/ajax.js"></script>
-	<link type="text/css" href="../jquery-ui-1.8rc1.custom/development-bundle/demos/demos_class.css" rel="stylesheet" />		
-	<script src="../scripts/jquery.min.js" type="text/javascript"></script>
-	<script type="text/javascript" src="../scripts/dropdown.js"></script>
-</head>
-<body>
-	<p><span id="bitPageTitle">View All Transactions</span></p>
-	&nbsp;
-	<p><table id="insideFrameLimit" border="1">
+<script type="text/javascript">
+	$(document).ready(function(){ 
+		$("#users").tablesorter( {sortList: [[0,0], [1,0]]} ); 
+	}); 
+</script>
+
+<div id="users-contain" class="ui-widget">
+	<div id='center'><h2>List of All Transactions</h2></div>
+	<table id="users" class="ui-widget ui-widget-content">
 		<thead>
-			<tr>
+			<tr class="ui-widget-header ">
 				<th>Date</th>
 				<th>Name</th>
-				<th>Item Description</th>
-				<th>Transaction Type</th>				
-				<th>Amount</th>				
+				<th>Item</th>
+				<th>Transaction</th>
+				<th>Amount</th>
 			</tr>
-		</thead> 
+		</thead>
 		<tbody>
-		<?php
-			while ($data= mysql_fetch_array($result)){ 
-		?>
-			<tr id="<?php$data['id']?>">
-				<td id="name_<?php$data['date']?>"><?php print $data['date'];?></td>
-				<td id="name_<?php print $data['name']?>">
-					<?php
-						print $data['first']." ";
-						print $data['middle']." ";
-						print $data['last']." ";
-					?>
-				</td>
-				<td id="name_<?php print $data['item']?>">
-					<?php						
-						print $data['item'];
-					?>
-				</td>
-				<td id="name_<?php print $data['type']?>">
-					<?php
+		<div class="demo">
+			<?php 
+				$i=0;
+				while($data = mysql_fetch_array($result)){
+					echo "<tr>" ;
+					echo "<td>" . $data['date'] . "</td>";
+					echo "<td>" . $data['last'] . ", " . $data['first'] .  " " . $data['middle'] . "</td>";
+					echo "<td>" . $data['item'] . "</td>";
 						if($data['type']==1){
-							echo "deposit";
+							echo "<td>Deposit</td>";
 						}
-						else echo "withdraw";
-					?>
-				</td>
-				<td id="name_<?php print $data['amount']?>">
-					<?php
-						print $data['amount'];
-					?>
-				</td>
-			<br />
-			</tr>	
-			<?php } ?>
-
+						else echo "<td>Withdraw</td>";
+					echo "<td>" . $data['amount'] . "</td>";
+					echo "</tr>" ;
+					$i++;
+				}
+			?>
 		</tbody>
-	</table></p>
-</body>
+	</table>
+</div>
 <?php
 	}
 	else {
