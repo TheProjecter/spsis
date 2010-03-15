@@ -8,13 +8,13 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){ 
-		$("#users").tablesorter( {sortList: [[0,0], [1,0]]} ); 
+		$("#usersT").tablesorter( {sortList: [[0,0], [1,0]]} ); 
 	}); 
 </script>
 
 <div id="users-contain" class="ui-widget">
 	<div id='center'><h2>List of All Transactions</h2></div>
-	<table id="users" class="ui-widget ui-widget-content">
+	<table id="usersT" class="ui-widget ui-widget-content" align="center">
 		<thead>
 			<tr class="ui-widget-header ">
 				<th>Date</th>
@@ -44,6 +44,7 @@
 			?>
 		</tbody>
 	</table>
+	<br />
 </div>
 <?php
 	}

@@ -39,9 +39,16 @@
 			input.text { margin-bottom:12px; width:95%; padding: .4em; }
 			fieldset { padding:0; border:0; margin-top:25px; }
 			h1 { font-size: 1.2em; margin: .6em 0; }
-			div#users-contain { width: 350px; margin: 20px 0; }
-			div#users-contain table { margin: 5% 18%; border-collapse: collapse; width: 100%; }
-			div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
+			div#users-contain { width: 100%; }
+			table#usersDialog {margin: 5%; font-size: 125%; width:90%;}
+			table#usersDialogW {font-size: 110%; width:100%; border-color: white}
+			div#users-contain table { border-collapse: collapse;}
+			div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left;}
+			table tr th {font-size: 110%}
+			table#users {width:90%}
+			table#usersThird, table#usersW, table#usersD, table#usersT {width:75%}
+			table#usersHalf {width:50%}
+			div#dialogSmall {margin: 0 65%}
 			.ui-dialog .ui-state-error { padding: .3em; }
 			.validateTips { border: 1px solid transparent; padding: 0.3em; }
 		</style>
@@ -53,7 +60,7 @@
 				width:15em; /* set width here or else widget will expand to fit its container */
 				padding-bottom:2em;
 			}
-		</style>	
+		</style>
 	</head>
 	<body>
 		<script type="text/javascript" src="scripts/ajax.js"></script>

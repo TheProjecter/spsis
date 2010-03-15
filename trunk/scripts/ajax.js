@@ -179,18 +179,6 @@ function processAddMachine() {
 	}
 }
 
-function processSearchMachine() {
-	
-}
-
-function processEditMach() {
-
-}
-
-function processDeleteMach() {
-
-}
-
 function processAddItem(formObject) {
 	var result = true;
 	var itemType,mat_no,desc1,stock,bin,bun,cc,machine;
@@ -237,7 +225,7 @@ function processSearchItem() {
 }
 
 function processEditItem() {
-var result = true;
+	var result = true;
 	var itemType,mat_no,desc1,stock,bin,bun,cc,machine;
 	var input = document.getElementsByTagName("input");
 	var option = document.getElementsByTagName("option");
@@ -268,10 +256,6 @@ var result = true;
 	}
 }
 
-function processDeleteItem() {
-
-}
-
 function enableButton(formObject) {
 	var option = document.getElementsByTagName("option");
 	
@@ -288,20 +272,34 @@ function disableButton(formObject) {
 	}
 }
 
-function deposit(aydi){
-	var p=prompt("Enter amount:");
-	var disp = parseInt(p);
+function deposit(){
+	var result = true;
+	var input = document.getElementsByTagName("input");
+	result = validateInput(input);
 	
-	if(disp>0)
-		window.location = "process/deposit.php?id="+aydi+"&am="+disp;
-	else alert("invalid input!");
+	if (document.getElementById("id_deposit").value==0) {
+		result = false;
+		document.getElementById("id_deposit").style.border = "1px solid red";
+		document.getElementById("id_deposit").style.backgroundColor = "#FFE891";
+	}
+	
+	if(result) {
+		depositprocess();
+	}
 }
 
-function withdraw(aydi){
-	var p=prompt("Enter amount:");
-	var disp = parseInt(p);
+function withdraw(){
+	var result = true;
+	var input = document.getElementsByTagName("input");
+	result = validateInput(input);
 	
-	if(disp>0)
-		window.location = "process/withdraw.php?id="+aydi+"&am="+disp;
-	else alert("invalid input!");
+	if (document.getElementById("id_withdraw").value > document.getElementById("id_stock_w").value || document.getElementById("id_withdraw").value==0) {
+		result = false;
+		document.getElementById("id_withdraw").style.border = "1px solid red";
+		document.getElementById("id_withdraw").style.backgroundColor = "#FFE891";
+	}
+	
+	if(result) {
+		withdrawprocess();
+	}
 }

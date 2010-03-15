@@ -19,7 +19,6 @@
 		</script>
 	</head>
 	<body>
-
 		<div id="accordion">
 			<h3><a href="#">Not a yet a user? Register here</a></h3>
 			<div>
@@ -34,7 +33,9 @@
 						</tr>
 						<tr>
 							<td>Username<label id="asterisk">*</label></td>
-							<td> <input type="text" name="username" id="username" class="required"></td>
+							<td> <input type="text" name="username" id="username" class="required" value=<?php echo "'".$_SESSION['un']."'";
+							$_SESSION['un']="";
+							?>></td>
 							<td>
 							<p id="msg"><?php echo $_SESSION['unmsg']; 
 							$_SESSION['unmsg']="";
@@ -42,7 +43,9 @@
 						</tr>
 						<tr>
 							<td>Password<label id="asterisk">**</label></td>
-							<td> <input type="password" name="pword" id="pword" class="required"></td>
+							<td> <input type="password" name="pword" id="pword" class="required" value=<?php echo "'".$_SESSION['pw1']."'";
+							$_SESSION['pw1']="";
+							?>></td>
 							<td>
 							<p id="msg"><?php echo $_SESSION['p1msg']; 
 							$_SESSION['p1msg']="";
@@ -51,7 +54,9 @@
 						<tr>
 							
 							<td>Re-type Password<label id="asterisk">**</label></td>
-							<td> <input type="password" name="pword2" id="pword2" class="required"></td>
+							<td> <input type="password" name="pword2" id="pword2" class="required" value=<?php echo "'".$_SESSION['pw2']."'";
+							$_SESSION['pw2']="";
+							?>></td>
 							<td>
 							<p id="msg"><?php echo $_SESSION['p2msg']; 
 							$_SESSION['p2msg']="";
@@ -59,7 +64,9 @@
 						</tr>
 						<tr>
 							<td>Employee Number<label id="asterisk">***</label></td>
-							<td> <input type="text" name="empno" id="empno" class="required"></td>
+							<td> <input type="text" name="empno" id="empno" class="required" value=<?php echo "'".$_SESSION['en']."'";
+							$_SESSION['en']="";
+							?>></td>
 							<td>
 							<p id="msg"><?php echo $_SESSION['enmsg']; 
 							$_SESSION['enmsg']="";
@@ -67,7 +74,9 @@
 						</tr>
 						<tr>
 							<td>First Name<label id="asterisk">*</label></td>
-							<td> <input type="text" name="first" id="first" class="required"></td>
+							<td> <input type="text" name="first" id="first" class="required" value=<?php echo "'".$_SESSION['fn']."'";
+							$_SESSION['fn']="";
+							?>></td>
 							<td>
 							<p id="msg"><?php echo $_SESSION['fmsg']; 
 							$_SESSION['fmsg']="";
@@ -75,7 +84,9 @@
 						</tr>
 						<tr>	
 							<td>Last Name<label id="asterisk">*</label></td>
-							<td><input type="text" name="last" id="last" class="required"></td>
+							<td><input type="text" name="last" id="last" class="required" value=<?php echo "'".$_SESSION['ln']."'";
+							$_SESSION['ln']="";
+							?>></td>
 							<td>
 							<p id="msg"><?php echo $_SESSION['lmsg']; 
 							$_SESSION['lmsg']="";
@@ -83,11 +94,15 @@
 						</tr>
 						<tr>
 							<td>Middle Name</td>
-							<td> <input type="text" name="middle" id="middle"></td>
+							<td> <input type="text" name="middle" id="middle" value=<?php echo "'".$_SESSION['mn']."'";
+							$_SESSION['mn']="";
+							?>></td>
 						</tr>
 						<tr>
 							<td>Position<label id="asterisk">*</label></td>
-							<td> <input type="text" name="pos" id="pos" class="required"></td>
+							<td> <input type="text" name="pos" id="pos" class="required" value=<?php echo "'".$_SESSION['po']."'";
+							$_SESSION['po']="";
+							?>></td>
 							<td>
 							<p id="msg"><?php echo $_SESSION['pmsg']; 
 							$_SESSION['pmsg']="";
@@ -97,7 +112,7 @@
 					<br />
 					<p><table id="insideFrame">
 						<tr>
-							<td></td>
+							<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 							<td><input type="button" value="Register"
 								onclick="javascript:registerUser(document.getElementById('formBit'))"></td>
 						</tr>

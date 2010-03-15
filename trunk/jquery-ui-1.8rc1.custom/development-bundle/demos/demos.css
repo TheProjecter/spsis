@@ -3,6 +3,11 @@ body {
 	
 }
 
+#center {
+	width:100%;
+	text-align: center;
+}
+
 #msg {
 	color: red;
 }
@@ -38,14 +43,6 @@ table#insideFrameHalf {
 	width: 75%;
 	position:relative;
 	left: 5%
-}
-
-span#bitPageTitle {
-	font-weight: bold;
-}
-
-#rightMost {
-	direction: rtl;
 }
 
 #jsddm

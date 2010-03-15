@@ -23,7 +23,7 @@
 	});
 	
 	$(document).ready(function(){ 
-		$("#users").tablesorter( {sortList: [[0,0], [1,0]]} ); 
+		$("#usersThird").tablesorter( {sortList: [[0,0], [1,0]]} ); 
 	}); 
 </script>
 
@@ -39,9 +39,10 @@
 <div id="users-contain" class="ui-widget">
 	<div id="warningAcct" title="WARNING"><h3 align="center">Please choose an account.</h3></div>
 
-	<p>Click on the username of your chosen account</p>
+	<p><b>Instruction: </b>Click on the username of your chosen account</p>
+	<br />
 	<div id='center'><h2>List of Accounts</h2></div>
-	<table id="users" class="ui-widget ui-widget-content">
+	<table id="usersThird" class="ui-widget ui-widget-content" align="center">
 		<thead>
 			<tr class="ui-widget-header ">
 				<th>Username</th>
@@ -65,4 +66,5 @@
 		?>
 		</tbody>
 	</table>
+	<br />
 </div>
