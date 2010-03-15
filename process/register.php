@@ -6,7 +6,14 @@
 
 	mysql_select_db("spsis", $con);
 	
-	
+	$_SESSION['un']=$_GET[uname];
+	$_SESSION['pw1']=$_GET[pass1];
+	$_SESSION['pw2']=$_GET[pass2];
+	$_SESSION['en']=$_GET[emp];
+	$_SESSION['fn']=$_GET[f];
+	$_SESSION['mn']=$_GET[m];
+	$_SESSION['ln']=$_GET[l];
+	$_SESSION['po']=$_GET[pos];
 	//$result = mysql_query("SELECT * FROM reg_user");
 	
 	$result2 = mysql_query("SELECT * FROM reg_user WHERE empno LIKE '$_GET[emp]'");
@@ -49,6 +56,11 @@
 		$_SESSION['pmsg']= "Position length invalid<br>";
 			header('Location: ../logInReg.php');
 	}
+	if($_GET[pass1]!=$_GET[pass2]){
+		$ok=0;
+		$_SESSION['msg']= "Password Mismatch";
+			header('Location: ../logInReg.php');
+	}
 	
 	if($ok==1){
 	if(mysql_fetch_array($result)!=null){
@@ -68,7 +80,14 @@
 		
 	else{
 	$result = mysql_query("INSERT INTO reg_user VALUES (NULL, '$_GET[uname]', '$_GET[pass1]', '$_GET[emp]', '$_GET[f]', '$_GET[m]', '$_GET[l]', '$_GET[pos]',0)");
-	
+	$_SESSION['un']="";
+	$_SESSION['pw1']="";
+	$_SESSION['pw2']="";
+	$_SESSION['en']="";
+	$_SESSION['fn']="";
+	$_SESSION['mn']="";
+	$_SESSION['ln']="";
+	$_SESSION['po']="";
 	if ($result) {
 		$_SESSION['msg']= "REGISTRATION SUCCESSFUL";
 	}
@@ -80,6 +99,8 @@
 	
 	}}
 	mysql_close($con);
-
+	
 	header('Location: ../logInReg.php');
+	
+	
 ?>

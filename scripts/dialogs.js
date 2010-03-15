@@ -137,7 +137,6 @@ function deposit1(){
 		
 		if(deposit_text==''){
 			$("#warning").dialog({
-				modal: true,
 				buttons: {
 					Ok: function() {
 						$(this).dialog('close');
@@ -224,7 +223,6 @@ function depositprocess(){
 		
 		if(amount<=0){
 			$("#invalid").dialog({
-				modal: true,
 				buttons: {
 					Ok: function() {
 						$(this).dialog('close');
@@ -247,16 +245,12 @@ function depositprocess(){
 
 function withdrawprocess(){
 	$('#withdraw_true_dialog').html("");
-		//text2 =$('#delt').val();
-		//alert(edit_text2);
 		amount_w =$('#id_withdraw').val();
 		item_w =$('#id_item_w').val();
 		stock_w =$('#id_stock_w').val();
 		
 		if(amount_w > stock_w || amount_w <=0){
-			//alert('Invalid amount entered');
 			$("#invalid").dialog({
-				modal: true,
 				buttons: {
 					Ok: function() {
 						$(this).dialog('close');

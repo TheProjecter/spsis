@@ -27,7 +27,7 @@
 </script>
 
 <style>
-	#warning,#invalid{
+	#warning{
 		display:none;
 	}
 </style>
@@ -55,17 +55,17 @@
 	<div id="withdraw_true_dialog2" title="Withdraw Success"></div>
 
 	<div id="warning" title="WARNING"><h3 align="center">Please choose an item.</h3></div>
-	<div id="invalid" title="WARNING"><h3 align="center">Invalid amount was entered!</h3></div>
 
-	<p>Click on the material # of your chosen item</p>
-	<div id='center'><h2>List of Spare Parts and Supplies</h2></div>
-	<table id="users" class="ui-widget ui-widget-content">
+	<p><b>Instruction:</b> Click on the material # of your chosen item</p>
+	<br />
+	<div id="center"><h2>List of Spare Parts and Supplies</h2></div>
+	<table id="users" class="ui-widget ui-widget-content" align="center">
 		<thead>
 			<tr class="ui-widget-header ">
 				<th>Material No.</th>
-				<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Decription&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+				<th>Decription</th>
 				<th>Stock</th>
-				<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Machine&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+				<th>Machine</th>
 				<th>View</th>
 				<th>Deposit</th>
 				<th>Withdraw</th>
@@ -90,4 +90,5 @@
 			?>
 		</tbody>
 	</table>
+	<br />
 </div>

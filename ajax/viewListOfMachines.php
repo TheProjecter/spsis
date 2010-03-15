@@ -21,7 +21,7 @@
 		}
 	});
 	$(document).ready(function(){ 
-		$("#users").tablesorter( {sortList: [[0,0], [1,0]]} ); 
+		$("#usersHalf").tablesorter( {sortList: [[0,0], [1,0]]} ); 
 	}); 
 </script>
 <style>
@@ -35,9 +35,11 @@
 <div id="conf_del5" title="Delete Machine"></div>
 <div id="users-contain" class="ui-widget">
 	<div id="warningMach" title="WARNING"><h3 align="center">Please choose a machine.</h3></div>
-	<p>Click on the name of your chosen machine</p>
+	
+	<p><b>Instruction: </b>Click on the name of your chosen machine</p>
+	<br />
 	<div id='center'><h2>List of Machines</h2></div>
-	<table id="users" class="ui-widget ui-widget-content">
+	<table id="usersHalf" class="ui-widget ui-widget-content" align="center">
 		<thead>
 			<tr class="ui-widget-header ">
 				<th>Machine Name</th>
@@ -59,4 +61,5 @@
 		?>
 		</tbody>
 	</table>
+	<br />
 </div>
