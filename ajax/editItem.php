@@ -1,85 +1,42 @@
-<?php
-	include '../ajax/connection.php';
-	include '../ajax/sessions.inc';
+<div class="del_dialog" title="View Spare Part"></div>
+<table id="users" class="ui-widget ui-widget-content">
+<thead>
 	
-	if(isset($_SESSION['username'])){
-		$query = "SELECT name FROM machine";
-		$result = mysql_query($query);
-		$num = mysql_num_rows($result);
-?>
-<p><span id="bitPageTitle">Edit Spare Part/Supply</span></p>
-&nbsp;
-<form id="formBit" onreset="return confirm('Are you sure you want to clear the content of the page?')"
-	method="post">
-	<p><div name="main">
-		<table id="insideFrame">
-			<tr>
-				<td>Item Type</td>
-				<td>
-					<input type="radio" id="itemType" name="itemType" value="1" class="required" 
-					onclick="javascript:enableButton(document.getElementById('formBit'))"/>Spare Part
-				</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>
-					<input type="radio" name="itemType" value="0" class="required"
-					onclick="javascript:disableButton(document.getElementById('formBit'))"/>Supply
-				</td>
-			</tr>
-			<tr>
-				<td>Machine</td>
-				<td>
-					<select name="mach" id="mach">
-						<option value=""></option>
-						<?php
-							while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
-									echo "<option value='" . $row['name'] . "'>";
-									echo $row['name'] . "</option>";
-							}
-						?>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td>Material No.</td>
-				<td><input type="text" name="matno" class="required"/></td>
-				<td>Bin</td>
-				<td><input type="text" name="bin" class="required"/></td>
-			</tr>
-			<tr>
-				<td>Description</td>
-				<td><input type="text" name="desc1" class="required"/></td>
-				<td>Bundle</td>
-				<td><input type="text" name="bun" class="required"/></td>
-			</tr>
-			<tr>
-				<td>Stock</td>
-				<td><input type="text" name="stock" class="number required"/></td>
-				<td>Cost center</td>
-				<td><input type="text" name="cc" class="required"/></td>
-			</tr>
-		</table>
-	</div></p>
-	<br /><br />
-	<p>
-		<table id="insideFrame">
-			<tr>
-				<td><input type="reset" /></td>
-				<td>&nbsp;</td>
-				<td><input type="button" value="Save" 
-					onclick="javascript:processEditItem(document.getElementById('formBit'))"/></td>
-			</tr>
-		</table>
-	</p>
-</form>
-<script type="text/javascript" src="../scripts/ajax.js"></script>
-<?php
+</thead>
+<tbody>		
+<?php 
+	include "connection.php";
+	
+	$matno="";
+	$desc1="";
+	$stock=0;
+	$bin="";
+	$bun="";
+	$cc="";
+	$type=0;
+	$machine="";
+	
+	if(isset($_GET['te'])){
+		$temp = $_GET['te'];
+		$result = mysql_query("SELECT * FROM item where matno='$temp' or desc1='$temp' or machine='$temp'");
+
+		$rows = mysql_fetch_array($result);
 	}
-	else {
-		echo "<script type = 'text/javascript'>
-				alert('Please log in first.');
-				</script>";
-		echo "<script>document.location='../logInReg.php'</script>";
-	}
+
+	echo "<tr><td class='ui-widget-header '>Material No.</td><td>" . $rows['matno'] . "</td></tr>";
+	echo "<tr><td class='ui-widget-header '>Description</td><td><input type='text' name='item_desc1' id='desc1_item' value='" . $rows['desc1'] . "'></td></tr>";
+	echo "<tr><td class='ui-widget-header '>Stock</td><td><input type='text' name='item_stock' id='stock_item' value='" . $rows['stock'] . "'></td></tr>";
+	echo "<tr><td class='ui-widget-header '>Bin</td><td><input type='text' name='item_bin' id='bin_item' value='" . $rows['bin'] . "'></td></tr>";
+	echo "<tr><td class='ui-widget-header '>Bun</td><td><input type='text' name='item_bun' id='bun_item' value='" . $rows['bun'] . "'></td></tr>";
+	echo "<tr><td class='ui-widget-header '>CC</td><td><input type='text' name='item_cc' id='cc_item' value='" . $rows['cc'] . "'></td></tr>";
+	echo "<tr><td class='ui-widget-header '>Type</td><td><input type='text' name='item_type' id='type_item' value='" . $rows['type'] . "'></td></tr>";
+	echo "<tr><td class='ui-widget-header '>Machine</td><td><input type='text' name='item_machine' id='machine_item' value='" . $rows['machine'] . "'></td></tr>";
+	
+
+echo "</tbody>";
+echo "</table>";
+echo "<input type='hidden' name='item_edit1' id='edit1' value=" . $rows['matno'] . ">";
+//echo "<input type='submit' value='edit' name='edit' onclick='editprocess(\"" . $rows['matno'] . "\",\"".$rows['desc1'] ."\",".$rows['stock'] .",\"". $rows['bin'] ."\",\"" . $rows['bun'] . "\",\"" . $rows['cc'] ."\"," . $rows['type'] .",\"" . $rows['machine'] ."\");' class='ui-state-default ui-corner-all' >";
+echo "<input type='submit' value='edit' name='edit' onclick='editprocess();' class='ui-state-default ui-corner-all' >";
+
 ?>

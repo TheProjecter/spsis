@@ -12,58 +12,82 @@
 		$result2 = mysql_query("SELECT * FROM item");
 	}
 ?>
+<script type="text/javascript">
+	$(function() {
+		var i=0;
+		while(i<9999){
+		$("#radio"+i).buttonset();
+		i++;
+		}
+	});
 
-			<script type="text/javascript">
-			$(function() {
-				var i=0;
-				while(i<9999){
-				$("#radio"+i).buttonset();
-				i++;
+	$(document).ready(function(){ 
+		$("#users").tablesorter( {sortList: [[0,0], [1,0]]} ); 
+	}); 
+</script>
+
+<style>
+	#warning,#invalid{
+		display:none;
+	}
+</style>
+
+<div id="dialog" title="View Item"></div>
+<div id="del_dialog" title="Confirm Delete"></div>
+<div id="conf_del" title="Delete Item"></div>
+<div id="users-contain" class="ui-widget">
+	<div id="edit_dialog" title="Edit Item"></div>
+	<div id="edit_true_dialog" title="Edit Success"></div>
+
+	<div id="edit_dialog2" title="Edit Item"></div>
+	<div id="edit_true_dialog2" title="Edit Success"></div>
+
+	<div id="deposit_dialog" title="Deposit Item"></div>
+	<div id="deposit_true_dialog" title="Deposit Success"></div>
+
+	<div id="deposit_dialog2" title="Deposit Item"></div>
+	<div id="deposit_true_dialog2" title="Deposit Success"></div>
+
+	<div id="withdraw_dialog" title="Withdraw Item"></div>
+	<div id="withdraw_true_dialog" title="Withdraw Success"></div>
+
+	<div id="withdraw_dialog2" title="Withdraw Item"></div>
+	<div id="withdraw_true_dialog2" title="Withdraw Success"></div>
+
+	<div id="warning" title="WARNING"><h3 align="center">Please choose an item.</h3></div>
+	<div id="invalid" title="WARNING"><h3 align="center">Invalid amount was entered!</h3></div>
+
+	<p>Click on the material # of your chosen item</p>
+	<div id='center'><h2>List of Spare Parts and Supplies</h2></div>
+	<table id="users" class="ui-widget ui-widget-content">
+		<thead>
+			<tr class="ui-widget-header ">
+				<th>Material No.</th>
+				<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Decription&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+				<th>Stock</th>
+				<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Machine&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+				<th>View</th>
+				<th>Deposit</th>
+				<th>Withdraw</th>
+			</tr>
+		</thead>
+		<tbody>
+		<div class="demo">
+			<?php 
+				$i=0;
+				while($rows2 = mysql_fetch_array($result2)){
+					echo "<tr>" ;
+					echo "<td> <div id='radio$i'><input type='radio' name='te' id='myInput$i' value='" . $rows2['matno'] . "' /><label for='myInput$i'>" . $rows2['matno'] . "</label></div></td>";
+					echo "<td>" . $rows2['desc1'] . "</td>";
+					echo "<td>" . $rows2['stock'] . "</td>";
+					echo "<td>" . $rows2['machine'] . "</td>";
+					echo "<td> <input type='submit' class='ui-state-default ui-corner-all' onclick='open1();' value='view'/></td>";
+					echo "<td> <input type='button' class='ui-state-default ui-corner-all' onclick='deposit1();' value='deposit'/></td>";
+					echo "<td> <input type='button' class='ui-state-default ui-corner-all' onclick='withdraw1();' value='withdraw'/> </td>";
+					echo "</tr>" ;
+					$i++;
 				}
-			});
-			</script>
-			
-			
-		<!--<form name="profile" method="post" action="../mainForAdmin.php">-->
-
-			<div id="dialog" title="View Spare Part"></div>
-			<div id="del_dialog" title="Confirm Delete"></div>
-			<div id="conf_del" title="Delete Spare Part"></div>
-			<div id="users-contain" class="ui-widget">
-			<p>Click on the material # of your chosen Spare Part</p>
-			<div id='center'><h2>List of Spare Parts</h2></div>
-			<table id="users" class="ui-widget ui-widget-content">
-				<thead>
-					<tr class="ui-widget-header ">
-						<th>Material No.</th>
-						<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Decription&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-						<th>Stock</th>
-						<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Machine&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-						<th>View</th>
-						<th>Deposit</th>
-						<th>Withraw</th>
-					</tr>
-				</thead>
-				<tbody>
-				<div class="demo">
-				
-				<?php 
-					$i=0;
-					while($rows2 = mysql_fetch_array($result2)){
-						echo "<tr>" ;
-						echo "<td> <div id='radio$i'><input type='radio' name='te' id='myInput$i' value='" . $rows2['matno'] . "' /><label for='myInput$i'>" . $rows2['matno'] . "</label></div></td>";
-						echo "<td>" . $rows2['desc1'] . "</td>";
-						echo "<td>" . $rows2['stock'] . "</td>";
-						echo "<td>" . $rows2['machine'] . "</td>";
-						echo "<td> <input type='submit' class='ui-state-default ui-corner-all' onclick='open1();' value='view'/></td>";
-						echo "<td> <input type='button' class='ui-state-default ui-corner-all' onclick='deposit(" . $rows2['id'] . ");' value='deposit'/></td>";
-						echo "<td> <input type='button' class='ui-state-default ui-corner-all' onclick='withdraw(" . $rows2['id'] . ");' value='withdraw'/> </td>";
-						echo "</tr>" ;
-						$i++;
-					}
-				?>
-				
-				</div>
-				</tbody>
-			</table>
-			</div>
+			?>
+		</tbody>
+	</table>
+</div>

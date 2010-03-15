@@ -35,37 +35,69 @@
 						<tr>
 							<td>Username<label id="asterisk">*</label></td>
 							<td> <input type="text" name="username" id="username" class="required"></td>
+							<td>
+							<p id="msg"><?php echo $_SESSION['unmsg']; 
+							$_SESSION['unmsg']="";
+							?></p></td>
+						</tr>
+						<tr>
 							<td>Password<label id="asterisk">**</label></td>
 							<td> <input type="password" name="pword" id="pword" class="required"></td>
+							<td>
+							<p id="msg"><?php echo $_SESSION['p1msg']; 
+							$_SESSION['p1msg']="";
+							?></p></td>
 						</tr>
 						<tr>
-							<td></td><td></td>
-							<td>Re-type Password</td>
+							
+							<td>Re-type Password<label id="asterisk">**</label></td>
 							<td> <input type="password" name="pword2" id="pword2" class="required"></td>
+							<td>
+							<p id="msg"><?php echo $_SESSION['p2msg']; 
+							$_SESSION['p2msg']="";
+							?></p></td>
 						</tr>
 						<tr>
-							<td>Employee Number</td>
+							<td>Employee Number<label id="asterisk">***</label></td>
 							<td> <input type="text" name="empno" id="empno" class="required"></td>
+							<td>
+							<p id="msg"><?php echo $_SESSION['enmsg']; 
+							$_SESSION['enmsg']="";
+							?></p></td>
 						</tr>
 						<tr>
 							<td>First Name<label id="asterisk">*</label></td>
 							<td> <input type="text" name="first" id="first" class="required"></td>
+							<td>
+							<p id="msg"><?php echo $_SESSION['fmsg']; 
+							$_SESSION['fmsg']="";
+							?></p></td>
+						</tr>
+						<tr>	
 							<td>Last Name<label id="asterisk">*</label></td>
 							<td><input type="text" name="last" id="last" class="required"></td>
+							<td>
+							<p id="msg"><?php echo $_SESSION['lmsg']; 
+							$_SESSION['lmsg']="";
+							?></p></td>
 						</tr>
 						<tr>
-							<td>Middle Name<label id="asterisk">*</label></td>
+							<td>Middle Name</td>
 							<td> <input type="text" name="middle" id="middle"></td>
-							<td>Position</td>
+						</tr>
+						<tr>
+							<td>Position<label id="asterisk">*</label></td>
 							<td> <input type="text" name="pos" id="pos" class="required"></td>
+							<td>
+							<p id="msg"><?php echo $_SESSION['pmsg']; 
+							$_SESSION['pmsg']="";
+							?></p></td>
 						</tr>
 					</table></p>
 					<br />
 					<p><table id="insideFrame">
 						<tr>
-							<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-							<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-							<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+							<td></td>
 							<td><input type="button" value="Register"
 								onclick="javascript:registerUser(document.getElementById('formBit'))"></td>
 						</tr>
@@ -75,6 +107,7 @@
 						<table id="insideFrame">
 							<tr id="note"><td><label id="asterisk">*</label> Must have a minimum length of three (3) characters.</td></tr>
 							<tr id="note"><td><label id="asterisk">**</label> Must have a minimum length of five (5) characters.</td></tr>
+							<tr id="note"><td><label id="asterisk">***</label> Must have a length of eleven (11) characters.</td></tr>
 						</table>
 					</p>
 				</form>

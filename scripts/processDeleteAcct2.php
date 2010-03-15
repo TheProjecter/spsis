@@ -10,6 +10,6 @@
 
 echo "Are you sure you want to DELETE Account: " . $rows['username'] . " ?";?>
 <?php echo "<input type='hidden' id='dtrue' name='dtrue' value=" . $rows['username'] . ">"; ?>
-<input type='submit' id='aff' class='ui-state-default ui-corner-all' value='YES' onclick='conf3();'/>
+<input type='submit' id='aff' class='ui-state-default ui-corner-all' value='YES' onclick='conf4();'/>
 <a href=""><input type='button' class='ui-state-default ui-corner-all' value='NO' /></a>
 
