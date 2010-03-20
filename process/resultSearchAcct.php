@@ -17,6 +17,10 @@
 	i++;
 	}
 	});
+	
+	$(document).ready(function(){ 
+		$("#usersAcct").tablesorter( {sortList: [[0,0], [1,0]]} ); 
+	}); 
 </script>
 <style>
 	#warningAcct{
@@ -34,10 +38,10 @@ if(isset($_REQUEST['tet'])){
 		echo"<h2>NO RESULTS WERE FOUND!</h2>";
 	}
 	else{
-		echo "<p>Click on the username of your chosen account</p>";
+		echo "<br /><p><b>Instruction: </b>Click on the username of your chosen account</p>";
 		echo "<div id='center'><h2>Search Result/s for '" . $temp . "'</h2></div>";
-		echo "<div id='users-contain' class='ui-widget'>";
-			echo "<table id='users' class='ui-widget ui-widget-content'>";
+		echo "<div id='users-contain' class='ui-widget' align='center'>";
+			echo "<table id='usersAcct' class='ui-widget ui-widget-content'>";
 				echo "<thead>";
 					echo "<tr class='ui-widget-header'>";
 						echo "<th>Username</th>";
@@ -59,7 +63,7 @@ if(isset($_REQUEST['tet'])){
 				echo "</div>";
 				echo "</tbody>";
 			echo "</table>";
-			echo "</div>";
+			echo "</div><br />";
 	}
 }
 ?>

@@ -33,9 +33,10 @@
 <div id="dialog5" title="View Machine Spare Parts"></div>
 <div id="del_dialog5" title="Confirm Delete"></div>
 <div id="conf_del5" title="Delete Machine"></div>
+<div id="edit_dialog3" title="Edit Machine Name"></div>
+<div id="edit_true_dialog3" title="Edit Success"></div>
 <div id="users-contain" class="ui-widget">
 	<div id="warningMach" title="WARNING"><h3 align="center">Please choose a machine.</h3></div>
-	
 	<p><b>Instruction: </b>Click on the name of your chosen machine</p>
 	<br />
 	<div id='center'><h2>List of Machines</h2></div>

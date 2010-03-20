@@ -80,7 +80,13 @@
 					echo "<td> <div id='radio$i'><input type='radio' name='te' id='myInput$i' value='" . $rows2['matno'] . "' /><label for='myInput$i'>" . $rows2['matno'] . "</label></div></td>";
 					echo "<td>" . $rows2['desc1'] . "</td>";
 					echo "<td>" . $rows2['stock'] . "</td>";
-					echo "<td>" . $rows2['machine'] . "</td>";
+					if ($rows2['type']=='1') {
+						$id = $rows2['machine'];
+						$query = mysql_query("SELECT * FROM machine WHERE id='$id'");
+						$name = mysql_fetch_array($query);
+						echo "<td>" . $name['name'] . "</td>";
+					}
+					else echo "<td>0</td>";
 					echo "<td> <input type='submit' class='ui-state-default ui-corner-all' onclick='open1();' value='view'/></td>";
 					echo "<td> <input type='button' class='ui-state-default ui-corner-all' onclick='deposit1();' value='deposit'/></td>";
 					echo "<td> <input type='button' class='ui-state-default ui-corner-all' onclick='withdraw1();' value='withdraw'/> </td>";

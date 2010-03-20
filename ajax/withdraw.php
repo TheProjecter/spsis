@@ -1,16 +1,19 @@
 <?php  
 	include "connection.php";
-	$idValue = $_GET['id']; 
-	$amount= $_GET['am'];
-			if(isset($_GET['te'])){
-				$temp = $_GET['te'];
-				$result = mysql_query("SELECT * from item WHERE matno='$temp' or desc1='$temp' or machine='$temp'");
+	
+	if(isset($_GET['te'])){
+		$temp = $_GET['te'];
+		$result = mysql_query("SELECT * from item WHERE matno='$temp'");
+
+		$rows = mysql_fetch_array($result);
 		
-				$rows = mysql_fetch_array($result);
-			}
+		if ($rows['stock']==0) {
+			echo "<p align='center'>Can not withdraw.<br />Item has zero stock.</p>";
+		}
+		else {
 ?>
 <table id="usersDialogW" class="ui-widget ui-widget-content">
-	<tr><td>
+	<tr><td colspan="2">
 		<input type='hidden' name='stock_w' id='id_stock_w' value="<?php print $rows['stock'] ?>"/>
 		ITEM: <b><?php print $rows['desc1'] ?></b></td></tr>
 	<tr><td>AMOUNT<b id="asterisk">*</b></td>
@@ -21,3 +24,7 @@
 	<tr id="note"><td colspan="2"><b id="asterisk">*</b>Must be a number and must be greater than zero(0) and less than <?php print $rows['stock']+1 ?></td></tr>
 </table>
 
+<?php 
+	}
+		}
+?>

@@ -17,7 +17,7 @@
 	
 	if(isset($_GET['te'])){
 		$temp = $_GET['te'];
-		$result = mysql_query("SELECT * FROM item where matno='$temp' or desc1='$temp' or machine='$temp'");
+		$result = mysql_query("SELECT * FROM item where matno='$temp'");
 
 		$rows = mysql_fetch_array($result);
 	}
@@ -29,10 +29,14 @@
 	echo "<tr><td class='ui-widget-header '>Bun</td><td><input type='text' name='item_bun' id='bun_item' value='" . $rows['bun'] . "'></td></tr>";
 	echo "<tr><td class='ui-widget-header '>CC</td><td><input type='text' name='item_cc' id='cc_item' value='" . $rows['cc'] . "'></td></tr>";
 	echo "<tr><td class='ui-widget-header '>Type</td><td><input type='text' name='item_type' id='type_item' value='" . $rows['type'] . "'></td></tr>";
-	$id = $rows['machine'];
-	$query = mysql_query("SELECT * FROM machine WHERE id='$id'");
-	$name = mysql_fetch_array($query);		
-	echo "<tr><td class='ui-widget-header '>Machine</td><td><input type='text' name='item_machine' id='machine_item' value='" . $name['name'] . "'></td></tr>";
+	if ($rows['type']==1) {
+		$id = $rows['machine'];
+		$query = mysql_query("SELECT * FROM machine WHERE id='$id'");
+		$name = mysql_fetch_array($query);		
+		echo "<tr><td class='ui-widget-header '>Machine</td><td><input type='text' name='item_machine' id='machine_item' value='" . $name['name'] . "'></td></tr>";
+	}
+	else echo "<tr><td class='ui-widget-header '>Machine</td><td><input type='text' name='item_machine' id='machine_item' value='0'></td></tr>";
+	
 	
 
 echo "</tbody>";

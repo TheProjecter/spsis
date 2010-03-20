@@ -36,6 +36,11 @@ var acctName="";
 var machName="";
 var machName_s="";
 var acctName_s="";
+
+var editMach="";
+var editMach_s="";
+var machId;
+
 /*
 	for item view in home.php
 */
@@ -160,7 +165,6 @@ function deposit1(){
 	for item withdraw in home.php
 */
 function withdraw1(){
-	//alert($('#dialog').html());
 	$('#withdraw_dialog').html("");
 	var i=0;
 		while($('#myInput'+i).val()!=undefined){
@@ -595,8 +599,44 @@ function open5(){
 }
 
 /*
-	for account deletion 
-	from search
+	view of edit from the list
+	of machines
+*/
+function edit3(){
+	$('#edit_dialog3').html("");
+	editMach =$('#deltMach').val();
+		$('#edit_dialog3').dialog({
+			autoOpen: false,
+			show: 'highlight',
+			hide: 'highlight'
+		});
+		$('#edit_dialog3').dialog('open');
+		$('#edit_dialog3').load("ajax/editMach.php?te="+editMach);
+		
+		return false;
+}
+
+/*
+	edit machine name
+	from the list
+*/
+function editMachProcess(){
+	$('#edit_true_dialog3').html("");
+		editMach =$('#machName_edit1').val();
+		machId = $('#mach_edit').val();
+		$('#edit_true_dialog3').dialog({
+		autoOpen: false,
+		show: 'highlight',
+		hide: 'highlight'
+		});
+		$('#edit_true_dialog3').dialog('open');
+		$('#edit_true_dialog3').load("process/editMachine.php?mach="+editMach+"&te="+machId);
+		return false;
+}
+
+/*
+	for machine deletion 
+	from list
 */
 function del5(){
 	$('#del_dialog5').html("");
@@ -613,8 +653,8 @@ function del5(){
 }
 
 /*
-	for account deletion
-	from search
+	for machine deletion
+	from list
 */
 function conf5(){
 	$('#conf_del5').html("");
@@ -632,5 +672,241 @@ function conf5(){
 	});
 		$('#conf_del5').dialog('open');
 		$('#conf_del5').load("process/deleteMachine.php?dtrue="+conf);
+		return false;
+}
+
+/*
+	view of machine
+	from search
+*/
+function open6(){
+	$('#dialog6').html("");
+	var i=0;
+		while($('#myInputms'+i).val()!=undefined){
+			if($('#myInputms'+i).is(':checked')){
+				machName_s =$('#myInputms'+i).val();
+			}
+			i++;
+		}
+		if(machName_s==''){
+			$("#warningMach").dialog({
+			modal: true,
+			buttons: {
+				Ok: function() {
+					$(this).dialog('close');
+				}
+			}
+			});
+		}
+		else{
+		$('#dialog6').dialog({
+		autoOpen: false,
+		show: 'explode',
+		hide: 'highlight'
+	});
+		$('#dialog6').dialog('open');
+		$('#dialog6').load("process/viewMachine2.php?mach="+machName_s);
+		}
+		return false;
+}
+
+/*
+	for machine deletion 
+	from search
+*/
+function del6(){
+	$('#del_dialog6').html("");
+		del =$('#deltMachs').val();
+		$('#del_dialog6').dialog({
+		autoOpen: false,
+		show: 'highlight',
+		hide: 'highlight'
+	});
+		$('#del_dialog6').dialog('open');
+		$('#del_dialog6').load("scripts/processDeleteMach2.php?delt="+del);
+		return false;
+}
+
+/*
+	for machine deletion
+	from search
+*/
+function conf6(){
+	$('#conf_del6').html("");
+		conf =$('#dtrue').val();
+		$('#conf_del6').dialog({
+		autoOpen: false,
+		show: 'highlight',
+		hide: 'highlight',
+		modal: true,
+		buttons: {
+			Ok: function() {
+				$(this).dialog('close');
+			}
+		}
+	});
+		$('#conf_del5').dialog('open');
+		$('#conf_del5').load("process/deleteMachine.php?dtrue="+conf);
+		return false;
+}
+
+/*
+	view of edit from
+	search
+*/
+function edit4(){
+	$('#edit_dialog4').html("");
+	editMach_s =$('#deltMachs').val();
+		$('#edit_dialog4').dialog({
+			autoOpen: false,
+			show: 'highlight',
+			hide: 'highlight'
+		});
+		$('#edit_dialog4').dialog('open');
+		$('#edit_dialog4').load("ajax/editMach.php?te="+editMach_s);
+		
+		return false;
+}
+
+/*
+	view of supply
+	from search
+*/
+function open7(){
+	$('#dialog7').html("");
+	var i=0;
+		while($('#myInputsp'+i).val()!=undefined){
+			if($('#myInputsp'+i).is(':checked')){
+				open_s =$('#myInputsp'+i).val();
+			}
+			i++;
+		}
+		if(open_s==''){
+			$("#warningSupply").dialog({
+				modal: true,
+				buttons: {
+					Ok: function() {
+						$(this).dialog('close');
+					}
+				}
+			});
+		}
+		else{
+		$('#dialog7').dialog({
+		autoOpen: false,
+		show: 'explode',
+		hide: 'highlight'
+	});
+		$('#dialog7').dialog('open');
+		$('#dialog7').load("process/viewSupply.php?te="+open_s);
+		}
+		return false;
+}
+
+function edit5(){
+	$('#edit_dialog2').html("");
+	edit_open_s =$('#delt3').val();
+		$('#edit_dialog2').dialog({
+			autoOpen: false,
+			show: 'highlight',
+			hide: 'highlight'
+		});
+		$('#edit_dialog2').dialog('open');
+		$('#edit_dialog2').load("ajax/editSupply.php?te="+edit_open_s);
+		
+		return false;
+}
+
+/*
+	delete of supply
+	from search
+*/
+function del7(){
+	$('#del_dialog7').html("");
+		del_s =$('#delt3').val();
+		$('#del_dialog7').dialog({
+		autoOpen: false,
+		show: 'highlight',
+		hide: 'highlight'
+	});
+		$('#del_dialog7').dialog('open');
+		$('#del_dialog7').load("scripts/processDeleteSupply.php?delt="+del_s);
+		return false;
+}
+
+function conf7(){
+	$('#conf_del7').html("");
+		conf_s =$('#dtrue').val();
+		$('#conf_del7').dialog({
+		autoOpen: false,
+		show: 'highlight',
+		hide: 'highlight'
+	});
+		$('#conf_del7').dialog('open');
+		$('#conf_del7').load("process/deleteItem.php?dtrue="+conf_s);
+		return false;
+}
+
+function deposit3(){
+	$('#deposit_dialog3').html("");
+	var i=0;
+		while($('#myInputsp'+i).val()!=undefined){
+			if($('#myInputsp'+i).is(':checked')){
+				deposit_texts =$('#myInputsp'+i).val();
+			}
+			i++;
+		}
+		
+		if(deposit_texts==''){
+			$("#warningSupply").dialog({
+				modal: true,
+				buttons: {
+					Ok: function() {
+						$(this).dialog('close');
+					}
+				}
+			});
+		}
+		else{
+		$('#deposit_dialog3').dialog({
+			autoOpen: false,
+			show: 'explode',
+			hide: 'highlight'
+		});
+		$('#deposit_dialog3').dialog('open');
+		$('#deposit_dialog3').load("ajax/deposit.php?te="+deposit_texts);
+		}
+		return false;
+}
+
+function withdraw3(){
+	$('#withdraw_dialog3').html("");
+	var i=0;
+		while($('#myInputsp'+i).val()!=undefined){
+			if($('#myInputsp'+i).is(':checked')){
+				withdraw_texts =$('#myInputsp'+i).val();
+			}
+			i++;
+		}
+		
+		if(withdraw_texts==''){
+			$("#warningSupply").dialog({
+				modal: true,
+				buttons: {
+					Ok: function() {
+						$(this).dialog('close');
+					}
+				}
+			});
+		}
+		else{
+		$('#withdraw_dialog3').dialog({
+			autoOpen: false,
+			show: 'explode',
+			hide: 'highlight'
+		});
+		$('#withdraw_dialog3').dialog('open');
+		$('#withdraw_dialog3').load("ajax/withdraw.php?te="+withdraw_texts);
+		}
 		return false;
 }

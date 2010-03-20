@@ -1,21 +1,20 @@
 <?php
 	include '../ajax/connection.php';
+	include '../ajax/sessions.inc';
 	
-	if (isset($_GET['dtrue'])) {
+	if (isset($_SESSION['username'])) {
 		$machId = $_GET['dtrue'];
-		
-		$temp = mysql_query("SELECT * FROM machine where id='$machId'");
-		$name = $temp['name'];
-		echo "<script>alert(".$name.");</script>";
-		//$result2 = mysql_query("DELETE FROM item WHERE machine='$name'");
-		//$result = mysql_query("DELETE FROM machine WHERE id='$machId'");
-		
-		//echo "<h2>Machine '" . $name . "' has been successfully deleted! </h2>";
+		$query = mysql_query("SELECT * FROM machine where id='$machId'");
+		$name = mysql_fetch_array($query);		
+		$temp = $name['name'];
+		$result = mysql_query("DELETE FROM machine WHERE id='$machId'");
+		$result2 = mysql_query("DELETE FROM item WHERE machine='$machId'");
+		echo "<h2>Machine '" . $temp . "' has been successfully deleted! </h2>";
 	}
-	//else {
-		//echo "<script type = 'text/javascript'>
-				//alert('Please log in first.');
-				//</script>";
-		//echo "<script>document.location='../logInReg.php'</script>";
-	//}
+	else {
+		echo "<script type = 'text/javascript'>
+				alert('Please log in first.');
+				</script>";
+		echo "<script>document.location='../logInReg.php'</script>";
+	}
 ?>
