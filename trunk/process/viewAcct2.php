@@ -12,12 +12,13 @@
 		echo "</thead>";
 		echo "<tbody>";
 		echo "<tr><td class='ui-widget-header '>Username</td><td>" . $rows['username'] . "</td></tr>";
+		echo "<tr><td class='ui-widget-header '>Employee #</td><td>" . $rows['empno'] . "</td></tr>";
 		echo "<tr><td class='ui-widget-header '>First Name</td><td>" . $rows['first'] . "</td></tr>";
 		echo "<tr><td class='ui-widget-header '>Middle Name</td><td>" . $rows['middle'] . "</td></tr>";
 		echo "<tr><td class='ui-widget-header '>Last Name</td><td>" . $rows['last'] . "</td></tr>";
 		echo "<tr><td class='ui-widget-header '>Position</td><td>" . $rows['position'] . "</td></tr>";
 		if ($_SESSION['type']=='admin') {
-			echo "<tr><td class='ui-widget-header '>Actions</td><td><input type='hidden' name='deltAcct' id='deltAcct' value=" . $rows['username'] . " /> <input type='submit' value='delete' name='delete' onclick='del4();' class='ui-state-default ui-corner-all' /></td></tr>";	
+			echo "<tr><td class='ui-widget-header '>Actions</td><td><input type='hidden' name='deltAccts' id='deltAccts' value=" . $rows['username'] . " /> <input type='submit' value='delete' name='delete' onclick='del4();' class='ui-state-default ui-corner-all' /></td></tr>";	
 		}			
 		echo "</tbody>";
 		echo "</table>";

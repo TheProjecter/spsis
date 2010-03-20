@@ -1,10 +1,10 @@
-<?php 
+<?php
 	include "../ajax/connection.php";
 	include "../ajax/sessions.inc";
 
 	if(isset($_SESSION['username'])){
 		$temp = $_GET['te'];
-		$result = mysql_query("SELECT * FROM reg_user WHERE username='$temp' and status = '1'");		
+		$result = mysql_query("SELECT * FROM reg_user WHERE username='$temp' and status = '0'");
 		$rows = mysql_fetch_array($result);
 		
 		echo "<table id='usersDialog' class='ui-widget ui-widget-content'>";
@@ -17,9 +17,6 @@
 		echo "<tr><td class='ui-widget-header '>Middle Name</td><td>" . $rows['middle'] . "</td></tr>";
 		echo "<tr><td class='ui-widget-header '>Last Name</td><td>" . $rows['last'] . "</td></tr>";
 		echo "<tr><td class='ui-widget-header '>Position</td><td>" . $rows['position'] . "</td></tr>";
-		if ($_SESSION['type']=='admin') {
-			echo "<tr><td class='ui-widget-header '>Actions</td><td><input type='hidden' name='deltAcct' id='deltAcct' value=" . $rows['username'] . " /> <input type='submit' value='delete' name='delete' onclick='del3();' class='ui-state-default ui-corner-all' /></td></tr>";	
-		}			
 		echo "</tbody>";
 		echo "</table>";
 	}

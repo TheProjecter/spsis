@@ -1,7 +1,8 @@
 <?php
 	include '../ajax/connection.php';
+	include '../ajax/sessions.inc';
 	
-	if (isset($_GET['dtrue'])) {
+	if (isset($_SESSION['username'])) {
 		$username = $_GET['dtrue'];
 		$query = "DELETE FROM reg_user where username = '$username'";
 		$result = mysql_query($query);

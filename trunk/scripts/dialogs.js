@@ -40,6 +40,7 @@ var acctName_s="";
 var editMach="";
 var editMach_s="";
 var machId;
+var pendAcct = [];
 
 /*
 	for item view in home.php
@@ -453,7 +454,6 @@ function open3(){
 function del3(){
 	$('#del_dialog3').html("");
 		del =$('#deltAcct').val();
-		//alert(text2);
 		$('#del_dialog3').dialog({
 		autoOpen: false,
 		show: 'highlight',
@@ -511,15 +511,15 @@ function open4(){
 			});
 		}
 		else{
-		$('#dialog4').dialog({
-		autoOpen: false,
-		show: 'explode',
-		hide: 'highlight'
-	});
-		$('#dialog4').dialog('open');
-		$('#dialog4').load("process/viewAcct2.php?te="+acctName_s);
-		}
-		return false;
+			$('#dialog4').dialog({
+			autoOpen: false,
+			show: 'explode',
+			hide: 'highlight'
+		});
+			$('#dialog4').dialog('open');
+			$('#dialog4').load("process/viewAcct2.php?te="+acctName_s);
+			}
+	return false;
 }
 
 /*
@@ -528,8 +528,7 @@ function open4(){
 */
 function del4(){
 	$('#del_dialog4').html("");
-		del =$('#deltAcct').val();
-		//alert(text2);
+		del =$('#deltAccts').val();
 		$('#del_dialog4').dialog({
 		autoOpen: false,
 		show: 'highlight',
@@ -907,6 +906,115 @@ function withdraw3(){
 		});
 		$('#withdraw_dialog3').dialog('open');
 		$('#withdraw_dialog3').load("ajax/withdraw.php?te="+withdraw_texts);
+		}
+		return false;
+}
+
+/*
+	for view of pendings accounts
+	from the list
+*/
+function open8(){
+	$('#dialog8').html("");
+	var i=0;
+		while($('#myInputp'+i).val()!=undefined){
+			if($('#myInputp'+i).is(':checked')){
+				acctName =$('#myInputp'+i).val();
+			}
+			i++;
+		}
+		if(acctName==''){
+			$("#warningAcct").dialog({
+			modal: true,
+			buttons: {
+				Ok: function() {
+					$(this).dialog('close');
+				}
+			}
+			});
+		}
+		else{
+		$('#dialog8').dialog({
+		autoOpen: false,
+		show: 'explode',
+		hide: 'highlight'
+	});
+		$('#dialog8').dialog('open');
+		$('#dialog8').load("process/viewPendingAcct.php?te="+acctName);
+		}
+		return false;
+}
+
+function approve(){
+	$('#approveSuccess').html("");
+	var i=0;counter=0;
+		while($('#acct'+i).val()!=undefined){
+			if($('#acct'+i).is(':checked')){
+				pendAcct[counter] =$('#acct'+i).val();
+				counter++;
+			}
+			i++;
+		}
+		if(counter==0){
+			$("#warningAcct").dialog({
+			modal: true,
+			buttons: {
+				Ok: function() {
+					$(this).dialog('close');
+				}
+			}
+			});
+		}
+		else{
+		$('#approveSuccess').dialog({
+		autoOpen: false,
+		show: 'explode',
+		hide: 'highlight',
+		buttons: {
+				Ok: function() {
+					$(this).dialog('close');
+				}
+			}
+		});
+		$('#approveSuccess').dialog('open');
+		$('#approveSuccess').load("process/approveRegistration.php?te="+pendAcct+"&act=1&cnt="+counter);
+		}
+		return false;
+}
+
+function deny(){
+	$('#approveSuccess').html("");
+	var i=0;counter=0;
+		while($('#acct'+i).val()!=undefined){
+			if($('#acct'+i).is(':checked')){
+				pendAcct[counter] =$('#acct'+i).val();
+				counter++;
+			}
+			i++;
+		}
+		if(counter==0){
+			$("#warningAcct").dialog({
+			modal: true,
+			buttons: {
+				Ok: function() {
+					$(this).dialog('close');
+				}
+			}
+			});
+		}
+		else{
+		$('#approveSuccess').dialog({
+		autoOpen: false,
+		show: 'explode',
+		hide: 'highlight',
+		buttons: {
+				Ok: function() {
+					$(this).dialog('close');
+				}
+			}
+		});
+		$('#approveSuccess').dialog('open');
+		$('#approveSuccess').load("process/approveRegistration.php?te="+pendAcct+"&act=0&cnt="+counter);
 		}
 		return false;
 }
