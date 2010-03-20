@@ -64,7 +64,6 @@ function registerUser() {
 		var pos = input[7].value;
 	
 	if(input[0].value==""){
-		
 		result = false;
 		input[0].style.border = "1px solid red";
 		input[0].style.backgroundColor = "#FFE891";
@@ -100,9 +99,7 @@ function registerUser() {
 		input[7].style.border = "1px solid red";
 		input[7].style.backgroundColor = "#FFE891";
 	}
-	
-	
-		
+			
 	if (result) {
 		var uname = input[0].value;
 		var pass1 = input[1].value;
@@ -153,10 +150,6 @@ function processEditAcct() {
 	}
 }
 
-function processDeleteAcct() {
-
-}
-
 function processAddMachine() {
 	var result = true;
 	
@@ -205,15 +198,16 @@ function processAddItem(formObject) {
 	bun = input[5].value;
 	stock = input[6].value;
 	cc = input[7].value;
-	
-	if(itemType=="1"&&document.getElementById("mach").length<2){
-		alert("Add Item Failed. No Machines Available.");
+
+	if(itemType=="1"&&document.getElementById("mach").length<2){	
+		document.getElementById("errb").innerText="Add Item Failed. No Machines Available.";
 		result=false;
 	}
 	else if(itemType=="1"&&option[0].selected==true){
-		alert("No Machine Selected.");
+		document.getElementById("err").innerText="No Machine Selected.";
 		result=false;
-	}	
+	}
+	else document.getElementById("err").innerText="";
 	
 	if (result) {
 		window.location.href = "process/addItem.php?itemType="+itemType+"&machine="+machine+"&mat_no="+mat_no+"&desc1="+desc1+"&stock="+stock+"&bin="+bin+"&bun="+bun+"&cc="+cc;
@@ -276,8 +270,8 @@ function deposit(){
 	var result = true;
 	var input = document.getElementsByTagName("input");
 	result = validateInput(input);
-	
-	if (document.getElementById("id_deposit").value==0) {
+	var inputStock = document.getElementById("id_deposit").value;
+	if (inputStock==0) {
 		result = false;
 		document.getElementById("id_deposit").style.border = "1px solid red";
 		document.getElementById("id_deposit").style.backgroundColor = "#FFE891";
@@ -292,8 +286,8 @@ function withdraw(){
 	var result = true;
 	var input = document.getElementsByTagName("input");
 	result = validateInput(input);
-	
-	if (document.getElementById("id_withdraw").value > document.getElementById("id_stock_w").value || document.getElementById("id_withdraw").value==0) {
+	var inputStock = document.getElementById("id_withdraw").value;
+	if ((inputStock > document.getElementById("id_stock_w").value) || (inputStock==0)) {
 		result = false;
 		document.getElementById("id_withdraw").style.border = "1px solid red";
 		document.getElementById("id_withdraw").style.backgroundColor = "#FFE891";

@@ -1,54 +1,58 @@
 <?php
+	include "connection.php";
+	include "sessions.inc";
 	
-?>
-<span id="bitPageTitle">Add Spare Part/Supply</span>
-<form id="formBit" onreset="return confirm('Are you sure you want to clear the content of the page?')">
-	<p>
-		<table width="50%">
-			<tr>
-				<td>Item Type</td>
-				<td>
-					<select name="itemType" id="itemType" class="required">
-						<option value="Select">Select</option>
-						<option value="SparePart">Spare Part</option>
-						<option value="Supply">Supply</option>
-					</select>
-				</td>
-			</tr>
-			<!--Lalabas dapat na choices ay yung mga machines available na sa database-->
-			<tr>
-				<td>Machine</td>
-			</tr>
-			<tr>
-				<td>Material No.</td>
-				<td><input type="text" name="matno" class="required"/></td>
-				<td>Bin</td>
-				<td><input type="text" name="bin" class="required"/></td>
-			</tr>
-			<tr>
-				<td>Description</td>
-				<td><input type="text" name="desc" class="required"/></td>
-				<td>Bundle</td>
-				<td><input type="text" name="bun" class="required"/></td>
-			</tr>
-			<tr>
-				<td>Stock</td>
-				<td><input type="text" name="stock" class="number required"/></td>
-				<td>Cost center</td>
-				<td><input type="text" name="cc" class="required"/></td>
-			</tr>
-		</table>
-	</p>
-	<br /><br />
-	<p>
-		<table width="50%">
-			<tr>
-				<td><input type="reset" /></td>
-				<td>&nbsp;</td>
-				<td><input type="button" value="Submit" 
-					onclick="javascript:addItemSubmit(document.getElementById('formBit'))"/></td>
-			</tr>
-		</table>
-	</p>
+	if(!isset($_SESSION['username'])) {
+		echo "<script type = 'text/javascript'>
+				alert('Please log in first.');
+				</script>";
+		echo "<script>document.location='../logInReg.php'</script>";
+	}
+?>			
+<form name='f1' action='ajax/searchSupplies.php' method='POST'>
+<label for="supply1">Search</label>
+<div id="myAutoComplete">
+	<input id="supply1" type="text" name="tet" />
+	<div id="myContainer"></div>
+</div>
+	<input type="submit" value="search" onclick='sup_result();return false'/>
 </form>
-<script type="text/javascript" src="scripts/ajax.js"></script> 
+
+<div id='users-contain' class='ui-widget'>
+	<div id="searchSupplyResults"></div>
+	<div id="dialog7" title="View Supply"></div>
+	<div id="del_dialog7" title="Confirm Delete"></div>
+	<div id="conf_del7" title="Delete Supply"></div>
+	<div id="deposit_dialog3" title="Deposit Item"></div>
+	<div id="deposit_true_dialog3" title="Deposit Success"></div>
+	<div id="withdraw_dialog3" title="Withdraw Item"></div>
+	<div id="withdraw_true_dialog3" title="Withdraw Success"></div>
+	
+			<script type="text/javascript">
+			function sup_result(){
+				$('#searchSupplyResults').load('process/resultSearchSupply.php?tet='+$('#supply1').val());
+			}
+			</script>
+	
+	<!--search corner-->
+	<script type="text/javascript" src="assets/js/query.php"></script>
+		<script type="text/javascript">
+			YAHOO.example.BasicLocal = function() {
+				
+				var oDS = new YAHOO.util.LocalDataSource(YAHOO.example.Data.arrayMat);
+				// Optional to define fields for single-dimensional array
+				oDS.responseSchema = {fields : ["state"]};
+				
+				// Instantiate the AutoComplete
+				var oAC = new YAHOO.widget.AutoComplete("spare1", "myContainer", oDS);
+				oAC.prehighlightClassName = "yui-ac-prehighlight";
+				oAC.useShadow = true;
+				
+				return {
+					oDS: oDS,
+					oAC: oAC
+				};
+			}();
+		</script>
+	<!--end-->
+</div>

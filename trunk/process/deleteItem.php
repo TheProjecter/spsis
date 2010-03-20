@@ -4,7 +4,7 @@
 
 	if(isset($_GET['dtrue'])){
 		$temp = $_GET['dtrue'];
-		$result = mysql_query("SELECT * FROM item where matno='$temp' or desc1='$temp'");
+		$result = mysql_query("SELECT * FROM item where matno='$temp'");
 		
 		$rows = mysql_fetch_array($result);
 

@@ -6,8 +6,9 @@
 		echo "<script type = 'text/javascript'>
 				alert('Please log in first.');
 				</script>";
-		echo "<script>document.location='logInReg.php'</script>";
+		echo "<script>document.location='../logInReg.php'</script>";
 	}
+	else {
 ?>						
 		<form name='f1' action='ajax/searchMachine.php' method='POST'>
 		<label for="mach1">Search</label>
@@ -18,12 +19,16 @@
 			<input type="submit" value="search" onclick='mach_result();return false'/>
 		</form>
 		<div id='users-contain' class='ui-widget'>
-		<div id="searchresults"></div>
-		<div id="dialog5" title="View Machine"></div>
-		
+			<div id="searchMachResults"></div>
+			<div id="dialog6" title="View Machine Spare Parts"></div>
+			<div id="del_dialog6" title="Confirm Delete"></div>
+			<div id="conf_del6" title="Delete Machine"></div>
+			<div id="edit_dialog4" title="Edit Machine Name"></div>
+			<div id="edit_true_dialog3" title="Edit Success"></div>
+			
 				<script type="text/javascript">
 				function mach_result(){
-					$('#searchresults').load('process/resultSearchMach.php?tet='+$('#mach1').val());
+					$('#searchMachResults').load('process/resultSearchMach.php?tet='+$('#mach1').val());
 				}
 				</script>
 		
@@ -48,3 +53,5 @@
 				}();
 			</script>
 		<!--end-->
+	</div>
+<?php } ?>

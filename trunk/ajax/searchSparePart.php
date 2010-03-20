@@ -6,7 +6,7 @@
 		echo "<script type = 'text/javascript'>
 				alert('Please log in first.');
 				</script>";
-		echo "<script>document.location='logInReg.php'</script>";
+		echo "<script>document.location='../logInReg.php'</script>";
 	}
 ?>						
 		<form name='f1' action='ajax/searchSparePart.php' method='POST'>

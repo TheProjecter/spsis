@@ -6,14 +6,14 @@
 		echo "<script type = 'text/javascript'>
 				alert('Please log in first.');
 				</script>";
-		echo "<script>document.location='logInReg.php'</script>";
+		echo "<script>document.location='../logInReg.php'</script>";
 	}
 ?>	
 <script type="text/javascript">
 	$(function() {
 	var i=0;
 	while(i<9999){
-	$("#radios"+i).buttonset();
+	$("#radioss"+i).buttonset();
 	i++;
 	}
 	});
@@ -21,11 +21,17 @@
 		$("#userSupply").tablesorter( {sortList: [[0,0], [1,0]]} ); 
 	}); 
 </script>
+<style>
+	#warningSupply{
+		display:none;
+	}
+</style>
+<div id="warningSupply" title="WARNING"><h3 align="center">Please choose a supply.</h3></div>
 
 <?php
 if(isset($_REQUEST['tet'])){
 	$temp = $_REQUEST['tet'];
-	$result = mysql_query("SELECT * FROM item where (matno like '%$temp%' or desc1 like '%$temp%' or machine like '%$temp%') AND type=1");
+	$result = mysql_query("SELECT * FROM item where (matno like '%$temp%' or desc1 like '%$temp%' or machine like '%$temp%') AND type=0");
 
 	if(mysql_num_rows($result)==0){
 		echo"<h2>NO RESULTS WERE FOUND!</h2>";
@@ -38,9 +44,8 @@ if(isset($_REQUEST['tet'])){
 				echo "<thead>";
 					echo "<tr class='ui-widget-header'>";
 						echo "<th>Material No.</th>";
-						echo "<th>Decription</th>";
+						echo "<th>Description</th>";
 						echo "<th>Stock</th>";
-						echo "<th>Machine</th>";
 						echo "<th>View</th>";
 						echo "<th>Deposit</th>";
 						echo "<th>Withdraw</th>";
@@ -51,18 +56,12 @@ if(isset($_REQUEST['tet'])){
 					$i=0;
 					while($rows2 = mysql_fetch_array($result)){
 						echo "<tr>" ;
-						echo "<td> <div id='radios$i'> <input type='radio' name='te' id='myInputs$i' value='" . $rows2['matno'] . "' /><label for='myInputs$i'>" . $rows2['matno'] . "</label></div></td>";
+						echo "<td> <div id='radioss$i'> <input type='radio' name='te' id='myInputsp$i' value='" . $rows2['matno'] . "' /><label for='myInputsp$i'>" . $rows2['matno'] . "</label></div></td>";
 						echo "<td>" . $rows2['desc1'] . "</td>";
 						echo "<td>" . $rows2['stock'] . "</td>";
-						
-						$id = $rows2['machine'];
-						$query = mysql_query("SELECT * FROM machine WHERE id='$id'");
-						$name = mysql_fetch_array($query);
-						echo "<td>" . $name['name'] . "</td>";
-							
-						echo "<td> <input type='submit' class='ui-state-default ui-corner-all' onclick='open2();' value='view'/></td>";
-						echo "<td> <input type='button' class='ui-state-default ui-corner-all' onclick='deposit2();' value='deposit'/></td>";
-						echo "<td> <input type='button' class='ui-state-default ui-corner-all' onclick='withdraw2();' value='withdraw'/> </td>";
+						echo "<td> <input type='submit' class='ui-state-default ui-corner-all' onclick='open7();' value='view'/></td>";
+						echo "<td> <input type='button' class='ui-state-default ui-corner-all' onclick='deposit3();' value='deposit'/></td>";
+						echo "<td> <input type='button' class='ui-state-default ui-corner-all' onclick='withdraw3();' value='withdraw'/> </td>";
 						echo "</tr>" ;
 						$i++;
 					}

@@ -4,7 +4,7 @@
 
 	if(isset($_SESSION['username'])){
 		$temp = $_GET['te'];
-		$result = mysql_query("SELECT * FROM item where matno='$temp' or desc1='$temp' or machine='$temp'");
+		$result = mysql_query("SELECT * FROM item where matno='$temp'");
 
 		$rows = mysql_fetch_array($result);
 		echo "<table id='usersDialog' class='ui-widget ui-widget-content'>";
@@ -17,7 +17,13 @@
 		echo "<tr><td class='ui-widget-header '>Bin</td><td>" . $rows['bin'] . "</td></tr>";
 		echo "<tr><td class='ui-widget-header '>Bun</td><td>" . $rows['bun'] . "</td></tr>";
 		echo "<tr><td class='ui-widget-header '>Cost Center</td><td>" . $rows['cc'] . "</td></tr>";
-		echo "<tr><td class='ui-widget-header '>Machine</td><td>" . $rows['machine'] . "</td></tr>";
+		if ($rows['type']=='1') {
+			$id = $rows['machine'];
+			$query = mysql_query("SELECT * FROM machine WHERE id='$id'");
+			$name = mysql_fetch_array($query);		
+			echo "<tr><td class='ui-widget-header '>Machine</td><td>" . $name['name'] . "</td></tr>";
+		}
+		else echo "<tr><td class='ui-widget-header '>Machine</td><td>0</td></tr>";
 		if ($_SESSION['type']=='admin') {
 			echo "<tr><td class='ui-widget-header '>Actions</td><td><input type='hidden' name='delt' id='delt' value=" . $rows['matno'] . " /> <input type='submit' value='Delete' name='delete' onclick='del1();' class='ui-state-default ui-corner-all' /><input type='button' value='Edit' name='edit' onclick='edit1();' class='ui-state-default ui-corner-all' /></td></tr>";			
 		}
