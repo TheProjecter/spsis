@@ -37,7 +37,7 @@
 <div id="edit_true_dialog3" title="Edit Success"></div>
 <div id="users-contain" class="ui-widget">
 	<div id="warningMach" title="WARNING"><h3 align="center">Please choose a machine.</h3></div>
-	<p><b>Instruction: </b>Click on the name of your chosen machine</p>
+	<p><b>Instruction: </b>Click on the name of your chosen machine.</p>
 	<br />
 	<div id='center'><h2>List of Machines</h2></div>
 	<table id="usersHalf" class="ui-widget ui-widget-content" align="center">

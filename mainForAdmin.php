@@ -8,6 +8,7 @@
 				</script>";
 		echo "<script>document.location='logInReg.php'</script>";
 	}
+	else {
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
@@ -65,7 +66,7 @@
 			table tr th {font-size: 110%}
 			table#users, table#userSupply {width:90%}
 			table#usersDel {width:80%; margin-left: 18%}
-			table#usersThird, table#usersAcct ,table#usersW, table#usersD, table#usersT {width:75%}
+			table#usersThird, table#usersAcct, table#acctPend, table#usersW, table#usersD, table#usersT {width:75%}
 			table#usersHalf {width:50%}
 			table#usersHalfs {width:50%}
 			div#dialogSmall {margin: 0 65%}
@@ -103,7 +104,7 @@
 						<li id="viewMyAcct"><a href="process/viewOwnProfile.php">View My Account</a></li>
 						<li id="viewAllAcct"><a href="ajax/viewListOfAccts.php">View All Accounts</a></li>
 						<li id="searchAcct"><a href="ajax/searchAcct.php">Search Account</a></li>
-						<li id="viewPending"><a href="process/viewPendingUsers.php">View Pending Users</a></li>
+						<li id="viewPending"><a href="ajax/viewPendingUsers.php">View Pending Users</a></li>
 						<li id="logout"><a href="process/logOut.php">Log Out</a></li>
 					</ul>
 				</li>
@@ -138,3 +139,4 @@
 		</div>
 	</body>
 </html>
+<?php } ?>

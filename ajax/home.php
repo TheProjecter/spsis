@@ -56,7 +56,7 @@
 
 	<div id="warning" title="WARNING"><h3 align="center">Please choose an item.</h3></div>
 
-	<p><b>Instruction:</b> Click on the material # of your chosen item</p>
+	<p><b>Instruction:</b> Click on the material # of your chosen item.</p>
 	<br />
 	<div id="center"><h2>List of Spare Parts and Supplies</h2></div>
 	<table id="users" class="ui-widget ui-widget-content" align="center">

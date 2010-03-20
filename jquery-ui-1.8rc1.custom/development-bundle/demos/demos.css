@@ -31,10 +31,9 @@ body {
 
 table#insideFrame {
 	font-size: 1em;
-	width: 100%;
+	width: 80%;
 	position:relative;
-	left: 5%;
-	margin-left: 4px
+	margin: auto;
 }
 
 table#insideFrameLimit {

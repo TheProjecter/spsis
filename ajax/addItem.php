@@ -22,14 +22,14 @@
 		<table id="insideFrame">
 			<tr>
 				<td>Item Type</td>
-				<td>
+				<td  colspan="2">
 					<input type="radio" id="itemType" name="itemType" value="1" class="required" 
 					onclick="javascript:enableButton(document.getElementById('formBit'))"/>Spare Part
 				</td>
 			</tr>
 			<tr>
 				<td></td>
-				<td>
+				<td  colspan="2">
 					<input type="radio" name="itemType" value="0" class="required"
 					onclick="javascript:disableButton(document.getElementById('formBit'))"/>Supply
 				</td>
@@ -41,8 +41,8 @@
 						<option value=""></option>
 						<?php
 							while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
-									echo "<option value='" . $row['name'] . "'>";
-									echo $row['name'] . "</option>";
+								echo "<option value='" . $row['name'] . "'>";
+								echo $row['name'] . "</option>";
 							}
 						?>
 					</select>
@@ -50,21 +50,21 @@
 			</tr>
 			<tr>
 				<td>Material No.</td>
-				<td><input type="text" name="matno" class="required"/></td>
+				<td><input type="text" maxlength="10" name="matno" class="required"/></td>
 				<td>Bin</td>
-				<td><input type="text" name="bin" class="required"/></td>
+				<td><input type="text" maxlength="10" name="bin" class="required"/></td>
 			</tr>
 			<tr>
 				<td>Description</td>
-				<td><input type="text" name="desc1" class="required"/></td>
+				<td><input type="text" maxlength="50" name="desc1" class="required"/></td>
 				<td>Bundle</td>
-				<td><input type="text" name="bun" class="required"/></td>
+				<td><input type="text" maxlength="10" name="bun" class="required"/></td>
 			</tr>
 			<tr>
 				<td>Stock</td>
-				<td><input type="text" name="stock" class="number required"/></td>
+				<td><input type="text" maxlength="11" name="stock" class="number required"/></td>
 				<td>Cost center</td>
-				<td><input type="text" name="cc" class="required"/></td>
+				<td><input type="text" maxlength="10" name="cc" class="required"/></td>
 			</tr>
 		</table>
 	</div></p>
