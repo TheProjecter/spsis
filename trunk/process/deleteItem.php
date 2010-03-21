@@ -12,7 +12,7 @@
 			echo "<div id='dialogSmall'><a href='mainForAdmin.php'><input type='button' class='ui-state-default ui-corner-all' value='Back to List'></a></div>";
 		}
 		else{
-			echo "<h2>Item <a id='hihlight'>" . $rows['desc1'] . "</a> has been successfully deleted! </h2>";
+			echo "<h3>Item <a id='highlight'>" . $rows['desc1'] . "</a> has been successfully deleted! </h3><br />";
 			mysql_query("DELETE FROM item where matno='{$rows['matno']}'");
 			echo "<div id='dialogSmall'><a href='mainForAdmin.php'><input type='button' class='ui-state-default ui-corner-all' value='Back to List'></a></div>";
 		}
