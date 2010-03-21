@@ -251,7 +251,6 @@ function processAddItem(formObject) {
 				break;
 			}
 		}
-		
 		if (machine=="") {
 			result=false;
 			document.getElementById("machineName").style.border = "1px solid red";
@@ -306,7 +305,6 @@ function processEditItem() {
 
 function processEditMachine() {
 	var result = true;
-	
 	var input = document.getElementsByTagName("input");
 	result = validateInput(input);
 	
