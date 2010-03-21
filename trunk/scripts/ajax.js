@@ -9,7 +9,17 @@ function validateInput(input) {
 				input[i].title = "This information is required.";
 			} 
 			else if (input[i].type == "text" && input[i].value != "") {
-				if (input[i].className.search("letter number underscore") > -1) {
+				if (input[i].className.search("letter number dash space") > -1) {
+					if (!/^([0-9a-z- ])+$/i.test(input[i].value)) {
+						result = false;
+						input[i].style.border = "1px solid red";
+						input[i].style.backgroundColor = "#FFE891";
+						input[i].title = "This field must contain letters, numbers, spaces and dashes only.";
+					} else {
+						input[i].style.border = "1px solid #808080";
+						input[i].style.backgroundColor = "";
+					}
+				} else if (input[i].className.search("letter number underscore") > -1) {
 					if (!/^([0-9a-z_])+$/i.test(input[i].value)) {
 						result = false;
 						input[i].style.border = "1px solid red";
@@ -203,16 +213,6 @@ function processAddMachine() {
 	var input = document.getElementsByTagName("input");
 	result = validateInput(input);
 	
-	if(result){
-		for(var i = 0; i < input.length-3; i++){
-			//alert(input[i].name + " vs "+input[input.length-3].value);
-			if(input[i].value == input[input.length-3].value){
-				alert("Duplicate value for Machine Name");
-				result = false;
-			}
-		}
-	}
-	
 	if (result) {
 		var mach = input[input.length-3].value;
 		window.location = "process/addMachine.php?mach="+mach;
@@ -239,12 +239,12 @@ function processAddItem(formObject) {
 		}
 	}
 	
-	mat_no = input[2].value;
-	bin = input[3].value;
-	desc1 = input[4].value;
-	bun = input[5].value;
-	stock = input[6].value;
-	cc = input[7].value;
+	mat_no = document.getElementById("matno").value;
+	bin = mat_no = document.getElementById("bin").value;
+	desc1 = mat_no = document.getElementById("desc1").value;
+	bun = mat_no = document.getElementById("bun").value;
+	stock = mat_no = document.getElementById("stock").value;
+	cc = mat_no = document.getElementById("cc").value;
 	
 	if (result) {
 		window.location.href = "process/addItem.php?itemType="+itemType+"&machine="+machine+"&mat_no="+mat_no+"&desc1="+desc1+"&stock="+stock+"&bin="+bin+"&bun="+bun+"&cc="+cc;
