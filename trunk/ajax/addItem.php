@@ -30,14 +30,14 @@
 			<tr>
 				<td></td>
 				<td  colspan="2">
-					<input type="radio" name="itemType" value="0" class="required"
+					<input type="radio" id="itemType" name="itemType" value="0" class="required"
 					onclick="javascript:disableButton(document.getElementById('formBit'))"/>Supply
 				</td>
 			</tr>
 			<tr>
 				<td>Machine</td>
 				<td>
-					<select name="mach" id="mach">
+					<select name="mach" id="machineName">
 						<option value=""></option>
 						<?php
 							while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
@@ -50,21 +50,21 @@
 			</tr>
 			<tr>
 				<td>Material No.</td>
-				<td><input type="text" maxlength="10" name="matno" class="letter number required"/></td>
+				<td><input type="text" maxlength="10" id="matno" name="matno" class="letter number required"/></td>
 				<td>Bin</td>
-				<td><input type="text" maxlength="10" name="bin" class="letter number dash required"/></td>
+				<td><input type="text" maxlength="10" id="bin" name="bin" class="letter number dash required"/></td>
 			</tr>
 			<tr>
 				<td>Description</td>
-				<td><input type="text" maxlength="50" name="desc1" class="required"/></td>
+				<td><input type="text" maxlength="50" id="desc1" name="desc1" class="required"/></td>
 				<td>Bundle</td>
-				<td><input type="text" maxlength="10" name="bun" class="letter required"/></td>
+				<td><input type="text" maxlength="10" id="bun" name="bun" class="letter required"/></td>
 			</tr>
 			<tr>
 				<td>Stock</td>
-				<td><input type="text" maxlength="11" name="stock" class="number required"/></td>
+				<td><input type="text" maxlength="11" id="stock" name="stock" class="number required"/></td>
 				<td>Cost center</td>
-				<td><input type="text" maxlength="10" name="cc" class="letter"/></td>
+				<td><input type="text" maxlength="10" id="cc" name="cc" class="letter"/></td>
 			</tr>
 		</table>
 	</div></p>

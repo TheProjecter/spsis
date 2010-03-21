@@ -25,7 +25,7 @@
 		<table id="insideFrame">
 			<tr>
 				<td>Machine Name</td>
-				<td><input type="text" maxlength="30" name="mach" class="letter number dash required"/></td>
+				<td><input type="text" maxlength="30" name="mach" class="letter number dash space required"/></td>
 			</tr>
 		</table>
 	</p>
@@ -33,8 +33,7 @@
 	<p>
 		<table id="insideFrame">
 			<tr>
-				<td><input type="reset" id = "reset"/></td>
-				<td>&nbsp;</td>
+				<td><input type="reset" id="reset"/></td>
 				<td><input type="button" value="Submit"  onclick="javascript:processAddMachine(document.getElementById('formBit'))"/></td>
 			</tr>
 		</table>
