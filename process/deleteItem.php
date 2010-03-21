@@ -8,13 +8,13 @@
 		$rows = mysql_fetch_array($result);
 
 		if($rows['stock']!=0){
-			echo "<h3>Cannot delete item '" . $rows['desc1'] . "'.</h3><h4>It is a Non Empty Stock. </h4>";
-			echo "<a href='mainForAdmin.php'><input type='button' value='BACK to LIST'></a>";
+			echo "<h3>Cannot delete item <a id='highlight'>" . $rows['desc1'] . "</a>.</h3><h4>It is a non-empty stock. </h4><br />";
+			echo "<div id='dialogSmall'><a href='mainForAdmin.php'><input type='button' class='ui-state-default ui-corner-all' value='Back to List'></a></div>";
 		}
 		else{
-			echo "<h2>Item '" . $rows['desc1'] . "' has been successfully deleted! </h2>";
+			echo "<h2>Item <a id='hihlight'>" . $rows['desc1'] . "</a> has been successfully deleted! </h2>";
 			mysql_query("DELETE FROM item where matno='{$rows['matno']}'");
-			echo "<a href='mainForAdmin.php'><input type='button' class='ui-state-default ui-corner-all' value='BACK to LIST'></a>";
+			echo "<div id='dialogSmall'><a href='mainForAdmin.php'><input type='button' class='ui-state-default ui-corner-all' value='Back to List'></a></div>";
 		}
 	}
 ?>
