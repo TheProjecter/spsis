@@ -7,7 +7,7 @@
 		$result1 = mysql_query("SELECT * FROM machine where id='$temp1'");
 		$rows1 = mysql_fetch_array($result1);
 		$machName = $rows1['name'];
-		$result2 = mysql_query("SELECT * FROM item where machine='$temp1'");
+		$result2 = mysql_query("SELECT * FROM item where machine='$temp1' and type='1'");
 		$n = mysql_num_rows($result2);
 		
 		echo "<table id='usersDialog' class='ui-widget ui-widget-content'>";
