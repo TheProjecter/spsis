@@ -77,7 +77,6 @@
 		</style>
 	</head>
 	<body>
-		<script type="text/javascript" src="scripts/ajax.js"></script>
 		<div id="header">
 			<table>
 				<tr>
