@@ -265,14 +265,25 @@ function processAddItem(formObject) {
 	}
 	
 	mat_no = document.getElementById("matno").value;
-	bin = mat_no = document.getElementById("bin").value;
-	desc1 = mat_no = document.getElementById("desc1").value;
-	bun = mat_no = document.getElementById("bun").value;
-	stock = mat_no = document.getElementById("stock").value;
-	cc = mat_no = document.getElementById("cc").value;
-	
+	bin = document.getElementById("bin").value;
+	desc1 = document.getElementById("desc1").value;
+	bun = document.getElementById("bun").value;
+	stock = document.getElementById("stock").value;
+	cc = document.getElementById("cc").value;
+	var j = 0;
+	while($('#temp'+j).val()!=undefined){
+        if(mat_no == $('#temp'+j).val()){
+			alert("Duplicate Entry for Material Number");
+			result = false;
+			break;
+		}
+		j++;
+	}
 	if (result) {
 		window.location.href = "process/addItem.php?itemType="+itemType+"&machine="+machine+"&mat_no="+mat_no+"&desc1="+desc1+"&stock="+stock+"&bin="+bin+"&bun="+bun+"&cc="+cc;
+	}
+	else{
+		return false;
 	}
 
 }
