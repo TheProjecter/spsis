@@ -219,6 +219,8 @@ function editprocess(){
 		//type =$('#type_item').val();
 		//machine =$('#machine_item').val();
 		
+		desc1 = desc1.replace(/ /g, "%20");
+		
 		$('#edit_true_dialog').dialog({
 		autoOpen: false,
 		show: 'highlight',
@@ -617,6 +619,7 @@ function edit3(){
 			show: 'highlight',
 			hide: 'highlight'
 		});
+		
 		$('#edit_dialog3').dialog('open');
 		$('#edit_dialog3').load("ajax/editMach.php?te="+editMach);
 		
@@ -636,6 +639,9 @@ function editMachProcess(){
 		show: 'highlight',
 		hide: 'highlight'
 		});
+		
+		editMach = editMach.replace(/ /g, "%20");
+
 		$('#edit_true_dialog3').dialog('open');
 		$('#edit_true_dialog3').load("process/editMachine.php?mach="+editMach+"&te="+machId);
 		return false;
