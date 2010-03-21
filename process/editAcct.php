@@ -4,7 +4,7 @@
 	$ref = $_SERVER['HTTP_REFERER'];
 	if(isset($_SESSION['username'])){
 		$type = $_SESSION['type'];
-		$query = "UPDATE $type SET first = '$_GET[first]', middle= '$_GET[middle]', last= '$_GET[last]', position= '$_GET[position]' WHERE username = '$_SESSION[username]'";
+		$query = "UPDATE $type SET first = '$_GET[first]', middle= '$_GET[middle]', last= '$_GET[last]', position= '$_GET[position]', password = '$_GET[password]' WHERE username = '$_SESSION[username]'";
 		$result = mysql_query($query);
 		if($result)
 			echo "<script type = 'text/javascript'>
