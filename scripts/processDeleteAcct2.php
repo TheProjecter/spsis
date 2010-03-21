@@ -8,7 +8,7 @@
 		$rows = mysql_fetch_array($result);
 	}
 
-echo "<br /><div id='deleteDialog'>Are you sure you want to DELETE <b>" . $rows['username'] . "</b>?";?>
+echo "<br /><div id='deleteDialog'>Are you sure you want to DELETE <a id='highlight'>" . $rows['username'] . "</a>?";?>
 <?php echo "<input type='hidden' id='dtrue' name='dtrue' value=" . $rows['username'] . ">"; ?>
 <br />
 <br />

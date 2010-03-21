@@ -9,7 +9,7 @@
 		$rows = mysql_fetch_array($result);
 	}
 			
-	echo "<br /><div id='deleteDialog'>Are you sure you want to DELETE <b>" . $rows['desc1'] . "</b>?";
+	echo "<br /><div id='deleteDialog'>Are you sure you want to DELETE <a id='highlight'>" . $rows['desc1'] . "</a>?";
 	echo "<input type='hidden' id='dtrue' name='dtrue' value=" . $rows['matno'] . ">";
 ?>
 <br />
