@@ -213,18 +213,21 @@ function processAddMachine() {
         var input = document.getElementsByTagName("input");
         var i = 0;
         var mach = $('#mach1').val();
+		//var wewes = document.getElementById("wewes");
         result = validateInput(input);
        
         while($('#temp'+i).val()!=undefined){
                 if(mach == $('#temp'+i).val()){
-                        alert("Duplicate Name for Machine Name");
-                        result = false;
-                        break;
+                    //alert("Duplicate Name for Machine Name");
+					$('#msg').text("Error: Duplicate Entry for Machine Name");
+                    result = false;
+                    break;
                 }
                 i++;
         }
         if (result) {
-                window.location = "process/addMachine.php?mach="+mach;
+                //window.location = "process/addMachine.php?mach="+mach;
+				$('#msg').load('process/addMachine.php?mach='+mach);
         }
         else
                 return false;
@@ -272,14 +275,16 @@ function processAddItem(formObject) {
 	var j = 0;
 	while($('#temp'+j).val()!=undefined){
         if(mat_no == $('#temp'+j).val()){
-			alert("Duplicate Entry for Material Number");
+			//alert("Duplicate Entry for Material Number");
+			$('#msg').text("Error: Duplicate Entry for Material Number");
 			result = false;
 			break;
 		}
 		j++;
 	}
 	if (result) {
-		window.location.href = "process/addItem.php?itemType="+itemType+"&machine="+machine+"&mat_no="+mat_no+"&desc1="+desc1+"&stock="+stock+"&bin="+bin+"&bun="+bun+"&cc="+cc;
+		var url = "process/addItem.php?itemType="+itemType+"&machine="+machine+"&mat_no="+mat_no+"&desc1="+desc1+"&stock="+stock+"&bin="+bin+"&bun="+bun+"&cc="+cc;
+		$('#msg').load(url);
 	}
 	else{
 		return false;
