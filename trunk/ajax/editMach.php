@@ -12,11 +12,11 @@
 		echo "</thead>";
 		echo "<tbody>";
 		echo "<tr><td class='ui-widget-header '>Name</td>
-			<td><input type='text' name='machName' id='machName_edit1' value='" . $rows['name'] . "'></td></tr>";
+			<td><input type='text' maxlength='30' name='machName' id='machName_edit1' value='" . $rows['name'] . "' class='letter number dash space required'></td></tr>";
 		echo "</tbody>";
 		echo "</table>";
 		echo "<input type='hidden' name='mach_edit' id='mach_edit' value=" . $rows['id'] . ">";
-		echo "<div id='dialogSmaller'><input type='submit' value='Save' name='edit' onclick='editMachProcess();' class='ui-state-default ui-corner-all' ></div>";
+		echo "<div id='dialogSmaller'><input type='submit' value='Save' name='edit' onclick='processEditMachine();' class='ui-state-default ui-corner-all' ></div>";
 	}
 	else {
 		echo "<script type = 'text/javascript'>
