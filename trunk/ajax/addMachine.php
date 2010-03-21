@@ -41,4 +41,5 @@
 		</table>
 	</p>
 </form>
+<h3><div id ="msg"></div></h3>
 <script type="text/javascript" src="scripts/ajax.js"></script>	
