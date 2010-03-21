@@ -38,7 +38,6 @@
 echo "</tbody>";
 echo "</table>";
 echo "<input type='hidden' name='item_edit1' id='edit1' value=" . $rows['matno'] . ">";
-//echo "<input type='submit' value='edit' name='edit' onclick='editprocess(\"" . $rows['matno'] . "\",\"".$rows['desc1'] ."\",".$rows['stock'] .",\"". $rows['bin'] ."\",\"" . $rows['bun'] . "\",\"" . $rows['cc'] ."\"," . $rows['type'] .",\"" . $rows['machine'] ."\");' class='ui-state-default ui-corner-all' >";
 echo "<div id='dialogSmaller'><input type='submit' value='Save' name='edit' onclick='editprocess();' class='ui-state-default ui-corner-all' ></div>";
 
 ?>

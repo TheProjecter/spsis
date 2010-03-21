@@ -43,7 +43,7 @@
 	}
 	if(strlen($_GET[f])<3||strlen($_GET[f])>30){
 		$ok=0;
-		$_SESSION['fmsg']= "Firstname length invalid<br>";
+		$_SESSION['fmsg']= "First name length invalid<br>";
 			header('Location: ../logInReg.php');
 	}
 	if(strlen($_GET[l])<3||strlen($_GET[l])>30){

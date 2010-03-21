@@ -46,7 +46,7 @@
 			$(function() {
 				$("#tabs").tabs();
 			});
-		</script>	
+		</script>
 		<style type="text/css">
 			body { 
 				font-size: 62.5%; 
@@ -75,15 +75,6 @@
 			.ui-dialog .ui-state-error { padding: .3em; }
 			.validateTips { border: 1px solid transparent; padding: 0.3em; }
 		</style>
-	
-		<!--search corner-->
-		<style type="text/css">
-	
-			#myAutoComplete {
-				width:15em; /* set width here or else widget will expand to fit its container */
-				padding-bottom:2em;
-			}
-		</style>
 	</head>
 	<body>
 		<script type="text/javascript" src="scripts/ajax.js"></script>
@@ -97,7 +88,7 @@
 			</table>
 		</div>
 		<div id="tabs">
-			<ul id='jsddm'>
+			<ul id="jsddm">
 				<li id="home"><a href="ajax/home.php">Home</a></li>
 				<li id="acct"><a href="process/viewOwnProfile.php">Account</a>
 					<ul>						

@@ -33,7 +33,7 @@
 						</tr>
 						<tr>
 							<td>Username<label id="asterisk">*</label></td>
-							<td> <input type="text" maxlength="20" name="username" id="username" class="required" value=<?php echo "'".$_SESSION['un']."'";
+							<td> <input type="text" maxlength="20" name="username" id="username" class="letter number underscore required" value=<?php echo "'".$_SESSION['un']."'";
 							$_SESSION['un']="";
 							?>></td>
 							<td>
@@ -43,7 +43,7 @@
 						</tr>
 						<tr>
 							<td>Password<label id="asterisk">**</label></td>
-							<td> <input type="password" maxlength="20" name="pword" id="pword" class="required" value=<?php echo "'".$_SESSION['pw1']."'";
+							<td> <input type="password" maxlength="20" name="pword" id="pword" class="letter number required" value=<?php echo "'".$_SESSION['pw1']."'";
 							$_SESSION['pw1']="";
 							?>></td>
 							<td>
@@ -54,7 +54,7 @@
 						<tr>
 							
 							<td>Re-type Password<label id="asterisk">**</label></td>
-							<td> <input type="password" maxlength="20" name="pword2" id="pword2" class="required" value=<?php echo "'".$_SESSION['pw2']."'";
+							<td> <input type="password" maxlength="20" name="pword2" id="pword2" class="letter number required" value=<?php echo "'".$_SESSION['pw2']."'";
 							$_SESSION['pw2']="";
 							?>></td>
 							<td>
@@ -64,7 +64,7 @@
 						</tr>
 						<tr>
 							<td>Employee Number<label id="asterisk">***</label></td>
-							<td> <input type="text" maxlength="11" name="empno" id="empno" class="required" value=<?php echo "'".$_SESSION['en']."'";
+							<td> <input type="text" maxlength="11" name="empno" id="empno" class="number required" value=<?php echo "'".$_SESSION['en']."'";
 							$_SESSION['en']="";
 							?>></td>
 							<td>
@@ -74,7 +74,7 @@
 						</tr>
 						<tr>
 							<td>First Name<label id="asterisk">*</label></td>
-							<td> <input type="text" maxlength="30" name="first" id="first" class="required" value=<?php echo "'".$_SESSION['fn']."'";
+							<td> <input type="text" maxlength="30" name="first" id="first" class="letter required" value=<?php echo "'".$_SESSION['fn']."'";
 							$_SESSION['fn']="";
 							?>></td>
 							<td>
@@ -84,7 +84,7 @@
 						</tr>
 						<tr>	
 							<td>Last Name<label id="asterisk">*</label></td>
-							<td><input type="text" maxlength="30" name="last" id="last" class="required" value=<?php echo "'".$_SESSION['ln']."'";
+							<td><input type="text" maxlength="30" name="last" id="last" class="letter required" value=<?php echo "'".$_SESSION['ln']."'";
 							$_SESSION['ln']="";
 							?>></td>
 							<td>
@@ -94,13 +94,13 @@
 						</tr>
 						<tr>
 							<td>Middle Name</td>
-							<td> <input type="text" maxlength="30" name="middle" id="middle" value=<?php echo "'".$_SESSION['mn']."'";
+							<td> <input type="text" maxlength="30" name="middle" id="middle" class="letter" value=<?php echo "'".$_SESSION['mn']."'";
 							$_SESSION['mn']="";
 							?>></td>
 						</tr>
 						<tr>
 							<td>Position<label id="asterisk">*</label></td>
-							<td> <input type="text" maxlength="20" name="pos" id="pos" class="required" value=<?php echo "'".$_SESSION['po']."'";
+							<td> <input type="text" maxlength="20" name="pos" id="pos" class="letter required" value=<?php echo "'".$_SESSION['po']."'";
 							$_SESSION['po']="";
 							?>></td>
 							<td>
