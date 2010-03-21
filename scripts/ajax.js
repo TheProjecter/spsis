@@ -249,17 +249,7 @@ function processAddItem(formObject) {
 				break;
 			}
 		}
-<<<<<<< .mine
-		if (machine=="") {
-			result=false;
-			option.style.border = "1px solid red";
-			option.style.backgroundColor = "#FFE891";
-			option.title = "This field must be a number.";
-		}
-		else {
-			
-		}
-=======
+		
 		if (machine=="") {
 			result=false;
 			document.getElementById("machineName").style.border = "1px solid red";
@@ -270,7 +260,6 @@ function processAddItem(formObject) {
 			document.getElementById("machineName").style.border = "1px solid #808080";
 			document.getElementById("machineName").style.backgroundColor = "";
 		}
->>>>>>> .r24
 	}
 	
 	mat_no = document.getElementById("matno").value;
