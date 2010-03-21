@@ -26,7 +26,7 @@
 		
 		if ($_SESSION['type']=='admin')
 		{
-			echo "<tr><td class='ui-widget-header '>Actions</td><td><input type='hidden' name='delt' id='deltMach' value=" . $rows1['id'] . " /> <input type='submit' value='delete' name='delete' onclick='del5();' class='ui-state-default ui-corner-all' /> <input type='button' value='edit' name='edit' onclick='edit3();' class='ui-state-default ui-corner-all' /></td></tr>";	
+			echo "<tr><td class='ui-widget-header '>Actions</td><td><input type='hidden' name='delt' id='deltMach' value=" . $rows1['id'] . " /> <input type='submit' value='Delete' name='delete' onclick='del5();' class='ui-state-default ui-corner-all' /> <input type='button' value='Edit' name='edit' onclick='edit3();' class='ui-state-default ui-corner-all' /></td></tr>";
 		}
 		echo "</tbody>";
 		echo "</table>";
