@@ -41,7 +41,8 @@
 		<link rel="stylesheet" type="text/css" href="jquery-ui-1.8rc1.custom/development-bundle/build/fonts/fonts-min.css" />
 		<link rel="stylesheet" type="text/css" href="jquery-ui-1.8rc1.custom/development-bundle/build/autocomplete/assets/skins/sam/autocomplete.css" />	
 		<script type="text/javascript" src="jquery-ui-1.8rc1.custom/js/jquery.tablesorter.min.js"></script>
-		<script type="text/javascript" src="scripts/dialogs.js"></script>		
+		<script type="text/javascript" src="scripts/dialogs.js"></script>
+		<script type="text/javascript" src="scripts/ajax.js"></script>
 		<script type="text/javascript">
 			$(function() {
 				$("#tabs").tabs();
