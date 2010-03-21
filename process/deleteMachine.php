@@ -9,7 +9,7 @@
 		$temp = $name['name'];
 		$result = mysql_query("DELETE FROM machine WHERE id='$machId'");
 		$result2 = mysql_query("DELETE FROM item WHERE machine='$machId'");
-		echo "<h2>Machine '" . $temp . "' has been successfully deleted! </h2>";
+		echo "<h3>Machine <a id='highlight'>" . $temp . "</a> has been successfully deleted! </h3>";
 	}
 	else {
 		echo "<script type = 'text/javascript'>

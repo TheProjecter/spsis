@@ -7,7 +7,7 @@
 		$query = "DELETE FROM reg_user where username = '$username'";
 		$result = mysql_query($query);
 		
-		echo "<h2>Account '" . $username . "' has been successfully deleted! </h2>";
+		echo "<h3>Account <a id='highlight'>" . $username . "</a> has been successfully deleted! </h3>";
 	}
 	else {
 		echo "<script type = 'text/javascript'>
