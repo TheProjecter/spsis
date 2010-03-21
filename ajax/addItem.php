@@ -6,6 +6,12 @@
 		$query = "SELECT name FROM machine";
 		$result = mysql_query($query);
 		$num = mysql_num_rows($result);
+		$temp = mysql_query("SELECT matno FROM item");
+		$i = 0;
+		while($data = mysql_fetch_array($temp,MYSQL_ASSOC)){
+			echo "<input type = 'hidden' name ='{$data[matno]}' id = 'temp".$i."' value = '{$data[matno]}'>";
+			$i++;
+		}
 	}
 	else {
 		echo "<script type = 'text/javascript'>
