@@ -18,7 +18,7 @@
 		echo "<tr><td class='ui-widget-header '>Last Name</td><td>" . $rows['last'] . "</td></tr>";
 		echo "<tr><td class='ui-widget-header '>Position</td><td>" . $rows['position'] . "</td></tr>";
 		if ($_SESSION['type']=='admin') {
-			echo "<tr><td class='ui-widget-header '>Actions</td><td><input type='hidden' name='deltAccts' id='deltAccts' value=" . $rows['username'] . " /> <input type='submit' value='delete' name='delete' onclick='del4();' class='ui-state-default ui-corner-all' /></td></tr>";	
+			echo "<tr><td class='ui-widget-header '>Actions</td><td><input type='hidden' name='deltAccts' id='deltAccts' value=" . $rows['username'] . " /> <input type='submit' value='Delete' name='delete' onclick='del4();' class='ui-state-default ui-corner-all' /></td></tr>";	
 		}			
 		echo "</tbody>";
 		echo "</table>";
