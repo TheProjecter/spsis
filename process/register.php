@@ -1,10 +1,7 @@
-<?php session_start();
-	$con = mysql_connect("localhost","mentak","mentak","spsis");
-	if (!$con) {
-		die('Could not connect: ' . mysql_error());
-	}
+<?php 
 
-	mysql_select_db("spsis", $con);
+	include '../ajax/connection.php';
+	include '../ajax/sessions.inc';
 	
 	$_SESSION['un']=$_GET[uname];
 	$_SESSION['pw1']=$_GET[pass1];
