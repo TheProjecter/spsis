@@ -1,7 +1,8 @@
 <?php   
+	include "../ajax/connection.php";
+	include "../ajax/sessions.inc";
+
 	if(isset($_GET['delt'])){
-		$link = mysql_connect('localhost', 'mentak', 'mentak');		
-		mysql_select_db('spsis', $link);
 		$temp = $_GET['delt'];
 		$result = mysql_query("SELECT * FROM item where matno='$temp'");
 		
@@ -10,7 +11,7 @@
 			
 		
 echo "<br /><div id='deleteDialog'>Are you sure you want to DELETE <b>" . $rows['desc1'] . "</b>?";?>
-<?php echo "<input type='hidden' id='dtrue' name='dtrue' value=" . $rows['desc1'] . ">"; ?>
+<?php echo "<input type='hidden' id='dtrue' name='dtrue' value=" . $rows['matno'] . ">"; ?>
 <br />
 <br />
 <table id="usersDel">

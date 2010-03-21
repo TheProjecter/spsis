@@ -10,7 +10,7 @@
 	}
 			
 	echo "<br /><div id='deleteDialog'>Are you sure you want to DELETE <b>" . $rows['desc1'] . "</b>?";
-	echo "<input type='hidden' id='dtrue' name='dtrue' value=" . $rows['desc1'] . ">";
+	echo "<input type='hidden' id='dtrue' name='dtrue' value=" . $rows['matno'] . ">";
 ?>
 <br />
 <br />
