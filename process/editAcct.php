@@ -6,6 +6,7 @@
 		$type = $_SESSION['type'];
 		$query = "UPDATE $type SET first = '$_GET[first]', middle= '$_GET[middle]', last= '$_GET[last]', position= '$_GET[position]', password = '$_GET[password]' WHERE username = '$_SESSION[username]'";
 		$result = mysql_query($query);
+		/*
 		if($result)
 			echo "<script type = 'text/javascript'>
 				alert('Successfully Edited Your Account!');
@@ -16,7 +17,7 @@
 				</script>";
 
 		echo "<script>document.location='".$ref."'</script>";
-		
+		*/
 	}
 	else{
 		echo "<script type = 'text/javascript'>
