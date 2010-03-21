@@ -313,37 +313,6 @@ function processEditMachine() {
 	if (result) {
 		editMachProcess();
 	}
-
-        var result = true;
-        var itemType,mat_no,desc1,stock,bin,bun,cc,machine;
-        var input = document.getElementsByTagName("input");
-        var option = document.getElementsByTagName("option");
-        result = validateInput(input);
-       
-        for(var i = 0; i <input.length-2; i++){
-                if(input[i].type=="radio" && input[i].checked == true){
-                        itemType = input[i].value;
-                }
-        }
-       
-        for(var i =1; i < option.length; i++){
-                if(option[i].selected == true){
-                        machine = option[i].value;
-                        break;
-                }
-        }
-       
-        mat_no = input[2].value;
-        bin = input[3].value;
-        desc1 = input[4].value;
-        bun = input[5].value;
-        stock = input[6].value;
-        cc = input[7].value;
-       
-        if (result) {
-                window.location.href = "../process/editItem.php?itemType="+itemType+"&machine="+machine+"&mat_no="+mat_no+"&desc1="+desc1+"&stock="+stock+"&bin="+bin+"&bun="+bun+"&cc="+cc;
-        }
-
 }
 
 function enableButton(formObject) {
@@ -363,19 +332,19 @@ function disableButton(formObject) {
 }
 
 function deposit(){
-        var result = true;
-        var input = document.getElementsByTagName("input");
-        result = validateInput(input);
-        var inputStock = document.getElementById("id_deposit").value;
-        if (inputStock==0) {
-                result = false;
-                document.getElementById("id_deposit").style.border = "1px solid red";
-                document.getElementById("id_deposit").style.backgroundColor = "#FFE891";
-        }
-       
-        if(result) {
-                depositprocess();
-        }
+	var result = true;
+	var input = document.getElementsByTagName("input");
+	result = validateInput(input);
+	var inputStock = document.getElementById("id_deposit").value;
+	if (inputStock==0) {
+			result = false;
+			document.getElementById("id_deposit").style.border = "1px solid red";
+			document.getElementById("id_deposit").style.backgroundColor = "#FFE891";
+	}
+   
+	if(result) {
+		depositprocess();
+	}
 }
 
 function withdraw(){
