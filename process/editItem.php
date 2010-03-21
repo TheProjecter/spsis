@@ -11,8 +11,8 @@
 	
 		mysql_query("UPDATE item SET desc1='$desc1', bin='$bin', bun='$bun', cc='$cc', machine='$machine' WHERE matno='$temp'");
 
-		echo "<h2>ITEM was UPDATED</h2>";
-		echo "<a href='mainForAdmin.php'><input type='button' value='Back to List' class='ui-state-default ui-corner-all'></a>";
+		echo "<h3>Item update successful!</h3>< br />";
+		echo "<div id='dialogSmall'><a href='mainForAdmin.php'><input type='button' value='Back to List' class='ui-state-default ui-corner-all'></a></div>";
 	}
 	else{
 		echo "<h2>!</h2>";
