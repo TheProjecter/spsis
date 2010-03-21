@@ -25,7 +25,7 @@
 		<table id="insideFrame">
 			<tr>
 				<td>Machine Name</td>
-				<td><input type="text" name="mach" class="required"/></td>
+				<td><input type="text" maxlength="30" name="mach" class="letter number dash required"/></td>
 			</tr>
 		</table>
 	</p>

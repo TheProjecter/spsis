@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `item` (
   `stock` int(11) NOT NULL,
   `bin` varchar(10) NOT NULL,
   `bun` varchar(10) NOT NULL,
-  `cc` varchar(10) NOT NULL,
+  `cc` varchar(10),
   `type` tinyint(1) NOT NULL,
   `machine` int(11),
   PRIMARY KEY (`id`),

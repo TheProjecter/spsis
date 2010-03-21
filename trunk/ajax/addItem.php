@@ -50,21 +50,21 @@
 			</tr>
 			<tr>
 				<td>Material No.</td>
-				<td><input type="text" maxlength="10" name="matno" class="required"/></td>
+				<td><input type="text" maxlength="10" name="matno" class="letter number required"/></td>
 				<td>Bin</td>
-				<td><input type="text" maxlength="10" name="bin" class="required"/></td>
+				<td><input type="text" maxlength="10" name="bin" class="letter number dash required"/></td>
 			</tr>
 			<tr>
 				<td>Description</td>
 				<td><input type="text" maxlength="50" name="desc1" class="required"/></td>
 				<td>Bundle</td>
-				<td><input type="text" maxlength="10" name="bun" class="required"/></td>
+				<td><input type="text" maxlength="10" name="bun" class="letter required"/></td>
 			</tr>
 			<tr>
 				<td>Stock</td>
 				<td><input type="text" maxlength="11" name="stock" class="number required"/></td>
 				<td>Cost center</td>
-				<td><input type="text" maxlength="10" name="cc" class="required"/></td>
+				<td><input type="text" maxlength="10" name="cc" class="letter"/></td>
 			</tr>
 		</table>
 	</div></p>

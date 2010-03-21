@@ -7,8 +7,39 @@ function validateInput(input) {
 				input[i].style.border = "1px solid red";
 				input[i].style.backgroundColor = "#FFE891";
 				input[i].title = "This information is required.";
-			} else if (input[i].type == "text" && input[i].value != "") {
-				if (input[i].className.search("number") > -1) {
+			} 
+			else if (input[i].type == "text" && input[i].value != "") {
+				if (input[i].className.search("letter number underscore") > -1) {
+					if (!/^([0-9a-z_])+$/i.test(input[i].value)) {
+						result = false;
+						input[i].style.border = "1px solid red";
+						input[i].style.backgroundColor = "#FFE891";
+						input[i].title = "This field must contain letters, numbers, and underscores only.";
+					} else {
+						input[i].style.border = "1px solid #808080";
+						input[i].style.backgroundColor = "";
+					}
+				} else if (input[i].className.search("letter number dash") > -1) {
+					if (!/^([0-9a-z-])+$/i.test(input[i].value)) {
+						result = false;
+						input[i].style.border = "1px solid red";
+						input[i].style.backgroundColor = "#FFE891";
+						input[i].title = "This field must contain letters, numbers, and dashes only.";
+					} else {
+						input[i].style.border = "1px solid #808080";
+						input[i].style.backgroundColor = "";
+					}
+				} else if (input[i].className.search("letter number") > -1) {
+					if (!/^([0-9a-z])+$/i.test(input[i].value)) {
+						result = false;
+						input[i].style.border = "1px solid red";
+						input[i].style.backgroundColor = "#FFE891";
+						input[i].title = "This field must contain letters and numbers only.";
+					} else {
+						input[i].style.border = "1px solid #808080";
+						input[i].style.backgroundColor = "";
+					}
+				} else if (input[i].className.search("number") > -1) {
 					if (!/^[+\-]?\d+(\.\d+)?$/.test(input[i].value)) {
 						result = false;
 						input[i].style.border = "1px solid red";
@@ -18,7 +49,18 @@ function validateInput(input) {
 						input[i].style.border = "1px solid #808080";
 						input[i].style.backgroundColor = "";
 					}
-				} else {
+				} else if (input[i].className.search("letter") > -1) {
+					if (!/^[a-z]([a-z])+$/i.test(input[i].value)) {
+						result = false;
+						input[i].style.border = "1px solid red";
+						input[i].style.backgroundColor = "#FFE891";
+						input[i].title = "This field must contain letters only.";
+					} else {
+						input[i].style.border = "1px solid #808080";
+						input[i].style.backgroundColor = "";
+					}
+				}
+				else {
 					input[i].style.border = "1px solid #808080";
 					input[i].style.backgroundColor = "";
 				}
@@ -42,6 +84,49 @@ function validateInput(input) {
 				}
 			}
 		}
+		else if (input[i].type == "text" && input[i].value != "") {
+			if (input[i].className.search("letter number dash") > -1) {
+				if (!/^([0-9a-z-])+$/i.test(input[i].value)) {
+					result = false;
+					input[i].style.border = "1px solid red";
+					input[i].style.backgroundColor = "#FFE891";
+					input[i].title = "This field must contain letters, numbers, and dashes only.";
+				} else {
+					input[i].style.border = "1px solid #808080";
+					input[i].style.backgroundColor = "";
+				}
+			} else if (input[i].className.search("letter number") > -1) {
+				if (!/^([0-9a-z])+$/i.test(input[i].value)) {
+					result = false;
+					input[i].style.border = "1px solid red";
+					input[i].style.backgroundColor = "#FFE891";
+					input[i].title = "This field must contain letters and numbers only.";
+				} else {
+					input[i].style.border = "1px solid #808080";
+					input[i].style.backgroundColor = "";
+				}
+			}else if (input[i].className.search("number") > -1) {
+				if (!/^[+\-]?\d+(\.\d+)?$/.test(input[i].value)) {
+					result = false;
+					input[i].style.border = "1px solid red";
+					input[i].style.backgroundColor = "#FFE891";
+					input[i].title = "This field must be a number.";
+				} else {
+					input[i].style.border = "1px solid #808080";
+					input[i].style.backgroundColor = "";
+				}
+			} else if (input[i].className.search("letter") > -1) {
+				if (!/^[a-z]([a-z])+$/i.test(input[i].value)) {
+					result = false;
+					input[i].style.border = "1px solid red";
+					input[i].style.backgroundColor = "#FFE891";
+					input[i].title = "This field must contain letters only.";
+				} else {
+					input[i].style.border = "1px solid #808080";
+					input[i].style.backgroundColor = "";
+				}
+			}
+		}
 	}
 	
 	return result;
@@ -53,52 +138,14 @@ function registerUser() {
 	var input = document.getElementsByTagName("input");
 	result = validateInput(input);
 	
-	
 	var uname = input[0].value;
-		var pass1 = input[1].value;
-		var pass2 = input[2].value;
-		var emp = input[3].value;
-		var f = input[4].value;
-		var l = input[5].value;
-		var m = input[6].value;
-		var pos = input[7].value;
-	
-	if(input[0].value==""){
-		result = false;
-		input[0].style.border = "1px solid red";
-		input[0].style.backgroundColor = "#FFE891";
-	
-	}if(input[1].value==""){
-	
-		result = false;
-		input[1].style.border = "1px solid red";
-		input[1].style.backgroundColor = "#FFE891";
-	}if(input[2].value==""){
-	
-		result = false;
-		input[2].style.border = "1px solid red";
-		input[2].style.backgroundColor = "#FFE891";
-	}if(input[3].value==""){
-		
-		result = false;
-		input[3].style.border = "1px solid red";
-		input[3].style.backgroundColor = "#FFE891";
-	} if(input[4].value==""){
-		
-		result = false;
-		input[4].style.border = "1px solid red";
-		input[4].style.backgroundColor = "#FFE891";
-	}if(input[5].value==""){
-		
-		result = false;
-		input[5].style.border = "1px solid red";
-		input[5].style.backgroundColor = "#FFE891";
-	}if(input[7].value==""){
-		
-		result = false;
-		input[7].style.border = "1px solid red";
-		input[7].style.backgroundColor = "#FFE891";
-	}
+	var pass1 = input[1].value;
+	var pass2 = input[2].value;
+	var emp = input[3].value;
+	var f = input[4].value;
+	var l = input[5].value;
+	var m = input[6].value;
+	var pos = input[7].value;
 			
 	if (result) {
 		var uname = input[0].value;
@@ -198,16 +245,6 @@ function processAddItem(formObject) {
 	bun = input[5].value;
 	stock = input[6].value;
 	cc = input[7].value;
-
-	if(itemType=="1"&&document.getElementById("mach").length<2){	
-		document.getElementById("errb").innerText="Add Item Failed. No Machines Available.";
-		result=false;
-	}
-	else if(itemType=="1"&&option[0].selected==true){
-		document.getElementById("err").innerText="No Machine Selected.";
-		result=false;
-	}
-	else document.getElementById("err").innerText="";
 	
 	if (result) {
 		window.location.href = "process/addItem.php?itemType="+itemType+"&machine="+machine+"&mat_no="+mat_no+"&desc1="+desc1+"&stock="+stock+"&bin="+bin+"&bun="+bun+"&cc="+cc;

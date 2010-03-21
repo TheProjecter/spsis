@@ -5,6 +5,11 @@ body {
 	position: relative;	
 }
 
+#bitPageTitle {
+	font-weight:bold;
+	font-size: 150%
+}
+
 #header {
 	margin-left: 4.5%;
 	margin-top: 2%;
