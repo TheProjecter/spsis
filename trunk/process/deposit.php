@@ -21,7 +21,7 @@
 		
 		mysql_query("UPDATE item SET stock=stock+$amount WHERE matno='$temp'");
 		mysql_query("INSERT INTO transaction (id,date,first,middle,last,item,type,amount) values (NULL,SYSDATE(),'$f','$m','$l','$temp',1,$amount)");
-		echo "<h4>Successfully deposited " .$amount. " stocks on item '" .$temp . "'</h4><br />";
+		echo "<h4>Successfully deposited " .$amount. " stocks on item <a id='highlight'>" .$temp . "</a></h4><br />";
 		echo "<div id='dialogSmall'><a href='mainForAdmin.php'><input type='button' value='Back to List' class='ui-state-default ui-corner-all'></a><br /></div>";
 	}
 	else{
