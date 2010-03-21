@@ -9,7 +9,7 @@
 	}
 			
 		
-echo "<br /><div id='deleteDialog'>Are you sure you want to DELETE <b>" . $rows['matno'] . "</b>?";?>
+echo "<br /><div id='deleteDialog'>Are you sure you want to DELETE <a id='highlight'>" . $rows['matno'] . "</a>?";?>
 <?php echo "<input type='hidden' id='dtrue' name='dtrue' value=" . $rows['desc1'] . ">"; ?>
 <br />
 <br />
