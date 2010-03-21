@@ -84,9 +84,10 @@
 						$id = $rows2['machine'];
 						$query = mysql_query("SELECT * FROM machine WHERE id='$id'");
 						$name = mysql_fetch_array($query);
+						
 						echo "<td>" . $name['name'] . "</td>";
 					}
-					else echo "<td>0</td>";
+					else echo "<td>Not Applicable</td>";
 					echo "<td> <input type='submit' class='ui-state-default ui-corner-all' onclick='open1();' value='view'/></td>";
 					echo "<td> <input type='button' class='ui-state-default ui-corner-all' onclick='deposit1();' value='deposit'/></td>";
 					echo "<td> <input type='button' class='ui-state-default ui-corner-all' onclick='withdraw1();' value='withdraw'/> </td>";
