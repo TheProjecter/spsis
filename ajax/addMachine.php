@@ -4,8 +4,10 @@
 	
 	if(isset($_SESSION['username'])) {
 		$result = mysql_query("SELECT name FROM machine");
+		$i = 0;
 		while($row = mysql_fetch_array($result,MYSQL_ASSOC)){
-			echo "<input type = 'hidden' name ='{$row[name]}' value = '{$row[name]}'>";
+			echo "<input type = 'hidden' name ='{$row[name]}' id = 'temp".$i."' value = '{$row[name]}'>";
+			$i++;
 		}
 	}
 	else {
@@ -25,7 +27,7 @@
 		<table id="insideFrame">
 			<tr>
 				<td>Machine Name</td>
-				<td><input type="text" maxlength="30" name="mach" class="letter number dash space required"/></td>
+				<td><input type="text" maxlength="30" name="mach" id = "mach1" class="letter number dash space required"/></td>
 			</tr>
 		</table>
 	</p>
