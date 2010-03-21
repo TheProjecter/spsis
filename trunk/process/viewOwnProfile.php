@@ -11,6 +11,16 @@
 		
 		$result = mysql_query($query);
 		$num = mysql_num_rows($result);
+		
+		while($row = mysql_fetch_array($result,MYSQL_ASSOC)){
+			$username = $row['username'];
+			$password = $row['password'];
+			$empno = $row['empno'];
+			$first =  $row['first'];
+			$middle =  $row['middle'];
+			$last =  $row['last'];
+			$position =  $row['position'];
+		}
 	}
 	else {
 		echo "<script type = 'text/javascript'>
@@ -57,7 +67,9 @@
 				middle= $("#middle"),
 				last= $("#last"),
 				position= $("#position"),
-				allFields = $([]).add(first).add(middle).add(last).add(position),
+				password= $("#password"),
+				retype= $("#retype"),
+				allFields = $([]).add(first).add(middle).add(last).add(position).add(password).add(retype),
 				tips = $(".validateTips");
 
 			function updateTips(t) {
@@ -81,35 +93,41 @@
 
 			}
 			
+			function isEqual(o,n){
+				if(o.val()!=n.val()){
+					o.addClass('ui-state-error');
+					n.addClass('ui-state-error');
+					updateTips("Password Mismatch");
+					return false;
+				}
+				return true;
+			}
+			
 			$("#dialog-form").dialog({
 				autoOpen: false,
-				height: 300,
+				height: 400,
 				width: 350,
 				modal: true,
 				buttons: {
 					'Edit Account': function() {
 						var bValid = true;
 						allFields.removeClass('ui-state-error');
-
-						bValid = bValid && checkLength(first,"First Name",1,30);
-						//bValid = bValid && checkLength(middle,"middle",1,30);
-						bValid = bValid && checkLength(last,"Last Name",1,30);
-						bValid = bValid && checkLength(position,"Position",1,20);
-
-						/*bValid = bValid && checkRegexp(name,/^[a-z]([0-9a-z_])+$/i,"Username may consist of a-z, 0-9, underscores, begin with a letter.");
-						// From jquery.validate.js (by joern), contributed by Scott Gonzalez: http://projects.scottsplayground.com/email_address_validation/
-						bValid = bValid && checkRegexp(name,/^[a-z]([0-9a-z_])/i,"Username may consist of a-z, 0-9, underscores, begin with a letter.");
-						bValid = bValid && checkRegexp(password,/^([0-9a-zA-Z])+$/,"Password field only allow : a-z 0-9");
-						bValid = bValid && checkRegexp(empno,/^([0-9])/,"Password field only allow : a-z 0-9");
-						bValid = bValid && checkRegexp(pos,/^([a-zA-Z])/,"Password field only allow : a-z");
-						*/
+						bValid = bValid && checkLength(first,"First Name",3,30);
+						bValid = bValid && checkLength(last,"Last Name",3,30);
+						bValid = bValid && checkLength(position,"Position",3,20);
+						bValid = bValid && checkLength(password,"Password",3,20);
+						bValid = bValid && isEqual(password,retype);
+						
 						if (bValid) {
 							var f = first.val();
 							var m = middle.val();
 							var l = last.val();
 							var p = position.val();
-							var url = "process/editAcct.php?first="+f+"&middle="+m+"&last="+l+"&position="+p;
+							var pw = password.val();
+							var url = "process/editAcct.php?first="+f+"&middle="+m+"&last="+l+"&position="+p+"&password="+pw;
 							window.location = url;
+							//$("#editAcctResult").load(url);
+							//$(this).dialog('close');
 						}
 					},
 					Cancel: function() {
@@ -132,16 +150,20 @@
 	<body>
 	<div class = "demo">
 	<div id = "dialog-form" title = "Edit Account">
-	<p class="validateTips">All form fields are required.</p>
+	<p class="validateTips">* indicates required field.</p>
 		<form name = "form1" action = "../process/editAcct.php" method="post">	
-			<label for="first">First Name</label>
-			<input type="text" name="first" id="first" class="text ui-widget-content ui-corner-all" />
-			<label for="middle">Middle Name</label>
-			<input type="text" name="middle" id="middle" class="text ui-widget-content ui-corner-all" />
-			<label for="last">Last Name</label>
-			<input type="text" name="last" id="last" class="text ui-widget-content ui-corner-all" />
-			<label for="position">Position</label>
-			<input type="text" name="position" id="position" class="text ui-widget-content ui-corner-all" />
+			<label for="password"><b>Password*</b></label>
+			<input type="password" name ="password" id = "password" class="text ui-widget-content ui-corner-all" value =  "<?php echo $password ?>"/>
+			<label for="retype"><b>Retype Password*</b></label>
+			<input type="password" name ="retype" id = "retype" class="text ui-widget-content ui-corner-all" value =  "<?php echo $password ?>"/>
+			<label for="first"><b>First Name*</b></label>
+			<input type="text" name="first" id="first" class="text ui-widget-content ui-corner-all" value =  "<?php echo $first ?>"/>
+			<label for="middle"><b>Middle Name</b></label>
+			<input type="text" name="middle" id="middle" class="text ui-widget-content ui-corner-all" value =  "<?php echo $middle ?>"/>
+			<label for="last"><b>Last Name*</b></label>
+			<input type="text" name="last" id="last" class="text ui-widget-content ui-corner-all" value =  "<?php echo $last ?>"/>
+			<label for="position"><b>Position*</b></label>
+			<input type="text" name="position" id="position" class="text ui-widget-content ui-corner-all" value =  "<?php echo $position ?>"/>
 		</form>
 	</div>
 		<p>
@@ -150,23 +172,23 @@
 		<br />
 			<p><table id='insideFrameHalf'>
 			<?php
-				while($row = mysql_fetch_array($result, MYSQL_ASSOC)){
+				
 					echo "<tr>";
-					echo"<td>Name</td><td> {$row['first']} {$row['middle']} {$row['last']}</td>";
+					echo"<td>Name</td><td>".$first." ".$middle." ".$last."</td>";
 					echo"</tr>";
 					echo"<tr>";
-					echo"<td>Username</td><td> {$row['username']}</td>";
+					echo"<td>Username</td><td>".$username."</td>";
+					echo"</tr>";
+					/*echo"<tr>";
+					echo"<td>Password</td><td>".$password."</td>";
+					echo"</tr>";*/
+					echo"<tr>";
+					echo"<td>Employee Number</td><td>".$empno."</td>";
 					echo"</tr>";
 					echo"<tr>";
-					echo"<td>Password</td><td> {$row['password']}</td>";
+					echo"<td>Position</td><td>".$position."</td>";
 					echo"</tr>";
-					echo"<tr>";
-					echo"<td>Employee Number</td><td> {$row['empno']}</td>";
-					echo"</tr>";
-					echo"<tr>";
-					echo"<td>Position</td><td> {$row['position']}</td>";
-					echo"</tr>";
-				}
+				
 			?>
 			</table>
 			<br /><br />
@@ -175,6 +197,7 @@
 					<tr><td><button id="edit-acct">Edit Account</button></td></tr>
 				</table>
 			</p>
+			<div id="editAcctResult"></div>
 	</div>
 	</body>
 	
