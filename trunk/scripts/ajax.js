@@ -221,7 +221,7 @@ function processAddMachine() {
 
 function processAddItem(formObject) {
 	var result = true;
-	var itemType,mat_no,desc1,stock,bin,bun,cc,machine;
+	var itemType,mat_no,desc1,stock,bin,bun,cc,machine="";
 	var input = document.getElementsByTagName("input");
 	var option = document.getElementsByTagName("option");
 	result = validateInput(input);
@@ -232,10 +232,22 @@ function processAddItem(formObject) {
 		}
 	}
 	
-	for(var i =1; i < option.length; i++){
-		if(option[i].selected == true){
-			machine = option[i].value;
-			break;
+	if (itemType==1) {
+		for(var i =1; i < option.length; i++){
+			if(option[i].selected == true){
+				machine = option[i].value;
+				break;
+			}
+		}
+		if (machine=="") {
+			result=false;
+			document.getElementById("machineName").style.border = "1px solid red";
+			document.getElementById("machineName").style.backgroundColor = "#FFE891";
+			document.getElementById("machineName").title = "This field must be a number.";
+		}
+		else {
+			document.getElementById("machineName").style.border = "1px solid #808080";
+			document.getElementById("machineName").style.backgroundColor = "";
 		}
 	}
 	
