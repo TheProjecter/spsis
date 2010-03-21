@@ -41,4 +41,4 @@
 		</table>
 	</p>
 </form>
-<script type="text/javascript" src="scripts/ajax.js"></script>
+<script type="text/javascript" src="scripts/ajax.js"></script>	
