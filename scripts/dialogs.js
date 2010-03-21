@@ -216,16 +216,16 @@ function editprocess(){
 		bin =$('#bin_item').val();
 		bun =$('#bun_item').val();
 		cc =$('#cc_item').val();
-		type =$('#type_item').val();
+		//type =$('#type_item').val();
 		//machine =$('#machine_item').val();
-
+		
 		$('#edit_true_dialog').dialog({
 		autoOpen: false,
 		show: 'highlight',
 		hide: 'highlight'
 	});
 		$('#edit_true_dialog').dialog('open');
-		$('#edit_true_dialog').load("process/editItem.php?item_edit1="+matno+"&item_desc1="+desc1+"&item_bin="+bin+"&item_bun="+bun+"&item_cc="+cc+"&item_type="+type+"&item_machine="+option);
+		$('#edit_true_dialog').load("process/editItem.php?item_edit1="+matno+"&item_desc1="+desc1+"&item_bin="+bin+"&item_bun="+bun+"&item_cc="+cc+"&item_machine="+option);
 		return false;
 }
 
