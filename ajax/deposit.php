@@ -9,12 +9,11 @@
 		$rows = mysql_fetch_array($result);
 ?>
 	<table id="usersDialogW" class="ui-widget ui-widget-content">
-		<tr><td colspan="2">ITEM: <a id="highlight"><?php print $rows['desc1'] ?></a></td></tr>
+		<tr><td colspan="2">ITEM: <a id="highlight"><b><?php print $rows['desc1'] ?></b></a></td></tr>
 		<tr><td>AMOUNT<b id="asterisk">*</b></td>
 			<td><input type='text' name='in_deposit' id='id_deposit' class="number required"><input type='hidden' name='in_item' id='id_item' value="<?php print $rows['matno']?>"></td>
 		</tr>
-		<tr><td></td><td><input type='submit' value='Deposit' onclick='deposit()'></td></tr>
-		<tr><td><br/></td></tr>
+		<tr><td>&nbsp;</td></tr>
 		<tr id="note"><td colspan="2"><b id="asterisk">*</b>Must be a number and must be greater than zero(0)</td></tr>
 	</table>
 <?php

@@ -28,25 +28,3 @@
 					$('#searchresults').load('process/resultSearchItem.php?tet='+$('#spare1').val());
 				}
 				</script>
-		
-		<!--search corner-->
-		<script type="text/javascript" src="assets/js/query.php"></script>
-			<script type="text/javascript">
-				YAHOO.example.BasicLocal = function() {
-					
-					var oDS = new YAHOO.util.LocalDataSource(YAHOO.example.Data.arrayMat);
-					// Optional to define fields for single-dimensional array
-					oDS.responseSchema = {fields : ["state"]};
-					
-					// Instantiate the AutoComplete
-					var oAC = new YAHOO.widget.AutoComplete("spare1", "myContainer", oDS);
-					oAC.prehighlightClassName = "yui-ac-prehighlight";
-					oAC.useShadow = true;
-					
-					return {
-						oDS: oDS,
-						oAC: oAC
-					};
-				}();
-			</script>
-		<!--end-->

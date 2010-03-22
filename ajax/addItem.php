@@ -3,7 +3,7 @@
 	include 'sessions.inc';
 	
 	if(isset($_SESSION['username'])){
-		$query = "SELECT name FROM machine";
+		$query = "SELECT * FROM machine";
 		$result = mysql_query($query);
 		$num = mysql_num_rows($result);
 		$temp = mysql_query("SELECT matno FROM item");
@@ -12,33 +12,25 @@
 			echo "<input type = 'hidden' name ='{$data[matno]}' id = 'temp".$i."' value = '{$data[matno]}'>";
 			$i++;
 		}
-	}
-	else {
-		echo "<script type = 'text/javascript'>
-				alert('Please log in first.');
-				</script>";
-		echo "<script>document.location='../logInReg.php'</script>";
-	}
 ?>
 <p><span id="bitPageTitle">Add Spare Part/Supply</span></p>
 &nbsp;
+<div id="dialog10" title="Success"></div>
 <form id="formBit" onreset="return confirm('Are you sure you want to clear the content of the page?')"
 	method="post">
 	<p><div name="main">
 		<table id="insideFrame">
 			<tr>
 				<td>Item Type</td>
-				<td  colspan="2">
-					<input type="radio" id="itemType" name="itemType" value="1" class="required" 
-					onclick="javascript:enableButton(document.getElementById('formBit'))"/>Spare Part
+				<td>
+					<input type="radio" id="itemType" value="1" class="required" onclick="javascript:enableButton(document.getElementById('formBit'))">Spare Part</input>
+					<br />
+					<input type="radio" id="itemType" value="0" class="required"
+					onclick="javascript:disableButton(document.getElementById('formBit'))" />
+					Supply
 				</td>
 			</tr>
 			<tr>
-				<td></td>
-				<td  colspan="2">
-					<input type="radio" id="itemType" name="itemType" value="0" class="required"
-					onclick="javascript:disableButton(document.getElementById('formBit'))"/>Supply
-				</td>
 			</tr>
 			<tr>
 				<td>Machine</td>
@@ -47,12 +39,16 @@
 						<option value=""></option>
 						<?php
 							while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
-								echo "<option value='" . $row['name'] . "'>";
-								echo $row['name'] . "</option>";
+								echo "<option value='" . $row['id'] . "'>" . $row['name'] . "</option>";
 							}
 						?>
 					</select>
 				</td>
+			</tr>
+			<tr><td>&nbsp;</td></tr>
+			<tr>
+				<td></td>
+				<td><div id ="msg"></div></td>
 			</tr>
 			<tr>
 				<td>Material No.</td>
@@ -86,5 +82,13 @@
 		</table>
 	</p>
 </form>
-<h3><div id ="msg"></div></h3>
 <script type="text/javascript" src="scripts/ajax.js"></script>
+<?php
+	}
+	else {
+		echo "<script type = 'text/javascript'>
+				alert('Please log in first.');
+				</script>";
+		echo "<script>document.location='../logInReg.php'</script>";
+	}
+?>

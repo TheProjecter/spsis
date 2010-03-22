@@ -9,19 +9,13 @@
 			echo "<input type = 'hidden' name ='{$row[name]}' id = 'temp".$i."' value = '{$row[name]}'>";
 			$i++;
 		}
-	}
-	else {
-		echo "<script type = 'text/javascript'>
-				alert('Please log in first.');
-				</script>";
-		echo "<script>document.location='../logInReg.php'</script>";
-	}
 ?>
 
 <p>
 	<span id="bitPageTitle">Add Machine</span>
 </p>
 &nbsp;
+<div id="dialog9" title="Success"></div>
 <form id="formBit" onreset="return confirm('Are you sure you want to clear the content of the page?')" method="post">
 	<p>
 		<table id="insideFrame">
@@ -31,6 +25,7 @@
 			</tr>
 		</table>
 	</p>
+	<div id="msg" align="center"></div>
 	<br /><br />
 	<p>
 		<table id="insideFrame">
@@ -41,5 +36,13 @@
 		</table>
 	</p>
 </form>
-<h3><div id ="msg"></div></h3>
-<script type="text/javascript" src="scripts/ajax.js"></script>	
+<script type="text/javascript" src="scripts/ajax.js"></script>
+<?php
+	}
+	else {
+		echo "<script type = 'text/javascript'>
+				alert('Please log in first.');
+				</script>";
+		echo "<script>document.location='../logInReg.php'</script>";
+	}
+?>

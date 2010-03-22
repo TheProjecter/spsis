@@ -9,7 +9,6 @@
 	}); 
 </script>
 
-
 <table id="usersDialog" class="ui-widget ui-widget-content">
 <thead>
 	
@@ -53,19 +52,17 @@
 	echo "<tr><td class='ui-widget-header '>Bundle</td><td><input type='text' maxlength='10' name='item_bun' id='bun_item' value='" . $rows['bun'] . "' class='letter required'></td></tr>";
 	echo "<tr><td class='ui-widget-header '>Cost Center</td><td><input type='text' maxlength='10' name='item_cc' id='cc_item' value='" . $rows['cc'] . "' class='letter'></td></tr>";
 	echo "<tr><td class='ui-widget-header '>Type</td><td>" . $type . "</td></tr>";
-	echo "<tr><td class='ui-widget-header '>Machine</td><td>
-			
-				<select>";
+			if ($type!="Supply") {
+				echo "<tr><td class='ui-widget-header '>Machine</td><td>";
+				echo "<select>";
 				while($rows_machine=mysql_fetch_array($c_machine)){
 					echo "<option id='opt$n' value='".$rows_machine['id']."'>".$rows_machine['name']."</option>";
-				  $n++;
-				  }
+					$n++;
+				}
 				echo "</select>";	
-			echo "</td></tr>";
-
-echo "</tbody>";
-echo "</table>";
-echo "<input type='hidden' name='item_edit1' id='edit1' value=" . $rows['matno'] . ">";
-echo "<div id='dialogSmaller'><input type='submit' value='Save' name='edit' onclick='processEditItem();' class='ui-state-default ui-corner-all' ></div>";
-
+			}			
+		echo "</td></tr>";
+	echo "</tbody>";
+	echo "</table>";
+	echo "<input type='hidden' name='item_edit1' id='edit1' value=" . $rows['matno'] . ">";
 ?>
