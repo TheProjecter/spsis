@@ -28,7 +28,7 @@
 	
 	if(isset($_GET['te'])){
 		$temp = $_GET['te'];
-		$result = mysql_query("SELECT * FROM item where matno='$temp' or desc1='$temp' or machine='$temp'");
+		$result = mysql_query("SELECT * FROM item where matno='$temp'");
 
 		$rows = mysql_fetch_array($result);
 		$c_machine = mysql_query("SELECT * FROM machine ");
