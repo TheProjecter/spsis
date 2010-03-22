@@ -65,10 +65,12 @@
 			div#users-contain table { border-collapse: collapse;}
 			div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left;}
 			table tr th {font-size: 110%}
-			table#users, table#userSupply {width:90%}
+			table#users, table#userItem, table#userSupply {width:90%}
 			table#usersDel {width:80%; margin-left: 18%}
 			table#usersThird, table#usersAcct, table#acctPend, table#usersW, table#usersD, table#usersT {width:75%}
 			table#usersHalf {width:50%}
+			table#half {margin-left: 5%; font-size: 110%; width: 50%}
+			table#search {width: 40%}
 			table#usersHalfs {width:50%}
 			div#dialogSmall {margin: 0 65%}
 			div#dialogSmaller {margin: 0 78%}

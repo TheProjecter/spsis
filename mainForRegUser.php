@@ -15,11 +15,9 @@
 <html lang="en">
 	<head>
 		<title>Spare Parts and Supplies Inventory System</title>	
-
 		<link type="text/css" href="jquery-ui-1.8rc1.custom/development-bundle/themes/base/ui.all.css" rel="stylesheet" />
 		<link type="text/css" href="jquery-ui-1.8rc1.custom/development-bundle/demos/demos.css" rel="stylesheet" />
 		<script type="text/javascript" src="jquery-ui-1.8rc1.custom/development-bundle/jquery-1.4.1.js"></script>
-
 		<script type="text/javascript" src="jquery-ui-1.8rc1.custom/development-bundle/menus.js"></script>
 		<script type="text/javascript" src="jquery-ui-1.8rc1.custom/development-bundle/external/jquery.bgiframe-2.1.1.js"></script>
 		<script type="text/javascript" src="jquery-ui-1.8rc1.custom/development-bundle/ui/jquery.ui.core.js"></script>
@@ -32,6 +30,7 @@
 		<script type="text/javascript" src="jquery-ui-1.8rc1.custom/development-bundle/ui/jquery.ui.dialog.js"></script>
 		<script type="text/javascript" src="jquery-ui-1.8rc1.custom/development-bundle/ui/jquery.effects.core.js"></script>
 		<script type="text/javascript" src="jquery-ui-1.8rc1.custom/development-bundle/ui/jquery.effects.explode.js"></script>
+		<script type="text/javascript" src="jquery-ui-1.8rc1.custom/development-bundle/ui/jquery.effects.clip.js"></script>
 		<script type="text/javascript" src="jquery-ui-1.8rc1.custom/development-bundle/ui/jquery.effects.highlight.js"></script>
 		<script type="text/javascript" src="jquery-ui-1.8rc1.custom/development-bundle/ui/jquery.ui.button.js"></script>
 		<script type="text/javascript" src="jquery-ui-1.8rc1.custom/development-bundle/build/yahoo-dom-event/yahoo-dom-event.js"></script>
@@ -39,8 +38,10 @@
 		<script type="text/javascript" src="jquery-ui-1.8rc1.custom/development-bundle/build/datasource/datasource-min.js"></script>
 		<script type="text/javascript" src="jquery-ui-1.8rc1.custom/development-bundle/build/autocomplete/autocomplete-min.js"></script>
 		<link rel="stylesheet" type="text/css" href="jquery-ui-1.8rc1.custom/development-bundle/build/fonts/fonts-min.css" />
-		<link rel="stylesheet" type="text/css" href="jquery-ui-1.8rc1.custom/development-bundle/build/autocomplete/assets/skins/sam/autocomplete.css" />
-		<script type="text/javascript" src="scripts/dialogs.js"></script>	
+		<link rel="stylesheet" type="text/css" href="jquery-ui-1.8rc1.custom/development-bundle/build/autocomplete/assets/skins/sam/autocomplete.css" />	
+		<script type="text/javascript" src="jquery-ui-1.8rc1.custom/js/jquery.tablesorter.min.js"></script>
+		<script type="text/javascript" src="scripts/dialogs.js"></script>
+		<script type="text/javascript" src="scripts/ajax.js"></script>
 		<script type="text/javascript">
 			$(function() {
 				$("#tabs").tabs();
@@ -63,26 +64,21 @@
 			div#users-contain table { border-collapse: collapse;}
 			div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left;}
 			table tr th {font-size: 110%}
-			table#users {width:90%}
-			table#usersThird, table#usersW, table#usersD, table#usersT {width:75%}
+			table#users, table#userItem, table#userSupply {width:90%}
+			table#usersDel {width:80%; margin-left: 18%}
+			table#usersThird, table#usersAcct, table#acctPend, table#usersW, table#usersD, table#usersT {width:75%}
 			table#usersHalf {width:50%}
+			table#search {width: 40%}
+			table#usersHalfs {width:50%}
 			div#dialogSmall {margin: 0 65%}
 			div#dialogSmaller {margin: 0 78%}
+			div#deleteDialog {font-size: 110%}
 			.ui-dialog .ui-state-error { padding: .3em; }
-			.validateTips { border: 1px solid transparent; padding: 0.3em; }	</style>
-	
-	<!--search corner-->
-	<style type="text/css">
-			#myAutoComplete {
-				width:15em; /* set width here or else widget will expand to fit its container */
-				padding-bottom:2em;
-			}
+			.validateTips { border: 1px solid transparent; padding: 0.3em; }
 		</style>
-		<!--end-->
+	
 	</head>
 	<body>
-		<script type="text/javascript" src="scripts/ajax.js"></script>
-		<script type="text/javascript" src="scripts/dropdown.js"></script>
 		<div id="header">
 			<table>
 				<tr>
@@ -97,13 +93,12 @@
 				<li id="home"><a href="ajax/home.php">Home</a></li>
 				<li id="acct"><a href="process/viewOwnProfile.php">Account</a>
 					<ul>						
-						<li id="editAcct"><a href="ajax/editAcct.php">Edit My Account</a></li>
 						<li id="viewMyAcct"><a href="process/viewOwnProfile.php">View My Account</a></li>
 						<li id="searchAcct"><a href="ajax/searchAcct.php">Search Account</a></li>
 						<li><a href="process/logOut.php">Log Out</a></li>
 					</ul>
 				</li>
-				<li id="mach"><a href="process/viewListOfMachines.php">List of Machines</a>
+				<li id="mach"><a href="ajax/viewListOfMachines.php">List of Machines</a>
 				</li>
 				<li id="report"><a href="ajax/machineSpareParts.php">Reports</a>
 					<ul>
