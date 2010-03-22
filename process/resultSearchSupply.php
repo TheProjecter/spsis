@@ -27,7 +27,8 @@
 	}
 </style>
 <div id="warningSupply" title="WARNING"><h3 align="center">Please choose a supply.</h3></div>
-
+<div id="edit_dialog5" title="Edit Item"></div>
+<div id="edit_true_dialog5" title="Edit Success"></div>
 <?php
 if(isset($_REQUEST['tet'])){
 	$temp = $_REQUEST['tet'];
@@ -58,6 +59,7 @@ if(isset($_REQUEST['tet'])){
 						echo "<tr>" ;
 						echo "<td> <div id='radioss$i'> <input type='radio' name='te' id='myInputsp$i' value='" . $rows2['matno'] . "' /><label for='myInputsp$i'>" . $rows2['matno'] . "</label></div></td>";
 						echo "<td>" . $rows2['desc1'] . "</td>";
+						echo "<input type='hidden' id='stks$i' value='" . $rows2['stock'] . "' />";
 						echo "<td>" . $rows2['stock'] . "</td>";
 						echo "<td> <input type='submit' class='ui-state-default ui-corner-all' onclick='open7();' value='view'/></td>";
 						echo "<td> <input type='button' class='ui-state-default ui-corner-all' onclick='deposit3();' value='deposit'/></td>";

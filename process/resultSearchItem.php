@@ -53,6 +53,7 @@ if(isset($_REQUEST['tet'])){
 						echo "<tr>" ;
 						echo "<td> <div id='radios$i'> <input type='radio' name='te' id='myInputs$i' value='" . $rows2['matno'] . "' /><label for='myInputs$i'>" . $rows2['matno'] . "</label></div></td>";
 						echo "<td>" . $rows2['desc1'] . "</td>";
+						echo "<input type='hidden' id='stki$i' value='" . $rows2['stock'] . "' />";
 						echo "<td>" . $rows2['stock'] . "</td>";
 						
 						$id = $rows2['machine'];

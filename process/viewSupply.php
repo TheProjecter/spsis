@@ -15,7 +15,7 @@
 		echo "<tr><td class='ui-widget-header '>Description</td><td>" . $rows['desc1'] . "</td></tr>";
 		echo "<tr><td class='ui-widget-header '>Stock</td><td>" . $rows['stock'] . "</td></tr>";
 		echo "<tr><td class='ui-widget-header '>Bin</td><td>" . $rows['bin'] . "</td></tr>";
-		echo "<tr><td class='ui-widget-header '>Bun</td><td>" . $rows['bun'] . "</td></tr>";
+		echo "<tr><td class='ui-widget-header '>Bundle</td><td>" . $rows['bun'] . "</td></tr>";
 		echo "<tr><td class='ui-widget-header '>Cost Center</td><td>" . $rows['cc'] . "</td></tr>";	
 		if ($_SESSION['type']=='admin') {
 			echo "<tr><td class='ui-widget-header '>Actions</td><td><input type='hidden' name='delt' id='delt3' value=" . $rows['matno'] . " /><input type='submit' value='Delete' name='delete' onclick='del7();' class='ui-state-default ui-corner-all' /><input type='button' value='Edit' name='edit' onclick='edit5();' class='ui-state-default ui-corner-all' /></td></tr>";	
