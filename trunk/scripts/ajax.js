@@ -170,44 +170,6 @@ function registerUser() {
         }
 }
 
-function processSearchAcct() {
-        var result = true;
-        var input = document.getElementsByTagName("input");
-        result = validateInput(input);
-        var username = input[0].value;
-        if(result){
-                window.location = "../process/searchAcct.php?username"+username;
-        }              
-}
-
-function processEditAcct() {
-        var result = true;
-        var uname, pass1, pass2, emp, f, m, l, pos;
-        var input = document.getElementsByTagName("input");
-        result = validateInput(input);
-       
-        if (input[0].value!=input[1].value){
-                alert ("Password Mismatch");
-                result = false;
-                input[1].style.border = "1px solid red";
-                input[1].style.backgroundColor = "#FFE891";
-                input[0].style.border = "1px solid red";
-                input[0].style.backgroundColor = "#FFE891";
-        }
-       
-        if (result) {
-                var pass1 = input[0].value;
-                var pass2 = input[1].value;
-                var emp = input[2].value;
-                var f = input[3].value;
-                var l = input[4].value;
-                var m = input[5].value;
-                var pos = input[6].value;
-                window.location = "process/editAcct.php?uname="+uname+"&pass1="+pass1+"&pass2="+pass2+"&emp="+emp+"&f="+f+"&m="+m+"&l="+l+"&pos="+pos;
-        }
-}
-
-
 function processAddMachine() {
         var result = true;
         var input = document.getElementsByTagName("input");
@@ -223,15 +185,18 @@ function processAddMachine() {
                     result = false;
                     break;
                 }
+				else {
+					$('#msg').empty();
+				}
                 i++;
         }
+		
         if (result) {
 			addMachine();
         }
 }
 
 function processAddItem(formObject) {
-
 	var result = true;
 	var itemType,mat_no,desc1,stock,bin,bun,cc,machine="";
 	var input = document.getElementsByTagName("input");
@@ -265,14 +230,15 @@ function processAddItem(formObject) {
 	else {
 		document.getElementById("machineName").style.border = "1px solid #808080";
 		document.getElementById("machineName").style.backgroundColor = "";
+		machine = 0;
 	}
 	
 	mat_no = document.getElementById("matno").value;
-
+	
 	var j = 0;
 	
 	while($('#temp'+j).val()!=undefined){
-        if(mat_no == $('#temp'+j).val()){
+		if(mat_no == $('#temp'+j).val()){
 			$('#msg').text("Already exists");
 			document.getElementById("matno").style.border = "1px solid red";
 			document.getElementById("matno").style.backgroundColor = "#FFE891";
@@ -281,16 +247,15 @@ function processAddItem(formObject) {
 		}
 		else {
 			$('#msg').empty();
+			document.getElementById("matno").style.border = "1px solid #808080";
+			document.getElementById("matno").style.backgroundColor = "";
 		}
 		j++;
 	}
+	
 	if (result) {
-		addItem();
+		addItem(itemType, machine);
 	}
-}
-
-function processSearchItem() {
-
 }
 
 function processEditItem() {
@@ -308,7 +273,26 @@ function processEditItem() {
 function processEditMachine() {
 	var result = true;
 	var input = document.getElementsByTagName("input");
+	var i = 0;
+	var mach = $('#machName_edit1').val();
+	var orig = $('#orig').val();
 	result = validateInput(input);
+	
+	if (result) {
+		while($('#temp'+i).val()!=undefined){
+			if(mach == $('#temp'+i).val() && mach!=orig){
+				document.getElementById("machName_edit1").style.border = "1px solid red";
+				document.getElementById("machName_edit1").style.backgroundColor = "#FFE891";
+				$('#msg').text("Already exists");
+				result = false;
+				break;
+			}
+			else {
+				$('#msg').empty();
+			}
+			i++;
+		}
+	}
 	
 	if (result) {
 		editMachProcess();
@@ -341,7 +325,7 @@ function deposit(){
 			document.getElementById("id_deposit").style.border = "1px solid red";
 			document.getElementById("id_deposit").style.backgroundColor = "#FFE891";
 	}
-   
+	
 	if(result) {
 		depositprocess();
 	}
