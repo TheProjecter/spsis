@@ -32,10 +32,11 @@
 
 <?php
 		$temp = $_REQUEST['tet'];
+		$temp = addslashes($temp);
 		$result = mysql_query("SELECT * FROM reg_user WHERE (username LIKE '%$temp%' OR first LIKE '%$temp%' OR middle LIKE '%$temp%' OR last LIKE '%$temp%' OR position LIKE '%$temp%') AND status=1");
 
 		if(mysql_num_rows($result)==0){
-			echo"<h2 align='center'>NO RESULTS WERE FOUND!</h2>";
+			echo"<h2 align='center'>NO MATCH FOUND!</h2>";
 		}
 		else{
 			echo "<br /><p><b>Instruction: </b>Click on the username of your chosen account</p>";

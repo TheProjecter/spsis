@@ -31,10 +31,11 @@
 <?php
 if(isset($_REQUEST['tet'])){
 	$temp = $_REQUEST['tet'];
+	$temp = addslashes($temp);
 	$result = mysql_query("SELECT * FROM machine where name like '%$temp%'");
 
 	if(mysql_num_rows($result)==0){
-		echo"<h2>NO RESULTS WERE FOUND!</h2>";
+		echo"<h2 align='center'>NO MATCH FOUND!</h2>";
 	}
 	else{
 		echo "<br /><p><b>Instruction: </b>Click on the name of your chosen machine</p>";

@@ -25,10 +25,11 @@
 <?php
 if(isset($_REQUEST['tet'])){
 	$temp = $_REQUEST['tet'];
+	$temp = addslashes($temp);
 	$result = mysql_query("SELECT * FROM item where (matno like '%$temp%' or desc1 like '%$temp%' or machine like '%$temp%') AND type=1");
 
 	if(mysql_num_rows($result)==0){
-		echo"<h2>NO RESULTS WERE FOUND!</h2>";
+		echo"<h2 align='center'>NO MATCH FOUND!</h2>";
 	}
 	else{
 		echo "<br /><p><b>Instruction: </b>Click on the material # of your chosen item</p>";
