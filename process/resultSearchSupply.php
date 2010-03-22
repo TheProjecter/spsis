@@ -18,7 +18,7 @@
 	}
 	});
 	$(document).ready(function(){ 
-		$("#userSupply").tablesorter( {sortList: [[0,0], [1,0]]} ); 
+		$("#userItem").tablesorter( {sortList: [[0,0], [1,0]]} ); 
 	}); 
 </script>
 <style>
@@ -32,16 +32,17 @@
 <?php
 if(isset($_REQUEST['tet'])){
 	$temp = $_REQUEST['tet'];
+	$temp = addslashes($temp);
 	$result = mysql_query("SELECT * FROM item where (matno like '%$temp%' or desc1 like '%$temp%' or machine like '%$temp%') AND type=0");
 
 	if(mysql_num_rows($result)==0){
-		echo"<h2>NO RESULTS WERE FOUND!</h2>";
+		echo"<h2 align='center'>NO MATCH FOUND!</h2>";
 	}
 	else{
 		echo "<br /><p><b>Instruction: </b>Click on the material # of your chosen item</p>";
 		echo "<div id='center'><h2>Search Result/s for '" . $temp . "'</h2></div>";
 		echo "<div id='users-contain' class='ui-widget' align='center'>";
-			echo "<table id='userSupply' class='ui-widget ui-widget-content'>";
+			echo "<table id='userItem' class='ui-widget ui-widget-content'>";
 				echo "<thead>";
 					echo "<tr class='ui-widget-header'>";
 						echo "<th>Material No.</th>";
