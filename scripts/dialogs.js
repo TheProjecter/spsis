@@ -1,7 +1,8 @@
 /*
 	increase the default animation speed to exaggerate the effect
 */
-$.fx.speeds._default = 1000;
+$.fx.speeds._default = 500;
+var sessionType="";
 var open="";
 var del="";
 var conf="";
@@ -82,8 +83,7 @@ function open1(){
 */
 function del1(){
 	$('#del_dialog').html("");
-		del =$('#delt').val();
-		//alert(text2);
+		del =$('#delt').val();		
 		$('#del_dialog').dialog({
 		autoOpen: false,
 		show: 'highlight',
@@ -118,7 +118,7 @@ function conf1(){
 				history.go(0);
 			}
 		}
-	});
+		});
 		$('#conf_del').dialog('open');
 		$('#conf_del').load("process/deleteItem.php?dtrue="+conf);
 		return false;
@@ -136,12 +136,12 @@ function edit1(){
 		hide: 'highlight',
 		buttons: {
 			Save: function() {
-				processEditItem();
+				processEditAccount();
 			}
 		}
 	});
 	$('#edit_dialog').dialog('open');
-	$('#edit_dialog').load("ajax/editItem.php?te="+edit_open);
+	$('#edit_dialog').load("ajax/editAcct.php?te="+edit_open);
 	
 	return false;
 }
@@ -151,6 +151,7 @@ function edit1(){
 */
 function deposit1(){
 	$('#deposit_dialog').html("");
+	
 	var i=0;
 		while($('#myInput'+i).val()!=undefined){
 			if($('#myInput'+i).is(':checked')){
@@ -207,7 +208,7 @@ function withdraw1(){
 				}
 			});
 		}
-		if(stock==0){
+		else if(stock==0){
 			$('#withdraw_dialog').dialog({
 			autoOpen: false,
 			show: 'explode',
@@ -228,7 +229,7 @@ function withdraw1(){
 			hide: 'highlight',
 			buttons: {
 				'Withdraw': function() {
-					withdraw();
+					withdraw("list");
 				}
 			}
 		});
@@ -254,19 +255,18 @@ function editprocess(){
 		cc =$('#cc_item').val();
 		desc1 = desc1.replace(/ /g, "%20");
 		
-		desc1 = desc1.replace(/ /g, "%20");
-		
-		$('#edit_true_dialog').dialog({
-		autoOpen: false,
-		show: 'highlight',
-		hide: 'highlight',
-		buttons: {
-			'Back to Home': function() {
-				$(this).dialog('close');
-				history.go(0);
+			$('#edit_true_dialog').dialog({
+			autoOpen: false,
+			show: 'highlight',
+			hide: 'highlight',
+			buttons: {
+				'Back to Home': function() {
+					$(this).dialog('close');
+					history.go(0);
+				}
 			}
-		}
-	});
+			});
+		
 		$('#edit_true_dialog').dialog('open');
 		$('#edit_true_dialog').load("process/editItem.php?item_edit1="+matno+"&item_desc1="+desc1+"&item_bin="+bin+"&item_bun="+bun+"&item_cc="+cc+"&item_machine="+option);
 		return false;
@@ -287,22 +287,21 @@ function depositprocess(){
 			});
 		}
 		else{
-		
-		$('#deposit_true_dialog').dialog({
-		autoOpen: false,
-		show: 'highlight',
-		hide: 'highlight',
-		buttons: {
-			'Back to Home': function() {
-				$(this).dialog('close');
-				history.go(0);
-			}
+				$('#deposit_true_dialog').dialog({
+				autoOpen: false,
+				show: 'highlight',
+				hide: 'highlight',
+				buttons: {
+					'Back to Home': function() {
+						$(this).dialog('close');
+						history.go(0);
+					}
+				}
+				});
+				$('#deposit_true_dialog').dialog('open');
+				$('#deposit_true_dialog').load("process/deposit.php?in_item="+item+"&in_deposit="+amount);
+				return false;
 		}
-	});
-		$('#deposit_true_dialog').dialog('open');
-		$('#deposit_true_dialog').load("process/deposit.php?in_item="+item+"&in_deposit="+amount);
-		}
-		return false;
 }
 
 function withdrawprocess(){
@@ -321,21 +320,20 @@ function withdrawprocess(){
 			});
 		}
 		else{
-		
-		$('#withdraw_true_dialog').dialog({
-		autoOpen: false,
-		show: 'highlight',
-		hide: 'highlight',
-		buttons: {
-			'Back to Home': function() {
-				$(this).dialog('close');
-				history.go(0);
+				$('#withdraw_true_dialog').dialog({
+					autoOpen: false,
+					show: 'highlight',
+					hide: 'highlight',
+					buttons: {
+						'Back to Home': function() {
+							$(this).dialog('close');
+							history.go(0);
+						}			
+					}
+					});
+					$('#withdraw_true_dialog').dialog('open');
+					$('#withdraw_true_dialog').load("process/withdraw.php?item_w="+item_w+"&in_withdraw="+amount_w);
 			}
-		}
-	});
-		$('#withdraw_true_dialog').dialog('open');
-		$('#withdraw_true_dialog').load("process/withdraw.php?item_w="+item_w+"&in_withdraw="+amount_w);
-		}
 		return false;
 }
 
@@ -456,7 +454,7 @@ function deposit2(){
 			hide: 'highlight',
 			buttons: {
 				'Deposit': function() {
-					deposit();
+					deposit("search");
 				}
 			}
 		});
@@ -487,7 +485,7 @@ function withdraw2(){
 				}
 			});
 		}
-		if(stock==0){
+		else if(stock==0){
 			$('#withdraw_dialog2').dialog({
 			autoOpen: false,
 			show: 'explode',
@@ -499,7 +497,7 @@ function withdraw2(){
 			}
 			});
 			$('#withdraw_dialog2').dialog('open');
-			$('#withdraw_dialog2').load("ajax/noStock.php?te="+withdraw_text);
+			$('#withdraw_dialog2').load("ajax/noStock.php?te="+withdraw_texts);
 		}
 		else{
 		$('#withdraw_dialog2').dialog({
@@ -508,7 +506,7 @@ function withdraw2(){
 			hide: 'highlight',
 			buttons: {
 				'Withdraw': function() {
-					withdraw();
+					withdraw("search");
 				}
 			}
 		});
@@ -563,7 +561,15 @@ function del3(){
 		$('#del_dialog3').dialog({
 		autoOpen: false,
 		show: 'highlight',
-		hide: 'highlight'
+		hide: 'highlight',
+		buttons: {
+			'No': function() {
+				$(this).dialog('close');
+			},
+			'Yes': function() {
+				conf3();
+			}
+		}
 	});
 		$('#del_dialog3').dialog('open');
 		$('#del_dialog3').load("scripts/processDeleteAcct.php?delt="+del);
@@ -583,8 +589,9 @@ function conf3(){
 		hide: 'highlight',
 		modal: true,
 		buttons: {
-			OK: function() {
+			'Back to Home': function() {
 				$(this).dialog('close');
+				history.go(0);
 			}
 		}
 	});
@@ -638,7 +645,15 @@ function del4(){
 		$('#del_dialog4').dialog({
 		autoOpen: false,
 		show: 'highlight',
-		hide: 'highlight'
+		hide: 'highlight',
+		buttons: {
+			'No': function() {
+				$(this).dialog('close');
+			},
+			'Yes': function() {
+				conf4();
+			}
+		}
 	});
 		$('#del_dialog4').dialog('open');
 		$('#del_dialog4').load("scripts/processDeleteAcct2.php?delt="+del);
@@ -658,8 +673,9 @@ function conf4(){
 		hide: 'highlight',
 		modal: true,
 		buttons: {
-			OK: function() {
+			'Back to Home': function() {
 				$(this).dialog('close');
+				history.go(0);
 			}
 		}
 	});
@@ -713,9 +729,13 @@ function edit3(){
 		$('#edit_dialog3').dialog({
 			autoOpen: false,
 			show: 'highlight',
-			hide: 'highlight'
+			hide: 'highlight',
+			buttons: {
+				Save: function() {
+					processEditMachine();
+				}
+			}
 		});
-		
 		$('#edit_dialog3').dialog('open');
 		$('#edit_dialog3').load("ajax/editMach.php?te="+editMach);
 		
@@ -735,14 +755,13 @@ function editMachProcess(){
 		show: 'highlight',
 		hide: 'highlight',
 		buttons: {
-			OK: function() {
-				$(this).dialog('close');
+			'Back to Home': function() {
+					$(this).dialog('close');
+					history.go(0);
+				}
 			}
-		}
 		});
-		
 		editMach = editMach.replace(/ /g, "%20");
-
 		$('#edit_true_dialog3').dialog('open');
 		$('#edit_true_dialog3').load("process/editMachine.php?mach="+editMach+"&te="+machId);
 		return false;
@@ -755,11 +774,18 @@ function editMachProcess(){
 function del5(){
 	$('#del_dialog5').html("");
 		del =$('#deltMach').val();
-		//alert(text2);
 		$('#del_dialog5').dialog({
 		autoOpen: false,
 		show: 'highlight',
-		hide: 'highlight'
+		hide: 'highlight',
+		buttons: {
+			'No': function() {
+				$(this).dialog('close');
+			},
+			'Yes': function() {
+				conf5();
+			}
+		}
 	});
 		$('#del_dialog5').dialog('open');
 		$('#del_dialog5').load("scripts/processDeleteMach.php?delt="+del);
@@ -835,7 +861,15 @@ function del6(){
 		$('#del_dialog6').dialog({
 		autoOpen: false,
 		show: 'highlight',
-		hide: 'highlight'
+		hide: 'highlight',
+		buttons: {
+			'No': function() {
+				$(this).dialog('close');
+			},
+			'Yes': function() {
+				conf6();
+			}
+		}
 	});
 		$('#del_dialog6').dialog('open');
 		$('#del_dialog6').load("scripts/processDeleteMach2.php?delt="+del);
@@ -855,13 +889,14 @@ function conf6(){
 		hide: 'highlight',
 		modal: true,
 		buttons: {
-			OK: function() {
+			'Back to Home': function() {
 				$(this).dialog('close');
+				history.go(0);
 			}
 		}
 	});
-		$('#conf_del5').dialog('open');
-		$('#conf_del5').load("process/deleteMachine.php?dtrue="+conf);
+		$('#conf_del6').dialog('open');
+		$('#conf_del6').load("process/deleteMachine.php?dtrue="+conf);
 		return false;
 }
 
@@ -875,7 +910,12 @@ function edit4(){
 		$('#edit_dialog4').dialog({
 			autoOpen: false,
 			show: 'highlight',
-			hide: 'highlight'
+			hide: 'highlight',
+			buttons: {
+				Save: function() {
+					processEditMachine();
+				}
+			}
 		});
 		$('#edit_dialog4').dialog('open');
 		$('#edit_dialog4').load("ajax/editMach.php?te="+editMach_s);
@@ -979,7 +1019,6 @@ function conf7(){
 			}
 		}
 	});
-	alert(conf_s);
 		$('#conf_del7').dialog('open');
 		$('#conf_del7').load("process/deleteItem.php?dtrue="+conf_s);
 		return false;
@@ -1012,7 +1051,7 @@ function deposit3(){
 			hide: 'highlight',
 			buttons: {
 				'Deposit': function() {
-					deposit();
+					deposit("search");
 				}
 			}
 		});
@@ -1042,7 +1081,7 @@ function withdraw3(){
 				}
 			});
 		}
-		if(stock==0){
+		else if(stock==0){
 			$('#withdraw_dialog3').dialog({
 			autoOpen: false,
 			show: 'explode',
@@ -1054,7 +1093,7 @@ function withdraw3(){
 			}
 			});
 			$('#withdraw_dialog3').dialog('open');
-			$('#withdraw_dialog3').load("ajax/noStock.php?te="+withdraw_text);
+			$('#withdraw_dialog3').load("ajax/noStock.php?te="+withdraw_texts);
 		}
 		else{
 		$('#withdraw_dialog3').dialog({
@@ -1063,7 +1102,7 @@ function withdraw3(){
 			hide: 'highlight',
 			buttons: {
 				'Withdraw': function() {
-					withdraw();
+					withdraw("search");
 				}
 			}
 		});
@@ -1113,6 +1152,74 @@ function open8(){
 		return false;
 }
 
+function addMachine() {
+	$('#dialog9').html("");
+		del =$('#mach1').val();
+		$('#dialog9').dialog({
+		autoOpen: false,
+		show: 'highlight',
+		hide: 'highlight',
+		buttons: {
+				'Back to Home': function() {
+					$(this).dialog('close');
+					history.go(0);
+				}
+			}
+		});
+		del = del.replace(/ /g, "%20");
+		$('#dialog9').dialog('open');
+		$('#dialog9').load("process/addMachine.php?mach="+del);
+		return false;
+}
+
+function addItem(itemType, machine) {
+	$('#dialog10').html("");
+		matno=$('#matno').val();
+		bin=$('#bin').val();
+		desc1=$('#desc1').val();
+		bun=$('#bun').val();
+		stock=$('#stock').val();
+		cc=$('#cc').val();
+		$('#dialog10').dialog({
+		autoOpen: false,
+		show: 'highlight',
+		hide: 'highlight',
+		buttons: {
+				'Back to Home': function() {
+					$(this).dialog('close');
+					history.go(0);
+				}
+			}
+		});
+		desc1 = desc1.replace(/ /g, "%20");
+		$('#dialog10').dialog('open');
+		$('#dialog10').load("process/addItem.php?itemType="+itemType+"&machine="+machine+"&matno="+matno+"&desc1="+desc1+"&stock="+stock+"&bin="+bin+"&bun="+bun+"&cc="+cc);
+		return false;
+}
+
+/*
+	edit of account
+*/
+function edit6(){
+	$('#edit_dialog6').html("");
+	editMach =$('#deltMach').val();
+		$('#edit_dialog3').dialog({
+			autoOpen: false,
+			show: 'highlight',
+			hide: 'highlight',
+			buttons: {
+				Save: function() {
+					processEditMachine();
+				}
+			}
+		});
+		$('#edit_dialog3').dialog('open');
+		$('#edit_dialog3').load("ajax/editMach.php?te="+editMach);
+		
+		return false;
+}
+
+
 function approve(){
 	$('#approveSuccess').html("");
 	var i=0;counter=0;
@@ -1139,8 +1246,9 @@ function approve(){
 		show: 'explode',
 		hide: 'highlight',
 		buttons: {
-				OK: function() {
+				'Back to Home': function() {
 					$(this).dialog('close');
+					history.go(0);
 				}
 			}
 		});
@@ -1151,7 +1259,7 @@ function approve(){
 }
 
 function deny(){
-	$('#approveSuccess').html("");
+	$('#denySuccess').html("");
 	var i=0;counter=0;
 		while($('#acct'+i).val()!=undefined){
 			if($('#acct'+i).is(':checked')){
@@ -1171,65 +1279,19 @@ function deny(){
 			});
 		}
 		else{
-		$('#approveSuccess').dialog({
+		$('#denySuccess').dialog({
 		autoOpen: false,
 		show: 'explode',
 		hide: 'highlight',
 		buttons: {
-				OK: function() {
+				'Back to Home': function() {
 					$(this).dialog('close');
+					history.go(0);
 				}
 			}
 		});
-		$('#approveSuccess').dialog('open');
-		$('#approveSuccess').load("process/approveRegistration.php?te="+pendAcct+"&act=0&cnt="+counter);
+		$('#denySuccess').dialog('open');
+		$('#denySuccess').load("process/approveRegistration.php?te="+pendAcct+"&act=0&cnt="+counter);
 		}
-		return false;
-}
-
-function addMachine() {
-	$('#dialog9').html("");
-		del =$('#mach1').val();
-		$('#dialog9').dialog({
-		autoOpen: false,
-		show: 'highlight',
-		hide: 'highlight',
-		buttons: {
-				'Back to Home': function() {
-					$(this).dialog('close');
-					history.go(0);
-				}
-			}
-		});
-		del = del.replace(/ /g, "%20");
-		$('#dialog9').dialog('open');
-		$('#dialog9').load("process/addMachine.php?mach="+del);
-		return false;
-}
-
-function addItem() {
-	$('#dialog10').html("");
-		itemType=$('#itemType').val();
-		machine=$('#machineName').val();
-		matno=$('#matno').val();
-		bin=$('#bin').val();
-		desc1=$('#desc1').val();
-		bun=$('#bun').val();
-		stock=$('#stock').val();
-		cc=$('#cc').val();
-		$('#dialog10').dialog({
-		autoOpen: false,
-		show: 'highlight',
-		hide: 'highlight',
-		buttons: {
-				'Back to Home': function() {
-					$(this).dialog('close');
-					history.go(0);
-				}
-			}
-		});
-		desc1 = desc1.replace(/ /g, "%20");
-		$('#dialog10').dialog('open');
-		$('#dialog10').load("process/addItem.php?itemType="+itemType+"&machine="+machine+"&matno="+matno+"&desc1="+desc1+"&stock="+stock+"&bin="+bin+"&bun="+bun+"&cc="+cc);
 		return false;
 }
