@@ -1,13 +1,13 @@
-.jsddm
+#jsddm
 {	margin: 0;
 	padding: 0}
 
-	.jsddm li
+	#jsddm li
 	{	float: left;
 		list-style: none;
 		font: 12px Tahoma, Arial}
 
-	.jsddm li a
+	#jsddm li a
 	{	display: block;
 		background: #FFFFFF;
 		padding: 5px 12px;
@@ -17,28 +17,28 @@
 		color: #000000;
 		white-space: nowrap}
 
-	.jsddm li a:hover
+	#jsddm li a:hover
 	{	background:#000000 ;
 	color:#FFFFFF
 	}
 		
-		.jsddm li ul
+		#jsddm li ul
 		{	margin: 0;
 			padding: 0;
 			position: absolute;
 			visibility: hidden;
 			border-top: 1px solid white}
 		
-			.jsddm li ul li
+			#jsddm li ul li
 			{	float: none;
 				display: inline}
 			
-			.jsddm li ul li a
+			#jsddm li ul li a
 			{	width: auto;
 				background: #A9C251;
 				color: #24313C}
 			
-			.jsddm li ul li a:hover
+			#jsddm li ul li a:hover
 			{	background: #8EA344;
 			color:#FFFFFF
 			}
