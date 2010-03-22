@@ -15,7 +15,7 @@
 		echo "<tr><td class='ui-widget-header '>Description</td><td>" . $rows['desc1'] . "</td></tr>";
 		echo "<tr><td class='ui-widget-header '>Stock</td><td>" . $rows['stock'] . "</td></tr>";
 		echo "<tr><td class='ui-widget-header '>Bin</td><td>" . $rows['bin'] . "</td></tr>";
-		echo "<tr><td class='ui-widget-header '>Bun</td><td>" . $rows['bun'] . "</td></tr>";
+		echo "<tr><td class='ui-widget-header '>Bundle</td><td>" . $rows['bun'] . "</td></tr>";
 		echo "<tr><td class='ui-widget-header '>Cost Center</td><td>" . $rows['cc'] . "</td></tr>";
 		if ($rows['type']=='1') {
 			$id = $rows['machine'];
@@ -23,7 +23,6 @@
 			$name = mysql_fetch_array($query);		
 			echo "<tr><td class='ui-widget-header '>Machine</td><td>" . $name['name'] . "</td></tr>";
 		}
-		else echo "<tr><td class='ui-widget-header '>Machine</td><td>0</td></tr>";
 		if ($_SESSION['type']=='admin') {
 			echo "<tr><td class='ui-widget-header '>Actions</td><td><input type='hidden' name='delt' id='delt' value=" . $rows['matno'] . " /> <input type='submit' value='Delete' name='delete' onclick='del1();' class='ui-state-default ui-corner-all' /><input type='button' value='Edit' name='edit' onclick='edit1();' class='ui-state-default ui-corner-all' /></td></tr>";			
 		}
