@@ -79,6 +79,7 @@
 					echo "<tr>" ;
 					echo "<td> <div id='radio$i'><input type='radio' name='te' id='myInput$i' value='" . $rows2['matno'] . "' /><label for='myInput$i'>" . $rows2['matno'] . "</label></div></td>";
 					echo "<td>" . $rows2['desc1'] . "</td>";
+					echo "<input type='hidden' id='stk$i' value='" . $rows2['stock'] . "' />";
 					echo "<td>" . $rows2['stock'] . "</td>";
 					if ($rows2['type']=='1') {
 						$id = $rows2['machine'];
