@@ -51,7 +51,7 @@
 		<style type="text/css">
 			body { 
 				font-size: 62.5%; 
-				background-color: black; 
+				background-color: #1C2F3A; 
 				font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
 				position: relative;	
 			}
