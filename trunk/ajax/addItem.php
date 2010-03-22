@@ -23,9 +23,9 @@
 			<tr>
 				<td>Item Type</td>
 				<td>
-					<input type="radio" id="itemType" value="1" class="required" onclick="javascript:enableButton(document.getElementById('formBit'))">Spare Part</input>
+					<input type="radio" id="itemType" name="itemType" value="1" class="required" onclick="javascript:enableButton(document.getElementById('formBit'))">Spare Part</input>
 					<br />
-					<input type="radio" id="itemType" value="0" class="required"
+					<input type="radio" id="itemType" name="itemType" value="0" class="required"
 					onclick="javascript:disableButton(document.getElementById('formBit'))" />
 					Supply
 				</td>
