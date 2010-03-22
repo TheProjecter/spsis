@@ -41,7 +41,7 @@ var editMach="";
 var editMach_s="";
 var machId;
 var pendAcct = [];
-
+var option;
 /*
 	for item view in home.php
 */
@@ -59,7 +59,7 @@ function open1(){
 			$("#warning").dialog({
 				modal: true,
 				buttons: {
-					Ok: function() {
+					OK: function() {
 						$(this).dialog('close');
 					}
 				}
@@ -87,7 +87,15 @@ function del1(){
 		$('#del_dialog').dialog({
 		autoOpen: false,
 		show: 'highlight',
-		hide: 'highlight'
+		hide: 'highlight',
+		buttons: {
+			'No': function() {
+				$(this).dialog('close');
+			},
+			'Yes': function() {
+				conf1();
+			}
+		}
 	});
 		$('#del_dialog').dialog('open');
 		$('#del_dialog').load("scripts/processDeleteItem.php?delt="+del);
@@ -100,11 +108,16 @@ function del1(){
 function conf1(){
 	$('#conf_del').html("");
 		conf =$('#dtrue').val();
-		//alert(text3);
 		$('#conf_del').dialog({
 		autoOpen: false,
 		show: 'highlight',
-		hide: 'highlight'
+		hide: 'highlight',
+		buttons: {
+			'Back to Home': function() {
+				$(this).dialog('close');
+				history.go(0);
+			}
+		}
 	});
 		$('#conf_del').dialog('open');
 		$('#conf_del').load("process/deleteItem.php?dtrue="+conf);
@@ -120,7 +133,12 @@ function edit1(){
 	$('#edit_dialog').dialog({
 		autoOpen: false,
 		show: 'highlight',
-		hide: 'highlight'
+		hide: 'highlight',
+		buttons: {
+			Save: function() {
+				processEditItem();
+			}
+		}
 	});
 	$('#edit_dialog').dialog('open');
 	$('#edit_dialog').load("ajax/editItem.php?te="+edit_open);
@@ -140,11 +158,10 @@ function deposit1(){
 			}
 			i++;
 		}
-		
 		if(deposit_text==''){
 			$("#warning").dialog({
 				buttons: {
-					Ok: function() {
+					OK: function() {
 						$(this).dialog('close');
 					}
 				}
@@ -154,7 +171,12 @@ function deposit1(){
 		$('#deposit_dialog').dialog({
 			autoOpen: false,
 			show: 'explode',
-			hide: 'highlight'
+			hide: 'highlight',
+			buttons: {
+				'Deposit': function() {
+					deposit();
+				}
+			}
 		});
 		$('#deposit_dialog').dialog('open');
 		$('#deposit_dialog').load("ajax/deposit.php?te="+deposit_text);
@@ -171,27 +193,44 @@ function withdraw1(){
 		while($('#myInput'+i).val()!=undefined){
 			if($('#myInput'+i).is(':checked')){
 				withdraw_text =$('#myInput'+i).val();
+				stock =$('#stk'+i).val();
 			}
 			i++;
 		}
-		
 		if(withdraw_text==''){
-			//alert('no choice');
 			$("#warning").dialog({
 				modal: true,
 				buttons: {
-					Ok: function() {
+					OK: function() {
 						$(this).dialog('close');
 					}
 				}
 			});
 		}
+		if(stock==0){
+			$('#withdraw_dialog').dialog({
+			autoOpen: false,
+			show: 'explode',
+			hide: 'highlight',
+			buttons: {
+				'OK': function() {
+					$(this).dialog('close');
+				}
+			}
+			});
+			$('#withdraw_dialog').dialog('open');
+			$('#withdraw_dialog').load("ajax/noStock.php?te="+withdraw_text);
+		}
 		else{
-		//alert(text);
 		$('#withdraw_dialog').dialog({
 			autoOpen: false,
 			show: 'explode',
-			hide: 'highlight'
+			hide: 'highlight',
+			buttons: {
+				'Withdraw': function() {
+					withdraw();
+				}
+			}
 		});
 		$('#withdraw_dialog').dialog('open');
 		$('#withdraw_dialog').load("ajax/withdraw.php?te="+withdraw_text);
@@ -199,10 +238,8 @@ function withdraw1(){
 		return false;
 }
 
-
 function editprocess(){
 	$('#edit_true_dialog').html("");
-	
 		var i=0;
 			while($('#opt'+i).val()!=undefined){
 				if($('#opt'+i).is(':selected')){
@@ -210,21 +247,25 @@ function editprocess(){
 				}
 				i++;
 			}
-	
 		matno =$('#edit1').val();
 		desc1 =$('#desc1_item').val();
 		bin =$('#bin_item').val();
 		bun =$('#bun_item').val();
 		cc =$('#cc_item').val();
-		//type =$('#type_item').val();
-		//machine =$('#machine_item').val();
+		desc1 = desc1.replace(/ /g, "%20");
 		
 		desc1 = desc1.replace(/ /g, "%20");
 		
 		$('#edit_true_dialog').dialog({
 		autoOpen: false,
 		show: 'highlight',
-		hide: 'highlight'
+		hide: 'highlight',
+		buttons: {
+			'Back to Home': function() {
+				$(this).dialog('close');
+				history.go(0);
+			}
+		}
 	});
 		$('#edit_true_dialog').dialog('open');
 		$('#edit_true_dialog').load("process/editItem.php?item_edit1="+matno+"&item_desc1="+desc1+"&item_bin="+bin+"&item_bun="+bun+"&item_cc="+cc+"&item_machine="+option);
@@ -239,7 +280,7 @@ function depositprocess(){
 		if(amount<=0){
 			$("#invalid").dialog({
 				buttons: {
-					Ok: function() {
+					OK: function() {
 						$(this).dialog('close');
 					}
 				}
@@ -250,7 +291,13 @@ function depositprocess(){
 		$('#deposit_true_dialog').dialog({
 		autoOpen: false,
 		show: 'highlight',
-		hide: 'highlight'
+		hide: 'highlight',
+		buttons: {
+			'Back to Home': function() {
+				$(this).dialog('close');
+				history.go(0);
+			}
+		}
 	});
 		$('#deposit_true_dialog').dialog('open');
 		$('#deposit_true_dialog').load("process/deposit.php?in_item="+item+"&in_deposit="+amount);
@@ -267,7 +314,7 @@ function withdrawprocess(){
 		if(amount_w > stock_w || amount_w <=0){
 			$("#invalid").dialog({
 				buttons: {
-					Ok: function() {
+					OK: function() {
 						$(this).dialog('close');
 					}
 				}
@@ -278,7 +325,13 @@ function withdrawprocess(){
 		$('#withdraw_true_dialog').dialog({
 		autoOpen: false,
 		show: 'highlight',
-		hide: 'highlight'
+		hide: 'highlight',
+		buttons: {
+			'Back to Home': function() {
+				$(this).dialog('close');
+				history.go(0);
+			}
+		}
 	});
 		$('#withdraw_true_dialog').dialog('open');
 		$('#withdraw_true_dialog').load("process/withdraw.php?item_w="+item_w+"&in_withdraw="+amount_w);
@@ -299,7 +352,7 @@ function open2(){
 			$("#warning").dialog({
 				modal: true,
 				buttons: {
-					Ok: function() {
+					OK: function() {
 						$(this).dialog('close');
 					}
 				}
@@ -323,7 +376,15 @@ function del2(){
 		$('#del_dialog2').dialog({
 		autoOpen: false,
 		show: 'highlight',
-		hide: 'highlight'
+		hide: 'highlight',
+		buttons: {
+			'No': function() {
+				$(this).dialog('close');
+			},
+			'Yes': function() {
+				conf2();
+			}
+		}
 	});
 		$('#del_dialog2').dialog('open');
 		$('#del_dialog2').load("scripts/processDeleteItem2.php?delt="+del_s);
@@ -333,11 +394,16 @@ function del2(){
 function conf2(){
 	$('#conf_del2').html("");
 		conf_s =$('#dtrue').val();
-		//alert(text3);
 		$('#conf_del2').dialog({
 		autoOpen: false,
 		show: 'highlight',
-		hide: 'highlight'
+		hide: 'highlight',
+		buttons: {
+			'Back to Home': function() {
+				$(this).dialog('close');
+				history.go(0);
+			}
+		}
 	});
 		$('#conf_del2').dialog('open');
 		$('#conf_del2').load("process/deleteItem.php?dtrue="+conf_s);
@@ -350,7 +416,12 @@ function edit2(){
 		$('#edit_dialog2').dialog({
 			autoOpen: false,
 			show: 'highlight',
-			hide: 'highlight'
+			hide: 'highlight',
+			buttons: {
+				Save: function() {
+					processEditItem();
+				}
+			}
 		});
 		$('#edit_dialog2').dialog('open');
 		$('#edit_dialog2').load("ajax/editItem.php?te="+edit_open_s);
@@ -372,7 +443,7 @@ function deposit2(){
 			$("#warning").dialog({
 				modal: true,
 				buttons: {
-					Ok: function() {
+					OK: function() {
 						$(this).dialog('close');
 					}
 				}
@@ -382,7 +453,12 @@ function deposit2(){
 		$('#deposit_dialog2').dialog({
 			autoOpen: false,
 			show: 'explode',
-			hide: 'highlight'
+			hide: 'highlight',
+			buttons: {
+				'Deposit': function() {
+					deposit();
+				}
+			}
 		});
 		$('#deposit_dialog2').dialog('open');
 		$('#deposit_dialog2').load("ajax/deposit.php?te="+deposit_texts);
@@ -396,6 +472,7 @@ function withdraw2(){
 		while($('#myInputs'+i).val()!=undefined){
 			if($('#myInputs'+i).is(':checked')){
 				withdraw_texts =$('#myInputs'+i).val();
+				stock =$('#stki'+i).val();
 			}
 			i++;
 		}
@@ -404,17 +481,36 @@ function withdraw2(){
 			$("#warning").dialog({
 				modal: true,
 				buttons: {
-					Ok: function() {
+					OK: function() {
 						$(this).dialog('close');
 					}
 				}
 			});
 		}
+		if(stock==0){
+			$('#withdraw_dialog2').dialog({
+			autoOpen: false,
+			show: 'explode',
+			hide: 'highlight',
+			buttons: {
+				'OK': function() {
+					$(this).dialog('close');
+				}
+			}
+			});
+			$('#withdraw_dialog2').dialog('open');
+			$('#withdraw_dialog2').load("ajax/noStock.php?te="+withdraw_text);
+		}
 		else{
 		$('#withdraw_dialog2').dialog({
 			autoOpen: false,
 			show: 'explode',
-			hide: 'highlight'
+			hide: 'highlight',
+			buttons: {
+				'Withdraw': function() {
+					withdraw();
+				}
+			}
 		});
 		$('#withdraw_dialog2').dialog('open');
 		$('#withdraw_dialog2').load("ajax/withdraw.php?te="+withdraw_texts);
@@ -439,7 +535,7 @@ function open3(){
 			$("#warningAcct").dialog({
 			modal: true,
 			buttons: {
-				Ok: function() {
+				OK: function() {
 					$(this).dialog('close');
 				}
 			}
@@ -450,7 +546,7 @@ function open3(){
 		autoOpen: false,
 		show: 'explode',
 		hide: 'highlight'
-	});
+		});
 		$('#dialog3').dialog('open');
 		$('#dialog3').load("process/viewAcct.php?te="+acctName);
 		}
@@ -487,7 +583,7 @@ function conf3(){
 		hide: 'highlight',
 		modal: true,
 		buttons: {
-			Ok: function() {
+			OK: function() {
 				$(this).dialog('close');
 			}
 		}
@@ -514,7 +610,7 @@ function open4(){
 			$("#warningAcct").dialog({
 			modal: true,
 			buttons: {
-				Ok: function() {
+				OK: function() {
 					$(this).dialog('close');
 				}
 			}
@@ -562,7 +658,7 @@ function conf4(){
 		hide: 'highlight',
 		modal: true,
 		buttons: {
-			Ok: function() {
+			OK: function() {
 				$(this).dialog('close');
 			}
 		}
@@ -589,7 +685,7 @@ function open5(){
 			$("#warningMach").dialog({
 			modal: true,
 			buttons: {
-				Ok: function() {
+				OK: function() {
 					$(this).dialog('close');
 				}
 			}
@@ -637,7 +733,12 @@ function editMachProcess(){
 		$('#edit_true_dialog3').dialog({
 		autoOpen: false,
 		show: 'highlight',
-		hide: 'highlight'
+		hide: 'highlight',
+		buttons: {
+			OK: function() {
+				$(this).dialog('close');
+			}
+		}
 		});
 		
 		editMach = editMach.replace(/ /g, "%20");
@@ -678,11 +779,12 @@ function conf5(){
 		hide: 'highlight',
 		modal: true,
 		buttons: {
-			Ok: function() {
+			'Back to Home': function() {
 				$(this).dialog('close');
+				history.go(0);
 			}
 		}
-	});
+		});
 		$('#conf_del5').dialog('open');
 		$('#conf_del5').load("process/deleteMachine.php?dtrue="+conf);
 		return false;
@@ -705,7 +807,7 @@ function open6(){
 			$("#warningMach").dialog({
 			modal: true,
 			buttons: {
-				Ok: function() {
+				OK: function() {
 					$(this).dialog('close');
 				}
 			}
@@ -753,7 +855,7 @@ function conf6(){
 		hide: 'highlight',
 		modal: true,
 		buttons: {
-			Ok: function() {
+			OK: function() {
 				$(this).dialog('close');
 			}
 		}
@@ -798,7 +900,7 @@ function open7(){
 			$("#warningSupply").dialog({
 				modal: true,
 				buttons: {
-					Ok: function() {
+					OK: function() {
 						$(this).dialog('close');
 					}
 				}
@@ -816,16 +918,24 @@ function open7(){
 		return false;
 }
 
+/*
+	edit of supply from search
+*/
 function edit5(){
-	$('#edit_dialog2').html("");
+	$('#edit_dialog5').html("");
 	edit_open_s =$('#delt3').val();
-		$('#edit_dialog2').dialog({
+		$('#edit_dialog5').dialog({
 			autoOpen: false,
 			show: 'highlight',
-			hide: 'highlight'
+			hide: 'highlight',
+			buttons: {
+				Save: function() {
+					processEditItem();
+				}	
+			}
 		});
-		$('#edit_dialog2').dialog('open');
-		$('#edit_dialog2').load("ajax/editSupply.php?te="+edit_open_s);
+		$('#edit_dialog5').dialog('open');
+		$('#edit_dialog5').load("ajax/editSupply.php?te="+edit_open_s);
 		
 		return false;
 }
@@ -840,7 +950,15 @@ function del7(){
 		$('#del_dialog7').dialog({
 		autoOpen: false,
 		show: 'highlight',
-		hide: 'highlight'
+		hide: 'highlight',
+		buttons: {
+			'No': function() {
+				$(this).dialog('close');
+			},
+			'Yes': function() {
+				conf7();
+			}
+		}
 	});
 		$('#del_dialog7').dialog('open');
 		$('#del_dialog7').load("scripts/processDeleteSupply.php?delt="+del_s);
@@ -853,8 +971,15 @@ function conf7(){
 		$('#conf_del7').dialog({
 		autoOpen: false,
 		show: 'highlight',
-		hide: 'highlight'
+		hide: 'highlight',
+		buttons: {
+			'Back to Home': function() {
+				$(this).dialog('close');
+				history.go(0);
+			}
+		}
 	});
+	alert(conf_s);
 		$('#conf_del7').dialog('open');
 		$('#conf_del7').load("process/deleteItem.php?dtrue="+conf_s);
 		return false;
@@ -874,7 +999,7 @@ function deposit3(){
 			$("#warningSupply").dialog({
 				modal: true,
 				buttons: {
-					Ok: function() {
+					OK: function() {
 						$(this).dialog('close');
 					}
 				}
@@ -884,7 +1009,12 @@ function deposit3(){
 		$('#deposit_dialog3').dialog({
 			autoOpen: false,
 			show: 'explode',
-			hide: 'highlight'
+			hide: 'highlight',
+			buttons: {
+				'Deposit': function() {
+					deposit();
+				}
+			}
 		});
 		$('#deposit_dialog3').dialog('open');
 		$('#deposit_dialog3').load("ajax/deposit.php?te="+deposit_texts);
@@ -898,25 +1028,44 @@ function withdraw3(){
 		while($('#myInputsp'+i).val()!=undefined){
 			if($('#myInputsp'+i).is(':checked')){
 				withdraw_texts =$('#myInputsp'+i).val();
+				stock =$('#stks'+i).val();
 			}
 			i++;
 		}
-		
 		if(withdraw_texts==''){
 			$("#warningSupply").dialog({
 				modal: true,
 				buttons: {
-					Ok: function() {
+					OK: function() {
 						$(this).dialog('close');
 					}
 				}
 			});
 		}
+		if(stock==0){
+			$('#withdraw_dialog3').dialog({
+			autoOpen: false,
+			show: 'explode',
+			hide: 'highlight',
+			buttons: {
+				'OK': function() {
+					$(this).dialog('close');
+				}
+			}
+			});
+			$('#withdraw_dialog3').dialog('open');
+			$('#withdraw_dialog3').load("ajax/noStock.php?te="+withdraw_text);
+		}
 		else{
 		$('#withdraw_dialog3').dialog({
 			autoOpen: false,
 			show: 'explode',
-			hide: 'highlight'
+			hide: 'highlight',
+			buttons: {
+				'Withdraw': function() {
+					withdraw();
+				}
+			}
 		});
 		$('#withdraw_dialog3').dialog('open');
 		$('#withdraw_dialog3').load("ajax/withdraw.php?te="+withdraw_texts);
@@ -941,7 +1090,7 @@ function open8(){
 			$("#warningAcct").dialog({
 			modal: true,
 			buttons: {
-				Ok: function() {
+				OK: function() {
 					$(this).dialog('close');
 				}
 			}
@@ -951,8 +1100,13 @@ function open8(){
 		$('#dialog8').dialog({
 		autoOpen: false,
 		show: 'explode',
-		hide: 'highlight'
-	});
+		hide: 'highlight',
+		buttons: {
+			OK: function() {
+				$(this).dialog('close');
+			}
+		}
+		});
 		$('#dialog8').dialog('open');
 		$('#dialog8').load("process/viewPendingAcct.php?te="+acctName);
 		}
@@ -973,7 +1127,7 @@ function approve(){
 			$("#warningAcct").dialog({
 			modal: true,
 			buttons: {
-				Ok: function() {
+				OK: function() {
 					$(this).dialog('close');
 				}
 			}
@@ -985,7 +1139,7 @@ function approve(){
 		show: 'explode',
 		hide: 'highlight',
 		buttons: {
-				Ok: function() {
+				OK: function() {
 					$(this).dialog('close');
 				}
 			}
@@ -1010,7 +1164,7 @@ function deny(){
 			$("#warningAcct").dialog({
 			modal: true,
 			buttons: {
-				Ok: function() {
+				OK: function() {
 					$(this).dialog('close');
 				}
 			}
@@ -1022,7 +1176,7 @@ function deny(){
 		show: 'explode',
 		hide: 'highlight',
 		buttons: {
-				Ok: function() {
+				OK: function() {
 					$(this).dialog('close');
 				}
 			}
@@ -1030,5 +1184,52 @@ function deny(){
 		$('#approveSuccess').dialog('open');
 		$('#approveSuccess').load("process/approveRegistration.php?te="+pendAcct+"&act=0&cnt="+counter);
 		}
+		return false;
+}
+
+function addMachine() {
+	$('#dialog9').html("");
+		del =$('#mach1').val();
+		$('#dialog9').dialog({
+		autoOpen: false,
+		show: 'highlight',
+		hide: 'highlight',
+		buttons: {
+				'Back to Home': function() {
+					$(this).dialog('close');
+					history.go(0);
+				}
+			}
+		});
+		del = del.replace(/ /g, "%20");
+		$('#dialog9').dialog('open');
+		$('#dialog9').load("process/addMachine.php?mach="+del);
+		return false;
+}
+
+function addItem() {
+	$('#dialog10').html("");
+		itemType=$('#itemType').val();
+		machine=$('#machineName').val();
+		matno=$('#matno').val();
+		bin=$('#bin').val();
+		desc1=$('#desc1').val();
+		bun=$('#bun').val();
+		stock=$('#stock').val();
+		cc=$('#cc').val();
+		$('#dialog10').dialog({
+		autoOpen: false,
+		show: 'highlight',
+		hide: 'highlight',
+		buttons: {
+				'Back to Home': function() {
+					$(this).dialog('close');
+					history.go(0);
+				}
+			}
+		});
+		desc1 = desc1.replace(/ /g, "%20");
+		$('#dialog10').dialog('open');
+		$('#dialog10').load("process/addItem.php?itemType="+itemType+"&machine="+machine+"&matno="+matno+"&desc1="+desc1+"&stock="+stock+"&bin="+bin+"&bun="+bun+"&cc="+cc);
 		return false;
 }
