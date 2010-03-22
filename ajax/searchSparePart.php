@@ -10,12 +10,16 @@
 	}
 ?>						
 		<form name='f1' action='ajax/searchSparePart.php' method='POST'>
-		<label for="spare1">Search</label>
-		<div id="myAutoComplete">
-			<input id="spare1" type="text" name="tet" />
-			<div id="myContainer"></div>
-		</div>
-			<input type="submit" value="search" onclick='s_result();return false'/>
+		<table id="search">
+			<tr>
+				<td for="spare1"><h4>Search for Spare Part</h4></td>
+				<td><input id="spare1" type="text" name="tet" /></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td><input type="submit" value="Search" onclick='s_result();return false'/></td>
+			</tr>
+		</table>	
 		</form>
 		<div id='users-contain' class='ui-widget'>
 		<div id="searchresults"></div>
@@ -25,6 +29,8 @@
 		
 				<script type="text/javascript">
 				function s_result(){
-					$('#searchresults').load('process/resultSearchItem.php?tet='+$('#spare1').val());
+					var search = $('#spare1').val();
+					search = search.replace(/ /g, "%20");
+					$('#searchresults').load('process/resultSearchItem.php?tet='+search);
 				}
 				</script>
