@@ -213,24 +213,21 @@ function processAddMachine() {
         var input = document.getElementsByTagName("input");
         var i = 0;
         var mach = $('#mach1').val();
-		//var wewes = document.getElementById("wewes");
         result = validateInput(input);
        
         while($('#temp'+i).val()!=undefined){
                 if(mach == $('#temp'+i).val()){
-                    //alert("Duplicate Name for Machine Name");
-					$('#msg').text("Error: Duplicate Entry for Machine Name");
+					document.getElementById("mach1").style.border = "1px solid red";
+					document.getElementById("mach1").style.backgroundColor = "#FFE891";
+					$('#msg').text("Already exists");
                     result = false;
                     break;
                 }
                 i++;
         }
         if (result) {
-                //window.location = "process/addMachine.php?mach="+mach;
-				$('#msg').load('process/addMachine.php?mach='+mach);
+			addMachine();
         }
-        else
-                return false;
 }
 
 function processAddItem(formObject) {
@@ -254,42 +251,42 @@ function processAddItem(formObject) {
 				break;
 			}
 		}
+		
 		if (machine=="") {
 			result=false;
 			document.getElementById("machineName").style.border = "1px solid red";
 			document.getElementById("machineName").style.backgroundColor = "#FFE891";
-			document.getElementById("machineName").title = "This field must be a number.";
 		}
 		else {
 			document.getElementById("machineName").style.border = "1px solid #808080";
 			document.getElementById("machineName").style.backgroundColor = "";
 		}
 	}
+	else {
+		document.getElementById("machineName").style.border = "1px solid #808080";
+		document.getElementById("machineName").style.backgroundColor = "";
+	}
 	
 	mat_no = document.getElementById("matno").value;
-	bin = document.getElementById("bin").value;
-	desc1 = document.getElementById("desc1").value;
-	bun = document.getElementById("bun").value;
-	stock = document.getElementById("stock").value;
-	cc = document.getElementById("cc").value;
+
 	var j = 0;
+	
 	while($('#temp'+j).val()!=undefined){
         if(mat_no == $('#temp'+j).val()){
-			//alert("Duplicate Entry for Material Number");
-			$('#msg').text("Error: Duplicate Entry for Material Number");
+			$('#msg').text("Already exists");
+			document.getElementById("matno").style.border = "1px solid red";
+			document.getElementById("matno").style.backgroundColor = "#FFE891";
 			result = false;
 			break;
+		}
+		else {
+			$('#msg').empty();
 		}
 		j++;
 	}
 	if (result) {
-		var url = "process/addItem.php?itemType="+itemType+"&machine="+machine+"&mat_no="+mat_no+"&desc1="+desc1+"&stock="+stock+"&bin="+bin+"&bun="+bun+"&cc="+cc;
-		$('#msg').load(url);
+		addItem();
 	}
-	else{
-		return false;
-	}
-
 }
 
 function processSearchItem() {
