@@ -8,8 +8,7 @@
 		
 		mysql_query("UPDATE machine SET name='$temp' WHERE id='$id'");
 
-		echo "<h3>Machine update successful!</h3><br />";
-		echo "<div id='dialogSmall'><a href='mainForAdmin.php'><input type='button' value='Back to List' class='ui-state-default ui-corner-all'></a><br /></div>";
+		echo "<h3>Machine update successful!</h3>";
 	}
 	else {
 		echo "<script type = 'text/javascript'>

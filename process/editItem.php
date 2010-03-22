@@ -4,6 +4,7 @@
 		mysql_select_db('spsis', $link);
 		$temp = $_GET['item_edit1'];
 		$desc1 = $_GET['item_desc1'];
+		$desc1 = addslashes($desc1);
 		$bin = $_GET['item_bin'];
 		$bun = $_GET['item_bun'];
 		$cc = $_GET['item_cc'];

@@ -3,7 +3,9 @@
 	include '../ajax/sessions.inc';
 	
 	if (isset($_SESSION['username'])) {
-		$query = "INSERT INTO item VALUES(NULL, '$_GET[matno]', '$_GET[desc1]', '$_GET[stock]', '$_GET[bin]', '$_GET[bun]', '$_GET[cc]', '$_GET[itemType]', '$_GET[machine]')";
+		$temp = $_GET['desc1'];
+		$temp = addslashes($temp);
+		$query = "INSERT INTO item VALUES(NULL, '$_GET[matno]', '$temp', '$_GET[stock]', '$_GET[bin]', '$_GET[bun]', '$_GET[cc]', '$_GET[itemType]', '$_GET[machine]')";
 		$result = mysql_query($query);
 		
 		if($result){

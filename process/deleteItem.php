@@ -8,12 +8,12 @@
 		$rows = mysql_fetch_array($result);
 
 		if($rows['stock']!=0){
-			echo "<h3>Cannot delete item <a id='highlight'>" . $rows['desc1'] . "</a>.</h3><h4>It is a non-empty stock. </h4>";
+			echo "<h3>Cannot delete item <a id='highlight'>" . $rows['matno'] . "</a>.</h3><h4>It is a non-empty stock. </h4>";
 		}
 		else{
 			$query = mysql_query("DELETE FROM item where matno='{$rows['matno']}'");
 			if ($query) {
-				echo "<h3>Item <a id='highlight'>" . $rows['desc1'] . "</a> has been successfully deleted! </h3>";
+				echo "<h3>Item <a id='highlight'>" . $rows['matno'] . "</a> has been successfully deleted! </h3>";
 			}
 		}
 	}

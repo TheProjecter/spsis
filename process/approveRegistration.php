@@ -4,7 +4,7 @@
 
 	if (isset($_SESSION['username'])) {
 		$cnt = $_GET['cnt'];
-
+		echo "<script>alert('".$cnt."')</script>";
 		while ($cnt>=0) {
 			$temp = $_GET['te'][$cnt];
 			if ($_GET['act']==1) {
