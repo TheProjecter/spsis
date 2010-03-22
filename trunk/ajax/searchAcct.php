@@ -11,12 +11,17 @@
 	else {
 ?>						
 <form name='f1' action='ajax/searchAcct.php' method='POST'>
-<label for="acct1">Search</label>
-<div id="myAutoComplete">
-	<input id="acct1" type="text" name="tet" />
-	<div id="myContainer"></div>
-</div>
-	<input type="submit" value="search" onclick='a_result();return false'/>
+
+<table id="search">
+	<tr>
+		<td for="acct1"><h4>Search for Account</h4></td>
+		<td><input id="acct1" type="text" name="tet" /></td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><input type="submit" value="Search" onclick='a_result();return false'/></td>
+	</tr>
+</table>
 </form>
 <div id='users-contain' class='ui-widget'>
 <div id="searchResultsForAcct"></div>
@@ -26,29 +31,9 @@
 
 		<script type="text/javascript">
 		function a_result(){
-			$('#searchResultsForAcct').load('process/resultSearchAcct.php?tet='+$('#acct1').val());
+			var search = $('#acct1').val();
+			search = search.replace(/ /g, "%20");
+			$('#searchResultsForAcct').load('process/resultSearchAcct.php?tet='+search);
 		}
 		</script>
-
-<!--search corner-->
-<script type="text/javascript" src="assets/js/query.php"></script>
-	<script type="text/javascript">
-		YAHOO.example.BasicLocal = function() {
-			
-			var oDS = new YAHOO.util.LocalDataSource(YAHOO.example.Data.arrayMat);
-			// Optional to define fields for single-dimensional array
-			oDS.responseSchema = {fields : ["state"]};
-			
-			// Instantiate the AutoComplete
-			var oAC = new YAHOO.widget.AutoComplete("acct1", "myContainer", oDS);
-			oAC.prehighlightClassName = "yui-ac-prehighlight";
-			oAC.useShadow = true;
-			
-			return {
-				oDS: oDS,
-				oAC: oAC
-			};
-		}();
-	</script>
-<!--end-->
 <?php } ?>

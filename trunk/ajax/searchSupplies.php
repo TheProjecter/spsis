@@ -10,12 +10,16 @@
 	}
 ?>			
 <form name='f1' action='ajax/searchSupplies.php' method='POST'>
-<label for="supply1">Search</label>
-<div id="myAutoComplete">
-	<input id="supply1" type="text" name="tet" />
-	<div id="myContainer"></div>
-</div>
-	<input type="submit" value="search" onclick='sup_result();return false'/>
+	<table id="search">
+		<tr>
+			<td for="spare1"><h4>Search for Other Supply</h4></td>
+			<td><input id="supply1" type="text" name="tet" /></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td><input type="submit" value="Search" onclick='sup_result();return false'/></td>
+		</tr>
+	</table>	
 </form>
 
 <div id='users-contain' class='ui-widget'>
@@ -30,7 +34,9 @@
 	
 			<script type="text/javascript">
 			function sup_result(){
-				$('#searchSupplyResults').load('process/resultSearchSupply.php?tet='+$('#supply1').val());
+				var search = $('#supply1').val();
+				search = search.replace(/ /g, "%20");
+				$('#searchSupplyResults').load('process/resultSearchSupply.php?tet='+search);
 			}
 			</script>
 </div>
