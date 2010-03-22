@@ -8,52 +8,31 @@
 				</script>";
 		echo "<script>document.location='../logInReg.php'</script>";
 	}
+	else {
 ?>
+<table id="usersDialog" class="ui-widget ui-widget-content">
+	<thead>
+		
+	</thead>
+	<tbody>
 
-<p><span id="bitPageTitle">Edit My Account</span></p>
-&nbsp;
-<form name="formBit" method="post">
-	<br />
-	<?php echo $_SESSION['notice'];
-		$_SESSION['notice']="";
-	?>
-	<p><table id="insideFrame">
-		<tr>
-			<td>Username</td>
-			<td> <?php echo $_SESSION['username'] ?></td>
-			<td>Password</td>
-			<td> <input type="password" name="pword" id="pword" class="required"></td>
-		</tr>
-		<tr>
-			<td></td><td></td>
-			<td>Re-type Password</td>
-			<td> <input type="password" name="pword2" id="pword2" class="required"></td>
-		</tr>
-		<tr>
-			<td>Employee #</td>
-			<td> <input type="text" name="empno" id="empno" class="required"></td>
-		</tr>
-		<tr>
-			<td>First Name</td>
-			<td> <input type="text" name="first" id="first" class="required"></td>
-			<td>Last Name</td>
-			<td><input type="text" name="last" id="last" class="required"></td>
-		</tr>
-		<tr>
-			<td>Middle Name</td>
-			<td> <input type="text" name="middle" id="middle"></td>
-			<td>Position</td>
-			<td> <input type="text" name="pos" id="pos" class="required"></td>
-		</tr>
-	</table></p>
-	<br />
-	<p><table id="insideFrame">
-		<tr>
-			<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-			<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-			<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-			<td><input type="button" value="Save"
-				onclick="javascript:processEditAcct(document.getElementById('formBit'))"></td>
-		</tr>
-	</table></p>
-</form>
+<?php 
+	if(isset($_GET['te'])){
+		$uname = $_SESSION['username'];
+		if($_SESSION['type']=='admin')
+			$query = "SELECT * FROM admin WHERE username='$uname'";
+		else
+			$query = "SELECT * FROM reg_user WHERE username='$uname'";
+		$rows = mysql_fetch_array($query);
+		echo "<tr><td class='ui-widget-header '>Username</td><td><input type='text' maxlength='20' name='username' id='username' class='letter number underscore required' value='" . $rows['username'] . "'/></td></tr>";
+		echo "<tr><td class='ui-widget-header '>Password</td><td><input type='password' maxlength='20' name='pass1' id='pass1' value='" . $rows['password'] . "' class='letter number required'></td></tr>";
+		echo "<tr><td class='ui-widget-header '>Password</td><td><input type='password' maxlength='20' name='pass2' id='pass2' value='" . $rows['password'] . "' class='letter number required'></td></tr>";
+		echo "<tr><td class='ui-widget-header '>Employee Number</td><td><input type='text' maxlength='11' name='empno' id='empno' value='" . $rows['empno'] . "' class='number required'></td></tr>";
+		echo "<tr><td class='ui-widget-header '>First Name</td><td><input type='text' maxlength='30' name='fname' id='fname' value='" . $rows['first'] . "' class='letter required'></td></tr>";
+		echo "<tr><td class='ui-widget-header '>Middle Name</td><td><input type='text' maxlength='30' name='mname' id='mname' value='" . $rows['middle'] . "' class='letter'></td></tr>";
+		echo "<tr><td class='ui-widget-header '>Last Name</td><td><input type='text' maxlength='30' name='lname' id='lname' value='" . $rows['last'] . "' class='letter required'></td></tr>";
+		echo "<tr><td class='ui-widget-header '>Position</td><td><input type='text' maxlength='20' name='pos' id='pos' value='" . $rows['position'] . "' class='letter required'></td></tr>";
+		echo "<input type='hidden' id='prim' value='" . $rows['id'] . "'>";
+	}
+
+} ?>
