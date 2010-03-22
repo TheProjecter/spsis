@@ -27,8 +27,8 @@
 
 <div id="dialog8" title="View Account"></div>
 <div id="users-contain" class="ui-widget">
-	<div id="approveSuccess" title="Success"></div>
-	<div id="denySuccess" title="Success"></div>
+	<div id="approveSuccess" title="Approve Success"></div>
+	<div id="denySuccess" title="Deny Success"></div>
 	<div id="warningAcct" title="WARNING"><h3 align="center">Please choose an account.</h3></div>
 	<p><b>Instruction: </b>Mark corresponding check box of account(s) you want to approve/deny.</p>
 	<br />
