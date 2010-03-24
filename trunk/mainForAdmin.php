@@ -17,7 +17,7 @@
 	<head>
 		<title>Spare Parts and Supplies Inventory System</title>
 		<link type="text/css" href="jquery-ui-1.8rc1.custom/development-bundle/themes/base/ui.all.css" rel="stylesheet" />
-		<link type="text/css" href="jquery-ui-1.8rc1.custom/development-bundle/demos/demos.css" rel="stylesheet" />
+		<link type="text/css" href="jquery-ui-1.8rc1.custom/development-bundle/demos.css" rel="stylesheet" />
 		<script type="text/javascript" src="jquery-ui-1.8rc1.custom/development-bundle/jquery-1.4.1.js"></script>
 		<script type="text/javascript" src="jquery-ui-1.8rc1.custom/development-bundle/menus.js"></script>
 		<script type="text/javascript" src="jquery-ui-1.8rc1.custom/development-bundle/external/jquery.bgiframe-2.1.1.js"></script>
@@ -65,7 +65,7 @@
 			div#users-contain table { border-collapse: collapse;}
 			div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left;}
 			table tr th {font-size: 110%}
-			table#users, table#userItem, table#userSupply {width:90%}
+			table#users, table#userItem, table#userSupply {width:90%;}
 			table#usersDel {width:80%; margin-left: 18%}
 			table#usersThird, table#usersAcct, table#acctPend, table#usersW, table#usersD, table#usersT {width:75%}
 			table#usersHalf {width:50%}
@@ -77,15 +77,17 @@
 			div#deleteDialog {font-size: 110%}
 			.ui-dialog .ui-state-error { padding: .3em; }
 			.validateTips { border: 1px solid transparent; padding: 0.3em; }
+			#welcome {color: white}
 		</style>
 	</head>
 	<body>
 		<div id="header">
-			<table>
+			<table width="95%">
 				<tr>
 				<td><a href="http://www.analog.com/en/index.html"><img src="logo.jpg"></a></td>
-				<td>&nbsp;&nbsp;</td>
-				<td><h1>Spare Parts and Supplies Inventory System (SPSIS)</h1></td>
+				<td align="left"><h1 id="highlight2">Spare Parts and Supplies Inventory System (SPSIS)</h1></td>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td align="right"><h3 id="welcome"><?php echo "Welcome <span id='highlight2'>" . $_SESSION['username']; ?></span></h3></td>
 				</tr>
 			</table>
 		</div>
@@ -96,7 +98,6 @@
 					<ul>						
 						<li id="viewMyAcct"><a href="process/viewOwnProfile.php">View My Account</a></li>
 						<li id="viewAllAcct"><a href="ajax/viewListOfAccts.php">View All Accounts</a></li>
-						<li id="searchAcct"><a href="ajax/searchAcct.php">Search Account</a></li>
 						<li id="viewPending"><a href="ajax/viewPendingUsers.php">View Pending Users</a></li>
 						<li id="logout"><a href="process/logOut.php">Log Out</a></li>
 					</ul>
@@ -104,7 +105,7 @@
 				<li id="mach"><a href="ajax/addMachine.php">Machine</a>
 					<ul>
 						<li id="addMach"><a href="ajax/addMachine.php">Add Machine</a></li>
-						<li id="listMach"><a href="ajax/viewListOfMachines.php">List of Machines</a></li>
+						<li id="listMach"><a href="ajax/viewListOfMachines.php">View List of Machines</a></li>
 					</ul>
 				</li>
 				<li id="item"><a href="ajax/addItem.php">Spare Part/Supply</a>
@@ -121,13 +122,13 @@
 				</li>
 				<li id="search"><a href="ajax/searchAcct.php">Search</a>
 					<ul>
-						<li id="searchAcct"><a href="ajax/searchAcct.php">User Account</a></li>
+						<li id="searchAcct2"><a href="ajax/searchAcct.php">User Account</a></li>
 						<li id="searchMach"><a href="ajax/searchMachine.php">Machine</a></li>
 						<li id="searchSP"><a href="ajax/searchSparePart.php">Spare Part</a></li>
 						<li id="searchSupply"><a href="ajax/searchSupplies.php">Other Supplies</a></li>
 					</ul>
 				</li>
-				<li id="help"><a href="ajax/help.html">Help</a></li>
+				<li id="help"><a href="ajax/help.php">Help</a></li>
 			</ul>
 		</div>
 	</body>
