@@ -8,7 +8,7 @@
 		<script type="text/javascript" src="jquery-ui-1.8rc1.custom/development-bundle/ui/jquery.ui.widget.js"></script>
 		<script type="text/javascript" src="jquery-ui-1.8rc1.custom/development-bundle/ui/jquery.ui.accordion.js"></script>
 		<script type="text/javascript" src="jquery-ui-1.8rc1.custom/development-bundle/ui/jquery.ui.tabs.js"></script>
-		<link type="text/css" href="jquery-ui-1.8rc1.custom/development-bundle/demos/demos.css" rel="stylesheet" />
+		<link type="text/css" href="jquery-ui-1.8rc1.custom/development-bundle/demos.css" rel="stylesheet" />
 		<script type="text/javascript" src="scripts/ajax.js"></script>
 		<script type="text/javascript">
 		$(function() {
@@ -19,8 +19,8 @@
 		</script>
 	</head>
 	<body>
-		<div id="accordion">
-			<h3><a href="#">Not a yet a user? Register here</a></h3>
+		<div id="accordion" align="center">
+			<h3 align="left"><a href="#">Not a yet a user? Register here</a></h3>
 			<div>
 				<p id="msg">
 				<?php echo $_SESSION['msg']; 
@@ -127,7 +127,7 @@
 					</p>
 				</form>
 			</div>
-			<h3><a href="#">Log in here</a></h3>
+			<h3 align="left"><a href="#">Log in here</a></h3>
 			<div>
 				<form name="formBit" action="process/logIn.php" method="post">
 					<p><table id="insideFrame">
